@@ -8,8 +8,7 @@ Structure
 
 The project is separated into three sub-projects: `core`, `desktop`, and `android`.
 
-All game-specific code that is shared across all platforms is stored in core `core` project.
-The `desktop` and `android` projects contain platform-specific launchers for starting the game on the different platforms.
+All game-specific code that is shared across all platforms is stored in core `core` project. The `desktop` and `android` projects contain platform-specific launchers for starting the game on the different platforms.
 
 All three projects are Eclipse projects and can be imported directly. However, compilation must be done from the terminal using `sbt` (see the compilation section below).
 
