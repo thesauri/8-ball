@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="android"
+		module="android_2.11"
+		revision="0.1"
+		conf="natives"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool, natives"
+		date="20160313183241"/>
+	<dependencies>
+		<module organisation="com.badlogicgames.gdx" name="gdx-platform">
+			<revision name="1.6.1" status="release" pubdate="20150523175900" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="0">
+				<metadata-artifact status="no" details="" size="4145" time="0" location="/Users/walter/.ivy2/cache/com.badlogicgames.gdx/gdx-platform/ivy-1.6.1.xml" searched="false" origin-is-local="false" origin-location="https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1.pom"/>
+				<caller organisation="android" name="android_2.11" conf="natives" rev="1.6.1" rev-constraint-default="1.6.1" rev-constraint-dynamic="1.6.1" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="gdx-platform" type="jar" ext="jar" extra-classifier="natives-armeabi" status="successful" details="" size="116171" time="478" location="/Users/walter/.ivy2/cache/com.badlogicgames.gdx/gdx-platform/jars/gdx-platform-1.6.1-natives-armeabi.jar">
+						<origin-location is-local="false" location="https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1-natives-armeabi.jar"/>
+					</artifact>
+					<artifact name="gdx-platform" type="jar" ext="jar" extra-classifier="natives-armeabi-v7a" status="successful" details="" size="105915" time="515" location="/Users/walter/.ivy2/cache/com.badlogicgames.gdx/gdx-platform/jars/gdx-platform-1.6.1-natives-armeabi-v7a.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1-natives-armeabi-v7a.jar"/>
+					</artifact>
+					<artifact name="gdx-platform" type="jar" ext="jar" extra-classifier="natives-x86" status="successful" details="" size="94771" time="498" location="/Users/walter/.ivy2/cache/com.badlogicgames.gdx/gdx-platform/jars/gdx-platform-1.6.1-natives-x86.jar">
+						<origin-location is-local="false" location="https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1-natives-x86.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>
