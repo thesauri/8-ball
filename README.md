@@ -1,8 +1,6 @@
 8-ball
 ======
 
-Nice description here
-
 Structure
 ---------
 
