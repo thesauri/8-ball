@@ -1,0 +1,15 @@
+[0m[[0minfo[0m] [0mPackaging /Users/walter/LocalDevelopment/8ball/desktop/target/scala-2.11/desktop_2.11-0.1.jar ...[0m
+[0m[[0mdebug[0m] [0mInput file mappings:[0m
+[0m[[0mdebug[0m] [0m	com/walter/eightball/Main$delayedInit$body.class[0m
+[0m[[0mdebug[0m] [0m	  /Users/walter/LocalDevelopment/8ball/desktop/target/scala-2.11/classes/com/walter/eightball/Main$delayedInit$body.class[0m
+[0m[[0mdebug[0m] [0m	com[0m
+[0m[[0mdebug[0m] [0m	  /Users/walter/LocalDevelopment/8ball/desktop/target/scala-2.11/classes/com[0m
+[0m[[0mdebug[0m] [0m	com/walter/eightball/Main$.class[0m
+[0m[[0mdebug[0m] [0m	  /Users/walter/LocalDevelopment/8ball/desktop/target/scala-2.11/classes/com/walter/eightball/Main$.class[0m
+[0m[[0mdebug[0m] [0m	com/walter[0m
+[0m[[0mdebug[0m] [0m	  /Users/walter/LocalDevelopment/8ball/desktop/target/scala-2.11/classes/com/walter[0m
+[0m[[0mdebug[0m] [0m	com/walter/eightball[0m
+[0m[[0mdebug[0m] [0m	  /Users/walter/LocalDevelopment/8ball/desktop/target/scala-2.11/classes/com/walter/eightball[0m
+[0m[[0mdebug[0m] [0m	com/walter/eightball/Main.class[0m
+[0m[[0mdebug[0m] [0m	  /Users/walter/LocalDevelopment/8ball/desktop/target/scala-2.11/classes/com/walter/eightball/Main.class[0m
+[0m[[0minfo[0m] [0mDone packaging.[0m

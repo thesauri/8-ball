@@ -1,0 +1,779 @@
+[0m[[0minfo[0m] [0mUpdating {file:/Users/walter/LocalDevelopment/8ball/}desktop...[0m
+[0m[[0mdebug[0m] [0m:: resolving dependencies :: desktop#desktop_2.11;0.1[0m
+[0m[[0mdebug[0m] [0m	confs: [compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool][0m
+[0m[[0mdebug[0m] [0m	validate = true[0m
+[0m[[0mdebug[0m] [0m	refresh = false[0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'compile'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.11.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@625bd8d3[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-library;2.11.2[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: org.scala-lang#scala-library;2.11.2[0m
+[0m[[0mdebug[0m] [0m	found org.scala-lang#scala-library;2.11.2 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m	[2.11.2] org.scala-lang#scala-library;2.11.2[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->core#core_2.11;0.1 [compile->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving core#core_2.11;0.1 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: core#core_2.11;0.1 {compile=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0m	found core#core_2.11;0.1 in inter-project[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving com.badlogicgames.gdx#gdx;1.6.1 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.badlogicgames.gdx#gdx;1.6.1 {compile=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.badlogicgames.gdx#gdx;1.6.1[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: com.badlogicgames.gdx#gdx;1.6.1[0m
+[0m[[0mdebug[0m] [0m	found com.badlogicgames.gdx#gdx;1.6.1 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 {compile=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0m		tried /Users/walter/.ivy2/local/com.badlogicgames.gdx/gdx-backend-lwjgl/1.6.1/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-backend-lwjgl/1.6.1/gdx-backend-lwjgl-1.6.1.pom[0m
+[0m[[0mdebug[0m] [0m	jcenter: found md file for com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1[0m
+[0m[[0mdebug[0m] [0m		=> https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-backend-lwjgl/1.6.1/gdx-backend-lwjgl-1.6.1.pom (1.6.1)[0m
+[0m[[0mdebug[0m] [0mdownloading https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-backend-lwjgl/1.6.1/gdx-backend-lwjgl-1.6.1.pom ...[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-backend-lwjgl/1.6.1/gdx-backend-lwjgl-1.6.1.pom[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-backend-lwjgl/1.6.1/gdx-backend-lwjgl-1.6.1.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-backend-lwjgl/1.6.1/gdx-backend-lwjgl-1.6.1.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1!gdx-backend-lwjgl.pom(pom.original) (1251ms)[0m
+[0m[[0minfo[0m] [0mResolving com.badlogicgames.gdx#gdx-parent;1.6.1 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.badlogicgames.gdx#gdx-parent;1.6.1 {}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.badlogicgames.gdx#gdx-parent;1.6.1[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: com.badlogicgames.gdx#gdx-parent;1.6.1[0m
+[0m[[0mdebug[0m] [0m		tried /Users/walter/.ivy2/local/com.badlogicgames.gdx/gdx-backend-lwjgl/1.6.1/jars/gdx-backend-lwjgl.jar[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-backend-lwjgl/1.6.1/gdx-backend-lwjgl-1.6.1.jar[0m
+[0m[[0mdebug[0m] [0m	found com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 in jcenter[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->master(*)][0m
+[0m[[0minfo[0m] [0mResolving org.lwjgl.lwjgl#lwjgl;2.9.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@4534b210[0m
+[0m[[0mdebug[0m] [0m		tried /Users/walter/.ivy2/local/org.lwjgl.lwjgl/lwjgl/2.9.2/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for org.lwjgl.lwjgl#lwjgl;2.9.2[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl/2.9.2/lwjgl-2.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	jcenter: found md file for org.lwjgl.lwjgl#lwjgl;2.9.2[0m
+[0m[[0mdebug[0m] [0m		=> https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl/2.9.2/lwjgl-2.9.2.pom (2.9.2)[0m
+[0m[[0mdebug[0m] [0mdownloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl/2.9.2/lwjgl-2.9.2.pom ...[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl/2.9.2/lwjgl-2.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl/2.9.2/lwjgl-2.9.2.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl/2.9.2/lwjgl-2.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.lwjgl.lwjgl#lwjgl;2.9.2!lwjgl.pom(pom.original) (704ms)[0m
+[0m[[0minfo[0m] [0mResolving org.lwjgl.lwjgl#parent;2.9.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.lwjgl.lwjgl#parent;2.9.2 {}[0m
+[0m[[0mdebug[0m] [0m		tried /Users/walter/.ivy2/local/org.lwjgl.lwjgl/parent/2.9.2/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for org.lwjgl.lwjgl#parent;2.9.2[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/org/lwjgl/lwjgl/parent/2.9.2/parent-2.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	jcenter: found md file for org.lwjgl.lwjgl#parent;2.9.2[0m
+[0m[[0mdebug[0m] [0m		=> https://jcenter.bintray.com/org/lwjgl/lwjgl/parent/2.9.2/parent-2.9.2.pom (2.9.2)[0m
+[0m[[0mdebug[0m] [0mdownloading https://jcenter.bintray.com/org/lwjgl/lwjgl/parent/2.9.2/parent-2.9.2.pom ...[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/parent/2.9.2/parent-2.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/parent/2.9.2/parent-2.9.2.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for https://jcenter.bintray.com/org/lwjgl/lwjgl/parent/2.9.2/parent-2.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.lwjgl.lwjgl#parent;2.9.2!parent.pom(pom.original) (680ms)[0m
+[0m[[0mdebug[0m] [0m		tried /Users/walter/.ivy2/local/org.lwjgl.lwjgl/parent/2.9.2/jars/parent.jar[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/org/lwjgl/lwjgl/parent/2.9.2/parent-2.9.2.jar[0m
+[0m[[31merror[0m] [0mServer access Error: Unexpected end of file from server url=https://jcenter.bintray.com/org/lwjgl/lwjgl/parent/2.9.2/parent-2.9.2.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://repo1.maven.org/maven2/org/lwjgl/lwjgl/parent/2.9.2/parent-2.9.2.jar[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Not Found url=http://repo1.maven.org/maven2/org/lwjgl/lwjgl/parent/2.9.2/parent-2.9.2.jar[0m
+[0m[[0mdebug[0m] [0m		tried /Users/walter/.ivy2/local/org.lwjgl.lwjgl/lwjgl/2.9.2/jars/lwjgl.jar[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl/2.9.2/lwjgl-2.9.2.jar[0m
+[0m[[0mdebug[0m] [0m	found org.lwjgl.lwjgl#lwjgl;2.9.2 in jcenter[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [compile->master(*)][0m
+[0m[[0minfo[0m] [0mResolving org.lwjgl.lwjgl#lwjgl-platform;2.9.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@3a855aec[0m
+[0m[[0mdebug[0m] [0m		tried /Users/walter/.ivy2/local/org.lwjgl.lwjgl/lwjgl-platform/2.9.2/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for org.lwjgl.lwjgl#lwjgl-platform;2.9.2[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	jcenter: found md file for org.lwjgl.lwjgl#lwjgl-platform;2.9.2[0m
+[0m[[0mdebug[0m] [0m		=> https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2.pom (2.9.2)[0m
+[0m[[0mdebug[0m] [0mdownloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2.pom ...[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.lwjgl.lwjgl#lwjgl-platform;2.9.2!lwjgl-platform.pom(pom.original) (676ms)[0m
+[0m[[0minfo[0m] [0mResolving org.lwjgl.lwjgl#parent;2.9.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.lwjgl.lwjgl#parent;2.9.2 {}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.lwjgl.lwjgl#parent;2.9.2[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: org.lwjgl.lwjgl#parent;2.9.2[0m
+[0m[[0mdebug[0m] [0m		tried /Users/walter/.ivy2/local/org.lwjgl.lwjgl/lwjgl-platform/2.9.2/jars/lwjgl-platform.jar[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2.jar[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Not Found url=https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2.jar[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Not Found url=http://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2.jar[0m
+[0m[[0mdebug[0m] [0m	found org.lwjgl.lwjgl#lwjgl-platform;2.9.2 in jcenter[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [compile->master(*)][0m
+[0m[[0minfo[0m] [0mResolving net.java.jinput#jinput;2.0.5 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: net.java.jinput#jinput;2.0.5 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: net.java.jinput#jinput;2.0.5[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: net.java.jinput#jinput;2.0.5[0m
+[0m[[0mdebug[0m] [0m	found net.java.jinput#jinput;2.0.5 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [compile->master(*)][0m
+[0m[[0minfo[0m] [0mResolving net.java.jutils#jutils;1.0.0 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: net.java.jutils#jutils;1.0.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: net.java.jutils#jutils;1.0.0[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: net.java.jutils#jutils;1.0.0[0m
+[0m[[0mdebug[0m] [0m	found net.java.jutils#jutils;1.0.0 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->master(*)][0m
+[0m[[0minfo[0m] [0mResolving net.java.jinput#jinput-platform;2.0.5 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: net.java.jinput#jinput-platform;2.0.5 {runtime=[compile(*), runtime(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: net.java.jinput#jinput-platform;2.0.5[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: net.java.jinput#jinput-platform;2.0.5[0m
+[0m[[0mdebug[0m] [0m	found net.java.jinput#jinput-platform;2.0.5 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [compile->master(*)][0m
+[0m[[0minfo[0m] [0mResolving org.lwjgl.lwjgl#lwjgl_util;2.9.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.lwjgl.lwjgl#lwjgl_util;2.9.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m		tried /Users/walter/.ivy2/local/org.lwjgl.lwjgl/lwjgl_util/2.9.2/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for org.lwjgl.lwjgl#lwjgl_util;2.9.2[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	jcenter: found md file for org.lwjgl.lwjgl#lwjgl_util;2.9.2[0m
+[0m[[0mdebug[0m] [0m		=> https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.pom (2.9.2)[0m
+[0m[[0mdebug[0m] [0mdownloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.pom ...[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	[FAILED     ] org.lwjgl.lwjgl#lwjgl_util;2.9.2!lwjgl_util.pom(pom.original): Operation timed out (193327ms)[0m
+[0m[[33mwarn[0m] [0mproblem while downloading module descriptor: https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.pom: Operation timed out (193327ms)[0m
+[0m[[0mdebug[0m] [0m		tried http://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	public: found md file for org.lwjgl.lwjgl#lwjgl_util;2.9.2[0m
+[0m[[0mdebug[0m] [0m		=> http://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.pom (2.9.2)[0m
+[0m[[0mdebug[0m] [0mdownloading http://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.pom ...[0m
+[0m[[0mdebug[0m] [0m	public: downloading http://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	public: downloading http://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.lwjgl.lwjgl#lwjgl_util;2.9.2!lwjgl_util.pom(pom.original) (117ms)[0m
+[0m[[0minfo[0m] [0mResolving org.lwjgl.lwjgl#parent;2.9.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.lwjgl.lwjgl#parent;2.9.2 {}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.lwjgl.lwjgl#parent;2.9.2[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: org.lwjgl.lwjgl#parent;2.9.2[0m
+[0m[[0mdebug[0m] [0m		tried /Users/walter/.ivy2/local/org.lwjgl.lwjgl/lwjgl_util/2.9.2/jars/lwjgl_util.jar[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.jar[0m
+[0m[[0mdebug[0m] [0m	found org.lwjgl.lwjgl#lwjgl_util;2.9.2 in public[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [compile->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [compile->master(*)][0m
+[0m[[0minfo[0m] [0mResolving com.badlogicgames.jlayer#jlayer;1.0.1-gdx ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.badlogicgames.jlayer#jlayer;1.0.1-gdx {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.badlogicgames.jlayer#jlayer;1.0.1-gdx[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: com.badlogicgames.jlayer#jlayer;1.0.1-gdx[0m
+[0m[[0mdebug[0m] [0m	found com.badlogicgames.jlayer#jlayer;1.0.1-gdx in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [compile->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [compile->master(*)][0m
+[0m[[0minfo[0m] [0mResolving org.jcraft#jorbis;0.0.17 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.jcraft#jorbis;0.0.17 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.jcraft#jorbis;0.0.17[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: org.jcraft#jorbis;0.0.17[0m
+[0m[[0mdebug[0m] [0m	found org.jcraft#jorbis;0.0.17 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [compile->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving com.badlogicgames.gdx#gdx-platform;1.6.1 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.badlogicgames.gdx#gdx-platform;1.6.1 {compile=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0m		tried /Users/walter/.ivy2/local/com.badlogicgames.gdx/gdx-platform/1.6.1/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for com.badlogicgames.gdx#gdx-platform;1.6.1[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1.pom[0m
+[0m[[0mdebug[0m] [0m	jcenter: found md file for com.badlogicgames.gdx#gdx-platform;1.6.1[0m
+[0m[[0mdebug[0m] [0m		=> https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1.pom (1.6.1)[0m
+[0m[[0mdebug[0m] [0mdownloading https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1.pom ...[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1.pom[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] com.badlogicgames.gdx#gdx-platform;1.6.1!gdx-platform.pom(pom.original) (679ms)[0m
+[0m[[0minfo[0m] [0mResolving com.badlogicgames.gdx#gdx-parent;1.6.1 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.badlogicgames.gdx#gdx-parent;1.6.1 {}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.badlogicgames.gdx#gdx-parent;1.6.1[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: com.badlogicgames.gdx#gdx-parent;1.6.1[0m
+[0m[[0mdebug[0m] [0m		tried /Users/walter/.ivy2/local/com.badlogicgames.gdx/gdx-platform/1.6.1/jars/gdx-platform.jar[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1.jar[0m
+[0m[[0mdebug[0m] [0m	found com.badlogicgames.gdx#gdx-platform;1.6.1 in jcenter[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'runtime'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->core#core_2.11;0.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'test'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [test][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->core#core_2.11;0.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'provided'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [provided][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->net.sf.proguard#proguard-base;4.11 [provided->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving net.sf.proguard#proguard-base;4.11 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: net.sf.proguard#proguard-base;4.11 {provided=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: net.sf.proguard#proguard-base;4.11[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: net.sf.proguard#proguard-base;4.11[0m
+[0m[[0mdebug[0m] [0m	found net.sf.proguard#proguard-base;4.11 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->net.sf.proguard#proguard-base;4.11 [provided->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->net.sf.proguard#proguard-base;4.11 [provided->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->net.sf.proguard#proguard-base;4.11 [provided->master][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'optional'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [optional][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'compile-internal'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [compile-internal][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->core#core_2.11;0.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [optional][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [provided][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->net.sf.proguard#proguard-base;4.11 [provided->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->net.sf.proguard#proguard-base;4.11 [provided->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->net.sf.proguard#proguard-base;4.11 [provided->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->net.sf.proguard#proguard-base;4.11 [provided->master][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'runtime-internal'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [runtime-internal][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->core#core_2.11;0.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [optional][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'test-internal'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [test-internal][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [test][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->core#core_2.11;0.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->org.scala-lang#scala-library;2.11.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies core#core_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.gdx#gdx;1.6.1 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->org.lwjgl.lwjgl#lwjgl-platform;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl;2.9.2->net.java.jinput#jinput;2.0.5 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jutils#jutils;1.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies net.java.jinput#jinput;2.0.5->net.java.jinput#jinput-platform;2.0.5 [runtime->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.lwjgl.lwjgl#lwjgl_util;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.lwjgl.lwjgl#lwjgl_util;2.9.2->org.lwjgl.lwjgl#lwjgl;2.9.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->com.badlogicgames.jlayer#jlayer;1.0.1-gdx [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1->org.jcraft#jorbis;0.0.17 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->com.badlogicgames.gdx#gdx-platform;1.6.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [optional][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [provided][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->net.sf.proguard#proguard-base;4.11 [provided->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->net.sf.proguard#proguard-base;4.11 [provided->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->net.sf.proguard#proguard-base;4.11 [provided->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->net.sf.proguard#proguard-base;4.11 [provided->master][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'plugin'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [plugin][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'sources'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [sources][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'docs'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [docs][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'pom'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [pom][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'scala-tool'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for desktop#desktop_2.11;0.1 [scala-tool][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-compiler;2.11.2 [scala-tool->default][0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-compiler;2.11.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-lang#scala-compiler;2.11.2 {scala-tool=[default, optional(default)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-compiler;2.11.2[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: org.scala-lang#scala-compiler;2.11.2[0m
+[0m[[0mdebug[0m] [0m	found org.scala-lang#scala-compiler;2.11.2 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-compiler;2.11.2 [scala-tool->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-compiler;2.11.2 [scala-tool->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-library;2.11.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-library;2.11.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-library;2.11.2 [compile->default][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-library;2.11.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-library;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-library;2.11.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-library;2.11.2 [compile->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-library;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-library;2.11.2 [compile->optional(default)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-reflect;2.11.2 [compile->master(*)][0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-reflect;2.11.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-lang#scala-reflect;2.11.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-reflect;2.11.2[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: org.scala-lang#scala-reflect;2.11.2[0m
+[0m[[0mdebug[0m] [0m	found org.scala-lang#scala-reflect;2.11.2 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m	[2.11.2] org.scala-lang#scala-reflect;2.11.2[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-reflect;2.11.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-reflect;2.11.2->org.scala-lang#scala-library;2.11.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-reflect;2.11.2->org.scala-lang#scala-library;2.11.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-reflect;2.11.2 [compile->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-reflect;2.11.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-reflect;2.11.2->org.scala-lang#scala-library;2.11.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-reflect;2.11.2->org.scala-lang#scala-library;2.11.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang.modules#scala-xml_2.11;1.0.2 [compile->master(*)][0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang.modules#scala-xml_2.11;1.0.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-lang.modules#scala-xml_2.11;1.0.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang.modules#scala-xml_2.11;1.0.2[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: org.scala-lang.modules#scala-xml_2.11;1.0.2[0m
+[0m[[0mdebug[0m] [0m	found org.scala-lang.modules#scala-xml_2.11;1.0.2 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang.modules#scala-xml_2.11;1.0.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-xml_2.11;1.0.2->org.scala-lang#scala-library;2.11.1 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-xml_2.11;1.0.2->org.scala-lang#scala-library;2.11.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-xml_2.11;1.0.2->org.scala-lang#scala-library;2.11.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-xml_2.11;1.0.2->org.scala-lang#scala-library;2.11.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang.modules#scala-xml_2.11;1.0.2 [compile->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang.modules#scala-xml_2.11;1.0.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-xml_2.11;1.0.2->org.scala-lang#scala-library;2.11.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-xml_2.11;1.0.2->org.scala-lang#scala-library;2.11.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-xml_2.11;1.0.2->org.scala-lang#scala-library;2.11.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2 [compile->master(*)][0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2[0m
+[0m[[0mdebug[0m] [0m	found org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2->org.scala-lang#scala-library;2.11.1 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2->org.scala-lang#scala-library;2.11.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2->org.scala-lang#scala-library;2.11.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2->org.scala-lang#scala-library;2.11.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2 [compile->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2->org.scala-lang#scala-library;2.11.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2->org.scala-lang#scala-library;2.11.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2->org.scala-lang#scala-library;2.11.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-library;2.11.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-library;2.11.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-reflect;2.11.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang#scala-reflect;2.11.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang.modules#scala-xml_2.11;1.0.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang.modules#scala-xml_2.11;1.0.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-compiler;2.11.2 [scala-tool->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-compiler;2.11.2 [scala-tool->optional(default)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->jline#jline;2.12 [optional->master(*)][0m
+[0m[[0minfo[0m] [0mResolving jline#jline;2.12 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: jline#jline;2.12 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: jline#jline;2.12[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: jline#jline;2.12[0m
+[0m[[0mdebug[0m] [0m	found jline#jline;2.12 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.2->jline#jline;2.12 [optional->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [scala-tool->default][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [scala-tool->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [scala-tool->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [scala-tool->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies desktop#desktop_2.11;0.1->org.scala-lang#scala-library;2.11.2 [scala-tool->optional(default)][0m
+[0m[[0mdebug[0m] [0m	resolved ivy file produced in cache[0m
+[0m[[0mdebug[0m] [0m:: downloading artifacts ::[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-library;2.11.2!scala-library.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.badlogicgames.gdx#gdx;1.6.1!gdx.jar[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-backend-lwjgl/1.6.1/gdx-backend-lwjgl-1.6.1.jar[0m
+[0m[[0minfo[0m] [0mdownloading https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-backend-lwjgl/1.6.1/gdx-backend-lwjgl-1.6.1.jar ...[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-backend-lwjgl/1.6.1/gdx-backend-lwjgl-1.6.1.jar[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-backend-lwjgl/1.6.1/gdx-backend-lwjgl-1.6.1.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-backend-lwjgl/1.6.1/gdx-backend-lwjgl-1.6.1.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] com.badlogicgames.gdx#gdx-backend-lwjgl;1.6.1!gdx-backend-lwjgl.jar (1714ms)[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1-natives-desktop.jar[0m
+[0m[[0minfo[0m] [0mdownloading https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1-natives-desktop.jar ...[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1-natives-desktop.jar[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1-natives-desktop.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for https://jcenter.bintray.com/com/badlogicgames/gdx/gdx-platform/1.6.1/gdx-platform-1.6.1-natives-desktop.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] com.badlogicgames.gdx#gdx-platform;1.6.1!gdx-platform.jar (2545ms)[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl/2.9.2/lwjgl-2.9.2.jar[0m
+[0m[[0minfo[0m] [0mdownloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl/2.9.2/lwjgl-2.9.2.jar ...[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl/2.9.2/lwjgl-2.9.2.jar[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl/2.9.2/lwjgl-2.9.2.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl/2.9.2/lwjgl-2.9.2.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.lwjgl.lwjgl#lwjgl;2.9.2!lwjgl.jar (1847ms)[0m
+[0m[[0mdebug[0m] [0m		tried http://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.jar[0m
+[0m[[0minfo[0m] [0mdownloading http://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.jar ...[0m
+[0m[[0mdebug[0m] [0m	public: downloading http://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.jar[0m
+[0m[[0mdebug[0m] [0m	public: downloading http://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl_util/2.9.2/lwjgl_util-2.9.2.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.lwjgl.lwjgl#lwjgl_util;2.9.2!lwjgl_util.jar (255ms)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.badlogicgames.jlayer#jlayer;1.0.1-gdx!jlayer.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.jcraft#jorbis;0.0.17!jorbis.jar[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-windows.jar[0m
+[0m[[0minfo[0m] [0mdownloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-windows.jar ...[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-windows.jar[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-windows.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-windows.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.lwjgl.lwjgl#lwjgl-platform;2.9.2!lwjgl-platform.jar (143568ms)[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-linux.jar[0m
+[0m[[0minfo[0m] [0mdownloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-linux.jar ...[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-linux.jar[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-linux.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-linux.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.lwjgl.lwjgl#lwjgl-platform;2.9.2!lwjgl-platform.jar (2006ms)[0m
+[0m[[0mdebug[0m] [0m		tried https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-osx.jar[0m
+[0m[[0minfo[0m] [0mdownloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-osx.jar ...[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-osx.jar[0m
+[0m[[0mdebug[0m] [0m	jcenter: downloading https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-osx.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for https://jcenter.bintray.com/org/lwjgl/lwjgl/lwjgl-platform/2.9.2/lwjgl-platform-2.9.2-natives-osx.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.lwjgl.lwjgl#lwjgl-platform;2.9.2!lwjgl-platform.jar (1488ms)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] net.java.jinput#jinput;2.0.5!jinput.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] net.java.jutils#jutils;1.0.0!jutils.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] net.java.jinput#jinput-platform;2.0.5!jinput-platform.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] net.java.jinput#jinput-platform;2.0.5!jinput-platform.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] net.java.jinput#jinput-platform;2.0.5!jinput-platform.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] net.sf.proguard#proguard-base;4.11!proguard-base.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-compiler;2.11.2!scala-compiler.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-reflect;2.11.2!scala-reflect.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang.modules#scala-xml_2.11;1.0.2!scala-xml_2.11.jar(bundle)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2!scala-parser-combinators_2.11.jar(bundle)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] jline#jline;2.12!jline.jar[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 323675ms :: artifacts dl 153461ms[0m
+[0m[[0mdebug[0m] [0m	report for desktop#desktop_2.11;0.1 compile produced in /Users/walter/LocalDevelopment/8ball/desktop/target/resolution-cache/reports/desktop-desktop_2.11-compile.xml[0m
+[0m[[0mdebug[0m] [0m	report for desktop#desktop_2.11;0.1 runtime produced in /Users/walter/LocalDevelopment/8ball/desktop/target/resolution-cache/reports/desktop-desktop_2.11-runtime.xml[0m
+[0m[[0mdebug[0m] [0m	report for desktop#desktop_2.11;0.1 test produced in /Users/walter/LocalDevelopment/8ball/desktop/target/resolution-cache/reports/desktop-desktop_2.11-test.xml[0m
+[0m[[0mdebug[0m] [0m	report for desktop#desktop_2.11;0.1 provided produced in /Users/walter/LocalDevelopment/8ball/desktop/target/resolution-cache/reports/desktop-desktop_2.11-provided.xml[0m
+[0m[[0mdebug[0m] [0m	report for desktop#desktop_2.11;0.1 optional produced in /Users/walter/LocalDevelopment/8ball/desktop/target/resolution-cache/reports/desktop-desktop_2.11-optional.xml[0m
+[0m[[0mdebug[0m] [0m	report for desktop#desktop_2.11;0.1 compile-internal produced in /Users/walter/LocalDevelopment/8ball/desktop/target/resolution-cache/reports/desktop-desktop_2.11-compile-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for desktop#desktop_2.11;0.1 runtime-internal produced in /Users/walter/LocalDevelopment/8ball/desktop/target/resolution-cache/reports/desktop-desktop_2.11-runtime-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for desktop#desktop_2.11;0.1 test-internal produced in /Users/walter/LocalDevelopment/8ball/desktop/target/resolution-cache/reports/desktop-desktop_2.11-test-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for desktop#desktop_2.11;0.1 plugin produced in /Users/walter/LocalDevelopment/8ball/desktop/target/resolution-cache/reports/desktop-desktop_2.11-plugin.xml[0m
+[0m[[0mdebug[0m] [0m	report for desktop#desktop_2.11;0.1 sources produced in /Users/walter/LocalDevelopment/8ball/desktop/target/resolution-cache/reports/desktop-desktop_2.11-sources.xml[0m
+[0m[[0mdebug[0m] [0m	report for desktop#desktop_2.11;0.1 docs produced in /Users/walter/LocalDevelopment/8ball/desktop/target/resolution-cache/reports/desktop-desktop_2.11-docs.xml[0m
+[0m[[0mdebug[0m] [0m	report for desktop#desktop_2.11;0.1 pom produced in /Users/walter/LocalDevelopment/8ball/desktop/target/resolution-cache/reports/desktop-desktop_2.11-pom.xml[0m
+[0m[[0mdebug[0m] [0m	report for desktop#desktop_2.11;0.1 scala-tool produced in /Users/walter/LocalDevelopment/8ball/desktop/target/resolution-cache/reports/desktop-desktop_2.11-scala-tool.xml[0m
+[0m[[0mdebug[0m] [0m	resolve done (323675ms resolve - 153461ms download)[0m
+[0m[[0minfo[0m] [0mDone updating.[0m

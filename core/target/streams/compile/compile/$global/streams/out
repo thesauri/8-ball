@@ -1,0 +1,70 @@
+[0m[[0mdebug[0m] [0m[0m
+[0m[[0mdebug[0m] [0mInitial source changes: [0m
+[0m[[0mdebug[0m] [0m	removed:Set()[0m
+[0m[[0mdebug[0m] [0m	added: Set(/Users/walter/LocalDevelopment/8ball/core/src/main/scala/Eightball.scala)[0m
+[0m[[0mdebug[0m] [0m	modified: Set()[0m
+[0m[[0mdebug[0m] [0mRemoved products: Set()[0m
+[0m[[0mdebug[0m] [0mExternal API changes: API Changes: Set()[0m
+[0m[[0mdebug[0m] [0mModified binary dependencies: Set()[0m
+[0m[[0mdebug[0m] [0mInitial directly invalidated sources: Set(/Users/walter/LocalDevelopment/8ball/core/src/main/scala/Eightball.scala)[0m
+[0m[[0mdebug[0m] [0m[0m
+[0m[[0mdebug[0m] [0mSources indirectly invalidated by:[0m
+[0m[[0mdebug[0m] [0m	product: Set()[0m
+[0m[[0mdebug[0m] [0m	binary dep: Set()[0m
+[0m[[0mdebug[0m] [0m	external source: Set()[0m
+[0m[[0mdebug[0m] [0mAll initially invalidated sources: Set(/Users/walter/LocalDevelopment/8ball/core/src/main/scala/Eightball.scala)[0m
+[0m[[0mdebug[0m] [0mRecompiling all 1 sources: invalidated sources (1) exceeded 50.0% of all sources[0m
+[0m[[0minfo[0m] [0mCompiling 1 Scala source to /Users/walter/LocalDevelopment/8ball/core/target/scala-2.11/classes...[0m
+[0m[[0mdebug[0m] [0mGetting compiler-interface from component compiler for Scala 2.11.2[0m
+[0m[[0mdebug[0m] [0mPlain interface to Scala compiler 2.11.2  with arguments: [0m
+[0m[[0mdebug[0m] [0m	-nowarn[0m
+[0m[[0mdebug[0m] [0m	-d[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_56609836[0m
+[0m[[0mdebug[0m] [0m	-bootclasspath[0m
+[0m[[0mdebug[0m] [0m	/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/classes:/Users/walter/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.2.jar[0m
+[0m[[0mdebug[0m] [0m	-classpath[0m
+[0m[[0mdebug[0m] [0m	/Users/walter/.sbt/boot/scala-2.10.4/org.scala-sbt/sbt/0.13.5/xsbti/interface-0.13.5.jar:/Users/walter/.sbt/boot/scala-2.10.4/org.scala-sbt/sbt/0.13.5/compiler-interface-src/compiler-interface-src-0.13.5.jar:/Users/walter/.ivy2/cache/org.scala-lang/scala-compiler/jars/scala-compiler-2.11.2.jar:/Users/walter/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.11.2.jar:/Users/walter/.ivy2/cache/org.scala-lang.modules/scala-xml_2.11/bundles/scala-xml_2.11-1.0.2.jar:/Users/walter/.ivy2/cache/org.scala-lang.modules/scala-parser-combinators_2.11/bundles/scala-parser-combinators_2.11-1.0.2.jar:/Users/walter/.ivy2/cache/jline/jline/jars/jline-2.12.jar[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_36848274/xsbt/API.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_36848274/xsbt/Analyzer.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_36848274/xsbt/Command.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_36848274/xsbt/Compat.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_36848274/xsbt/CompilerInterface.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_36848274/xsbt/ConsoleInterface.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_36848274/xsbt/DelegatingReporter.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_36848274/xsbt/Dependency.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_36848274/xsbt/ExtractAPI.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_36848274/xsbt/ExtractUsedNames.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_36848274/xsbt/LocateClassFile.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_36848274/xsbt/Log.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_36848274/xsbt/Message.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/zp/gzh7ywnn48126gw0xt4c440r0000gn/T/sbt_36848274/xsbt/ScaladocInterface.scala[0m
+[0m[[0mdebug[0m] [0mGetting compiler-interface from component compiler for Scala 2.11.2[0m
+[0m[[0mdebug[0m] [0mRunning cached compiler 1c750ac8, interfacing (CompilerInterface) with Scala compiler version 2.11.2[0m
+[0m[[0mdebug[0m] [0mCalling Scala compiler with arguments  (CompilerInterface):[0m
+[0m[[0mdebug[0m] [0m	-Xlint[0m
+[0m[[0mdebug[0m] [0m	-Ywarn-dead-code[0m
+[0m[[0mdebug[0m] [0m	-Ywarn-value-discard[0m
+[0m[[0mdebug[0m] [0m	-Ywarn-numeric-widen[0m
+[0m[[0mdebug[0m] [0m	-Ywarn-unused[0m
+[0m[[0mdebug[0m] [0m	-Ywarn-unused-import[0m
+[0m[[0mdebug[0m] [0m	-unchecked[0m
+[0m[[0mdebug[0m] [0m	-deprecation[0m
+[0m[[0mdebug[0m] [0m	-feature[0m
+[0m[[0mdebug[0m] [0m	-encoding[0m
+[0m[[0mdebug[0m] [0m	UTF-8[0m
+[0m[[0mdebug[0m] [0m	-target:jvm-1.6[0m
+[0m[[0mdebug[0m] [0m	-bootclasspath[0m
+[0m[[0mdebug[0m] [0m	/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/classes:/Users/walter/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.2.jar[0m
+[0m[[0mdebug[0m] [0m	-classpath[0m
+[0m[[0mdebug[0m] [0m	/Users/walter/LocalDevelopment/8ball/core/target/scala-2.11/classes:/Users/walter/.ivy2/cache/com.badlogicgames.gdx/gdx/jars/gdx-1.6.1.jar[0m
+[0m[[0mdebug[0m] [0mScala compilation took 17.109654989 s[0m
+[0m[[0mdebug[0m] [0mInvalidating by inheritance (transitively)...[0m
+[0m[[0mdebug[0m] [0mInitial set of included nodes: Set(/Users/walter/LocalDevelopment/8ball/core/src/main/scala/Eightball.scala)[0m
+[0m[[0mdebug[0m] [0mInvalidated by transitive public inheritance: Set(/Users/walter/LocalDevelopment/8ball/core/src/main/scala/Eightball.scala)[0m
+[0m[[0mdebug[0m] [0mInvalidated by direct dependency: Set()[0m
+[0m[[0mdebug[0m] [0mNew invalidations:[0m
+[0m[[0mdebug[0m] [0m	Set()[0m
+[0m[[0mdebug[0m] [0mInitial set of included nodes: Set()[0m
+[0m[[0mdebug[0m] [0mPreviously invalidated, but (transitively) depend on new invalidations:[0m
+[0m[[0mdebug[0m] [0m	Set()[0m
+[0m[[0mdebug[0m] [0mAll newly invalidated sources after taking into account (previously) recompiled sources:Set()[0m
