@@ -1,5 +1,7 @@
+#OS X
 .DS_STORE
 
+#Eclipse
 .metadata
 bin/
 tmp/
@@ -50,3 +52,13 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+
+#SBT
+target/
+lib_managed/
+src_managed/
+project/boot/
+.history
+.cache
+android/gen/
+android/libs/
