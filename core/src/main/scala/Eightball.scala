@@ -15,6 +15,8 @@ class Eightball extends Game {
     lazy val gameBoard = new Board()
   
     override def create() {
+      camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0f)
+      camera.update()
       shapeRenderer.setProjectionMatrix(camera.combined)
     }
     
