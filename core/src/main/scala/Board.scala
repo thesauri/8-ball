@@ -10,6 +10,7 @@ class Board extends Rectangle with Renderable {
   var height = 1.27
   
   def render(renderer: ShapeRenderer) = {
+    renderer.setColor(Styles.BoardColor)
     renderer.rect(x.toFloat, y.toFloat, width.toFloat, height.toFloat)
   }
 }
