@@ -4,18 +4,22 @@ import com.badlogic.gdx.Game
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 
 class Eightball extends Game {
   
-    val camera = new OrthographicCamera(Gdx.graphics.getWidth.toFloat, Gdx.graphics.getHeight.toFloat)
-    val shapeRenderer = new ShapeRenderer()
-    shapeRenderer.setProjectionMatrix(camera.combined)
+    lazy val camera = new OrthographicCamera(Gdx.graphics.getWidth.toFloat, Gdx.graphics.getHeight.toFloat)
+    lazy val shapeRenderer = new ShapeRenderer()
     
-    val gameBoard = new Board()
+    lazy val gameBoard = new Board()
   
-    override def create() {}
+    override def create() {
+      shapeRenderer.setProjectionMatrix(camera.combined)
+    }
     
     override def render() {
-      
+      shapeRenderer.begin(ShapeType.Filled)
+      gameBoard.render(shapeRenderer)
+      shapeRenderer.end()
     }
 }
