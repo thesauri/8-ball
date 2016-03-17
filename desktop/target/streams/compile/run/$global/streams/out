@@ -1,2 +1,0 @@
-[0m[[0minfo[0m] [0mRunning com.walter.eightball.Main [0m
-[0m[[31merror[0m] [0m2016-03-13 18:20:47.103 java[16855:2303054] 18:20:47.102 WARNING:  140: This application, or a library it uses, is using the deprecated Carbon Component Manager for hosting Audio Units. Support for this will be removed in a future release. Also, this makes the host incompatible with version 3 audio units. Please transition to the API's in AudioComponent.h.[0m
