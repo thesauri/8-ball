@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
+import com.badlogic.gdx.graphics.GL20
 
 class Eightball extends Game {
   
@@ -18,6 +19,9 @@ class Eightball extends Game {
     }
     
     override def render() {
+      Gdx.gl.glClearColor( 1, 1, 1, 1 );
+      Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
+      
       shapeRenderer.begin(ShapeType.Filled)
       gameBoard.render(shapeRenderer)
       shapeRenderer.end()
