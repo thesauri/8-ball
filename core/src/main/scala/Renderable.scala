@@ -1,10 +1,10 @@
 package com.walter.eightball
 
-import com.badlogic.gdx.graphics.Camera
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 
 /** Represents a renderable object */ 
 trait Renderable {
   
-  def render(camera: Camera)
+  def render(renderer: ShapeRenderer)
   
 }
