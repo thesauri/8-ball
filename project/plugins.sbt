@@ -4,4 +4,6 @@ addSbtPlugin("com.hanhuy.sbt" % "android-sdk-plugin" % "1.3.6")
 
 addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "4.0.0")
 
+addSbtPlugin("org.ensime" % "ensime-sbt" % "0.4.0")
+
 //addSbtPlugin("org.roboscala" % "sbt-robovm" % "1.12.0")
