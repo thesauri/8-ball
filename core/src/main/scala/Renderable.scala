@@ -5,6 +5,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 /** Represents a renderable object */
 trait Renderable {
 
-  def render(renderer: ShapeRenderer, scale: Double): Unit
+  def render(renderer: ShapeRenderer, scale: Float): Unit
 
 }

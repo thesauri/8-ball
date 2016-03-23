@@ -25,7 +25,7 @@ class Eightball extends Game {
       Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
       shapeRenderer.begin(ShapeType.Filled)
-      gameBoard.render(shapeRenderer, Gdx.graphics.getWidth / 3d) //Divided by the approx. board width in meters
+      gameBoard.render(shapeRenderer, Gdx.graphics.getWidth / 3f) //Divided by the approx. board width in meters
       shapeRenderer.end()
     }
 }
