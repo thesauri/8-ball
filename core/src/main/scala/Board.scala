@@ -3,10 +3,8 @@ package com.walter.eightball
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 
-class Board extends Rectangle with Renderable {
+class Board(var x: Float = 0.0f, var y: Float = 0.0f) extends Vector2D(x, y) with Rectangle with Renderable {
 
-  var x = 0.0f
-  var y = 0.0f
   var width = 2.54f
   var height = 1.27f
 
