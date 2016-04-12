@@ -26,3 +26,10 @@ For compiling the Android project the Android SDK Tools, Platform-tools, Build-t
 2. Install the .APK using `adb install <package-file>` (Android Debug Bridge) or transfer the .APK to the device and install it locally using file manager.
 
 ### iOS?
+
+Testing
+-------
+
+For now tests are common for all platforms and located in the `core/` project folder.
+
+Type `sbt core/test` in the project folder to run the tests.
