@@ -65,6 +65,7 @@ android/libs/
 
 .cache-main
 android/assets/
+.cache-tests
 
 #Ensime
 .ensime
