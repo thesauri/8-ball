@@ -4,6 +4,9 @@ package com.walter.eightball
 trait Vector2D {
   var x: Float
   var y: Float
+  
+  /** Returns the sum of two vectors */
+  def +(v: Vector2D) = Vector2D(x + v.x, y + v.y)
 }
 
 object Vector2D {
