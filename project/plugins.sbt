@@ -6,4 +6,6 @@ addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "4.0.0")
 
 addSbtPlugin("org.ensime" % "ensime-sbt" % "0.4.0")
 
+libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.0" % "test"
+
 //addSbtPlugin("org.roboscala" % "sbt-robovm" % "1.12.0")
