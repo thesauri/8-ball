@@ -7,6 +7,13 @@ trait Vector2D {
   
   /** Returns the sum of two vectors */
   def +(v: Vector2D) = Vector2D(x + v.x, y + v.y)
+  
+  override def equals(v: Any): Boolean = v match {
+    case v: Vector2D => (x == v.x) && (y == v.y)
+    case _ => false
+  }
+  
+  override def toString: String = s"(${x}x${y})" 
 }
 
 object Vector2D {
