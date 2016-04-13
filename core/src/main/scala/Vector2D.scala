@@ -27,7 +27,14 @@ trait Vector2D {
     case _ => false
   }
   
-  override def toString: String = s"(${x}x${y})" 
+  override def toString: String = s"(${x}x${y})"
+  
+  /** Support Vector operations on floats */
+  implicit class FloatVector2DSupport(f: Float) {
+    
+    def *(v: Vector2D): Vector2D = ???
+    
+  }
 }
 
 object Vector2D {
