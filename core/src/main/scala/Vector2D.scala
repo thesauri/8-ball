@@ -13,7 +13,11 @@ trait Vector2D {
    *  @param v the vector to add
    *  @return the vector itself
    */
-  def +=(v: Vector2D): Vector2D = ???
+  def +=(v: Vector2D): Vector2D = {
+    x += v.x
+    y += v.y
+    this
+  }
   
   override def equals(v: Any): Boolean = v match {
     case v: Vector2D => (x == v.x) && (y == v.y)
