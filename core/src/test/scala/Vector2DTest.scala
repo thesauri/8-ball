@@ -16,4 +16,8 @@ class Vector2DTest extends FlatSpec with Matchers {
     v should be (expectedResult)
   }
   
+  "*" should "return the vector multiplied by a constant" in {
+    (Vector2D(12f, 6f) * 0.25f) should be (Vector2D(3f, 1.5f))
+  }
+  
 }
