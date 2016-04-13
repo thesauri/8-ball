@@ -29,6 +29,7 @@ class Eightball extends Game {
 
       shapeRenderer.begin(ShapeType.Filled)
       gameBoard.render(shapeRenderer, Gdx.graphics.getWidth / 3f) //Divided by the approx. board width in meters
+      balls.foreach(_.render(shapeRenderer, scale))
       shapeRenderer.end()
     }
 }
