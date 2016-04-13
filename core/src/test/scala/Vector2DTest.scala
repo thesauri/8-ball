@@ -9,4 +9,11 @@ class Vector2DTest extends FlatSpec with Matchers {
     v should be (Vector2D(12f, 5f))
   }
   
+  "+=" should "add a vector to an existing vector" in {
+    val v = Vector2D(10f, 2f)
+    val expectedResult = Vector2D(12f, 7f)
+    (v += Vector2D(2f, 5f)) should be (expectedResult)
+    v should be (expectedResult)
+  }
+  
 }
