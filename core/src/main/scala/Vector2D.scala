@@ -20,7 +20,7 @@ trait Vector2D {
   }
   
   /** Returns the vector multiplied with a constant */
-  def *(c: Float): Vector2D = ???
+  def *(c: Float): Vector2D = Vector2D(x * c, y * c)
   
   override def equals(v: Any): Boolean = v match {
     case v: Vector2D => (x == v.x) && (y == v.y)
