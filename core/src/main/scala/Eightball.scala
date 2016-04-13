@@ -10,7 +10,7 @@ import scala.collection.mutable.Buffer
 
 class Eightball extends Game {
 
-    val scale = Gdx.graphics.getWidth / 3f //Scale factor for rendering
+    lazy val scale = Gdx.graphics.getWidth / 3f //Scale factor for rendering
     lazy val camera = new OrthographicCamera(Gdx.graphics.getWidth.toFloat, Gdx.graphics.getHeight.toFloat)
     lazy val shapeRenderer = new ShapeRenderer()
     lazy val gameBoard = new Board()
