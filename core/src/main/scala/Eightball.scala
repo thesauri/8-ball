@@ -10,6 +10,7 @@ import scala.collection.mutable.Buffer
 
 class Eightball extends Game {
 
+    val scale = Gdx.graphics.getWidth / 3f //Scale factor for rendering
     lazy val camera = new OrthographicCamera(Gdx.graphics.getWidth.toFloat, Gdx.graphics.getHeight.toFloat)
     lazy val shapeRenderer = new ShapeRenderer()
     lazy val gameBoard = new Board()
@@ -21,6 +22,7 @@ class Eightball extends Game {
       shapeRenderer.setProjectionMatrix(camera.combined)
       
       balls += new Ball(0.25f, 0.25f, 1)
+      ()
     }
 
     override def render(): Unit = {
@@ -28,7 +30,7 @@ class Eightball extends Game {
       Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
       shapeRenderer.begin(ShapeType.Filled)
-      gameBoard.render(shapeRenderer, Gdx.graphics.getWidth / 3f) //Divided by the approx. board width in meters
+      gameBoard.render(shapeRenderer, scale)
       balls.foreach(_.render(shapeRenderer, scale))
       shapeRenderer.end()
     }
