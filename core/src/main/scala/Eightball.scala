@@ -6,13 +6,14 @@ import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.badlogic.gdx.graphics.GL20
+import scala.collection.mutable.Buffer
 
 class Eightball extends Game {
 
     lazy val camera = new OrthographicCamera(Gdx.graphics.getWidth.toFloat, Gdx.graphics.getHeight.toFloat)
     lazy val shapeRenderer = new ShapeRenderer()
-
     lazy val gameBoard = new Board()
+    lazy val balls = Buffer[Ball]()
 
     override def create(): Unit = {
       camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0f)
