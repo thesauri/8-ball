@@ -1,6 +1,7 @@
 package com.walter.eightball
 
 import org.scalatest._
+import com.walter.eightball.Vector2D
 
 class Vector2DTest extends FlatSpec with Matchers {
 
@@ -20,4 +21,8 @@ class Vector2DTest extends FlatSpec with Matchers {
     (Vector2D(12f, 6f) * 0.25f) should be (Vector2D(3f, 1.5f))
   }
   
+  
+  "float * vector" should "be supported" in {
+    (0.25f * Vector2D(12f, 6f)) should be (Vector2D(3f, 1.5f))
+  }
 }
