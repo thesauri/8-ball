@@ -19,6 +19,9 @@ trait Vector2D {
     this
   }
   
+  /** Returns the vector multiplied with a constant */
+  def *(c: Float): Vector2D = ???
+  
   override def equals(v: Any): Boolean = v match {
     case v: Vector2D => (x == v.x) && (y == v.y)
     case _ => false
