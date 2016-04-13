@@ -8,6 +8,13 @@ trait Vector2D {
   /** Returns the sum of two vectors */
   def +(v: Vector2D) = Vector2D(x + v.x, y + v.y)
   
+  /** Add a vector to this vector
+   *  
+   *  @param v the vector to add
+   *  @return the vector itself
+   */
+  def +=(v: Vector2D): Vector2D = ???
+  
   override def equals(v: Any): Boolean = v match {
     case v: Vector2D => (x == v.x) && (y == v.y)
     case _ => false
