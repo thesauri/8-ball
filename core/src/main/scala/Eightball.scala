@@ -19,6 +19,8 @@ class Eightball extends Game {
       camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0f)
       camera.update()
       shapeRenderer.setProjectionMatrix(camera.combined)
+      
+      balls += new Ball(0.25f, 0.25f, 1)
     }
 
     override def render(): Unit = {
