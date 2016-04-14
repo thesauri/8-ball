@@ -41,7 +41,7 @@ object Vector2D {
   /** Support Vector operations on floats */
   implicit class FloatVector2DSupport(f: Float) {
     
-    def *(v: Vector2D): Vector2D = ???
+    def *(v: Vector2D): Vector2D = v * f
     
   }
 }
