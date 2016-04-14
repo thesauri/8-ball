@@ -34,4 +34,8 @@ class Eightball extends Game {
       balls.foreach(_.render(shapeRenderer, scale))
       shapeRenderer.end()
     }
+    
+    override def dispose(): Unit = {
+      shapeRenderer.dispose()
+    }
 }
