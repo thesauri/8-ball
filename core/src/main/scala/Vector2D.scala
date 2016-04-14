@@ -28,13 +28,7 @@ trait Vector2D {
   }
   
   override def toString: String = s"(${x}x${y})"
-  
-  /** Support Vector operations on floats */
-  implicit class FloatVector2DSupport(f: Float) {
-    
-    def *(v: Vector2D): Vector2D = ???
-    
-  }
+ 
 }
 
 object Vector2D {
@@ -42,5 +36,12 @@ object Vector2D {
   
   def apply(x: Float, y: Float): Vector2D = {
     new V2D(x, y)
+  }
+  
+  /** Support Vector operations on floats */
+  implicit class FloatVector2DSupport(f: Float) {
+    
+    def *(v: Vector2D): Vector2D = ???
+    
   }
 }
