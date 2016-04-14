@@ -7,7 +7,7 @@ object PhysicsHandler {
    *  @param the balls to move
    *  @param time since last execution (in seconds) */
   def moveBalls(balls: Seq[Ball], t: Float): Unit = {
-    ???
+    balls foreach (ball => ball += t * ball.velocity)
   }
   
 }
