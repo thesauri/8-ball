@@ -7,7 +7,7 @@ trait Vector3D {
   var z: Float
   
   /** Returns the sum of two vectors */
-  def +(v: Vector3D) = ???
+  def +(v: Vector3D): Vector3D = ???
   
   /** Adds a vector to this vector
    *  
