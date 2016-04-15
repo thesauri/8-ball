@@ -1,6 +1,6 @@
 package com.walter.eightball
 
-/** Represents a vector in a 2D space */
+/** Represents a vector in a 3D space */
 trait Vector3D {
   var x: Float
   var y: Float
