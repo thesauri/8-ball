@@ -7,20 +7,25 @@ trait Vector3D {
   var z: Float
   
   /** Returns the sum of two vectors */
-  def +(v: Vector3D): Vector3D = ???
+  def +(v: Vector3D): Vector3D = Vector3D(x + v.x, y + v.y, z + v.z)
   
   /** Adds a vector to this vector
    *  
    *  @param v the vector to add
    *  @return the vector itself
    */
-  def +=(v: Vector3D): Vector3D = ???
+  def +=(v: Vector3D): Vector3D = {
+    x += v.x
+    y += v.y
+    z += v.z
+    this
+  }
   
   /** Returns the vector multiplied with a constant */
-  def *(c: Float): Vector2D = ???
+  def *(c: Float): Vector3D = Vector3D(x * c, y * c, z * c)
   
   override def equals(v: Any): Boolean = v match {
-    case v: Vector3D => ???
+    case v: Vector3D => (x == v.x) && (y == v.y) && (z == v.z)
     case _ => false
   }
   
@@ -38,7 +43,7 @@ object Vector3D {
   /** Support Vector operations on floats */
   implicit class FloatVector3DSupport(f: Float) {
     
-    def *(v: Vector3D): Vector3D = ???
+    def *(v: Vector3D): Vector3D = v * f
     
   }
 }
