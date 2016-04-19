@@ -15,6 +15,7 @@ object PhysicsHandler {
    *  @param the balls to update
    *  @param time since last execution (in seconds) */
   def updateVelocities(balls: Seq[Ball], t: Float): Unit = {
+    //v += µgv∆t
     balls.foreach { ball => ball += -0.2f * 9.8f * getPerimeterVelocity(ball) * t }
   }
   
