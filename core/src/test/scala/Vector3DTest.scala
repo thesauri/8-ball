@@ -20,8 +20,12 @@ class Vector3DTest extends FlatSpec with Matchers {
     (Vector3D(12f, 6f, 4f) * 0.25f) should be (Vector3D(3f, 1.5f, 1f))
   }
   
-  
   "float * vector" should "be supported" in {
     (0.25f * Vector3D(12f, 6f, 4f)) should be (Vector3D(3f, 1.5f, 1f))
+  }
+  
+  "vector * vector" should "return the dot product between the vectors" in {
+    val v1 = Vector3D(12f, -27f, 29f)
+    val v2 = Vector3D(48f, -127f, 13f)
   }
 }

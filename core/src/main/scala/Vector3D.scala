@@ -24,8 +24,8 @@ trait Vector3D {
   /** Returns the vector multiplied with a constant */
   def *(c: Float): Vector3D = Vector3D(x * c, y * c, z * c)
   
-  /** Returns the dot product between this and another vector */
-  def *(v: Vector3D): Vector3D = ???
+  /** Returns the cross product between this and another vector */
+  def cross(v: Vector3D): Vector3D = ???
   
   override def equals(v: Any): Boolean = v match {
     case v: Vector3D => (x == v.x) && (y == v.y) && (z == v.z)
