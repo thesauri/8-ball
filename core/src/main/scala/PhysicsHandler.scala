@@ -3,6 +3,8 @@ package com.walter.eightball
 object PhysicsHandler {
   
   val g = 9.8f //Gravitational constant
+  val cfs = 0.2f //Coefficient of friction while sliding
+  val cfr = 0.01f //Coefficient of friction while rolling
   
   /** Moves the given balls according to their velocities
    *  
