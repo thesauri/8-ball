@@ -18,7 +18,11 @@ object PhysicsHandler {
     ???
   }
   
-  /** Returns the perimeter velocity of a ball (angular velocity at the edge + velocity) */
+  /** Returns the perimeter velocity of a ball
+   *  
+   *  The perimeter velocity is defined as: (ω x R) + v
+   *  where: ω is the angular velocity 
+   *         R is a vector from the center of the ball to the touching point with the board (0, 0, -1) */
   def perimeterVelocity(ball: Ball): Vector3D = ???
   
 }
