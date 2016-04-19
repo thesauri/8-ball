@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
  *  
  *  Balls implement 2D vectors that define their position, Shapes to give them
  *  a width and height, and Renderable to handle the rendering when called. */
-class Ball(var x: Float, var y: Float, var z: Float, val number: Int) extends Vector3D with Shape with Renderable {
+class Ball(var x: Float, var y: Float, var z: Float, val number: Int) extends Vector3D with Renderable {
 
   val mass = 0.16f //In kg according to the WPA spec
   val radius = 0.028575f //In m according to the WPA spec
