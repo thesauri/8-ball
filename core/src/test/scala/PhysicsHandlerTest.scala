@@ -53,4 +53,21 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     balls(0).velocity should be (Vector3D(0.804f, 0f, 0f))
   }
   
+  "A ball" should "should start spinning after sliding for a while" in {
+    val balls = Vector(new Ball(0f, 0f, 0f, 1))
+    balls(0).velocity = Vector3D(1f, 0f, 0f)
+    PhysicsHandler.updateVelocities(balls, 0.1f)
+    
+    /* The angular velocity should be around (0, 6.85914, 0)
+     * 
+     * ω = 5/2 (R x (-µ*m*g*r*v)) * ∆t/(m*r^2)
+     * where: R a vector pointing from the center of the ball to the touching point with the table (0, 0, -r)
+     * 			  r is the radius of the ball
+     * 				m the mass of the ball
+     *        v its perimeter velocity (angular velocity at edge + velocity)
+   	 *        g gravitational acceleration (9.8) */
+    
+    balls(0).angularVelocity should be (Vector3D(0f, 6.85914f, 0f))
+  }
+  
 }
