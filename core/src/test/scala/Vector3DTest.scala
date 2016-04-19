@@ -32,4 +32,8 @@ class Vector3DTest extends FlatSpec with Matchers {
     val v4 = Vector3D(17f, -127f, 7f)
     (v3 cross v4) should be (Vector3D(14f, 133f, 2379f))
   }
+  
+  "normalized" should "return a normalized version of the vector" in {
+    Vector3D(0f, 3f, 4f).normalized should be (Vector3D(0, 0.6f, 0.8f))
+  }
 }
