@@ -29,7 +29,7 @@ trait Vector3D {
     Vector3D(y*v.z - z*v.y, z*v.x - x*v.z, x*v.y - y*v.x)
   
   /** Returns the norm (length) of the vector */
-  def norm: Vector3D = ???  
+  def norm: Float = ???  
     
   /** Returns a normalized version of the vector */
   def normalized: Vector3D = ???
