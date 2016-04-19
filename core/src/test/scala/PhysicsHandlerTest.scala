@@ -44,4 +44,13 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     balls(1).y should be (5f)
   }
   
+  "updateVelocities" should "only update velocity according to its velocity if it is not spinning" in {
+    val balls = Vector(new Ball(0f, 0f, 0f, 1))
+    balls(0).velocity = Vector3D(1f, 0f, 0f)
+    PhysicsHandler.updateVelocities(balls, 0.1f)
+    
+    //v = v0 - µgv∆t, µ = 0.2, g = 9.8, v = (1,0,0), ∆t = 0.1s
+    balls(0).velocity should be (Vector3D(0.804f, 0f, 0f))
+  }
+  
 }
