@@ -2,6 +2,8 @@ package com.walter.eightball
 
 object PhysicsHandler {
   
+  val g = 9.8f //Gravitational constant
+  
   /** Moves the given balls according to their velocities
    *  
    *  @param the balls to move
