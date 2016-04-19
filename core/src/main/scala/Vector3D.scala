@@ -1,5 +1,7 @@
 package com.walter.eightball
 
+import scala.math._
+
 /** Represents a vector in a 3D space */
 trait Vector3D {
   var x: Float
@@ -29,7 +31,7 @@ trait Vector3D {
     Vector3D(y*v.z - z*v.y, z*v.x - x*v.z, x*v.y - y*v.x)
   
   /** Returns the norm (length) of the vector */
-  def norm: Float = ???  
+  def norm: Float = sqrt(pow(x.toDouble, 2) + pow(y.toDouble, 2) + pow(z.toDouble, 2)).toFloat
     
   /** Returns a normalized version of the vector */
   def normalized: Vector3D = ???
