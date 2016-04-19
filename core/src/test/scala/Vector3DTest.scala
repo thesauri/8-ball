@@ -24,8 +24,9 @@ class Vector3DTest extends FlatSpec with Matchers {
     (0.25f * Vector3D(12f, 6f, 4f)) should be (Vector3D(3f, 1.5f, 1f))
   }
   
-  "vector * vector" should "return the dot product between the vectors" in {
+  "vector cross vector" should "return the cross product between the vectors" in {
     val v1 = Vector3D(12f, -27f, 29f)
     val v2 = Vector3D(48f, -127f, 13f)
+    (v1 cross v2) should be (Vector3D(3332f, 1236f, -228f))
   }
 }
