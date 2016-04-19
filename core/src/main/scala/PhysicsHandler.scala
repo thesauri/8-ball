@@ -10,4 +10,12 @@ object PhysicsHandler {
     balls foreach (ball => ball += t * ball.velocity)
   }
   
+  /** Updates the velocities of the given balls
+   *  
+   *  @param the balls to update
+   *  @param time since last execution (in seconds) */
+  def updateVelocities(balls: Seq[Ball], t: Float): Unit = {
+    ???
+  }
+  
 }
