@@ -21,8 +21,8 @@ class Eightball extends Game {
       camera.update()
       shapeRenderer.setProjectionMatrix(camera.combined)
       
-      balls += new Ball(0.25f, 0.25f, 1)
-      balls(0).velocity = Vector2D(0.5f, 0f)
+      balls += new Ball(0.25f, 0.25f, 0f, 1)
+      balls(0).velocity = Vector3D(0.5f, 0f, 0f)
       ()
     }
 
