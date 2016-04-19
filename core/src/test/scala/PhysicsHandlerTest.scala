@@ -70,4 +70,11 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     balls(0).angularVelocity should be (Vector3D(0f, 6.85914f, 0f))
   }
   
+  "Perimiter velocity" should "the total velocity at the balls edges" in {
+    val ball = new Ball(0f, 0f, 0f, 1)
+    ball.velocity = Vector3D(2f, 1f, 0f)
+    ball.angularVelocity = Vector3D(5f, -2f, 0f)
+    PhysicsHandler.getPerimeterVelocity(ball) should be (Vector3D(2f, 5f, 9f))
+  }
+  
 }
