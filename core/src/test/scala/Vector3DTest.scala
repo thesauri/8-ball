@@ -28,5 +28,8 @@ class Vector3DTest extends FlatSpec with Matchers {
     val v1 = Vector3D(12f, -27f, 29f)
     val v2 = Vector3D(48f, -127f, 13f)
     (v1 cross v2) should be (Vector3D(3332f, 1236f, -228f))
+    val v3 = Vector3D(-19f, 2f, 0f)
+    val v4 = Vector3D(17f, -127f, 7f)
+    (v3 cross v4) should be (Vector3D(14f, 133f, 2379f))
   }
 }
