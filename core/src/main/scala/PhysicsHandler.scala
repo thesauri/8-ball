@@ -1,5 +1,7 @@
 package com.walter.eightball
 
+import scala.math.pow
+
 object PhysicsHandler {
   
   val g = 9.8f //Gravitational constant
@@ -21,6 +23,9 @@ object PhysicsHandler {
   def updateVelocities(balls: Seq[Ball], t: Float): Unit = {
     //v += µgv∆t
     balls.foreach { ball => ball += -0.2f * 9.8f * getPerimeterVelocity(ball) * t }
+    balls.foreach {
+      ball => ball.angularVelocity += (5f * t / (2f * ball.mass * pow(ball.radius.toDouble, 2).toFloat)) * (Vector3D(0f,0f,-1f) cross (-1f * cfs * ball.mass * g * ball.radius * getPerimeterVelocity(ball)))
+    }
   }
   
   /** Returns the perimeter velocity of a ball
