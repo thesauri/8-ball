@@ -18,4 +18,7 @@ object PhysicsHandler {
     ???
   }
   
+  /** Returns the perimeter velocity of a ball (angular velocity at the edge + velocity) */
+  def perimeterVelocity(ball: Ball): Vector3D = ???
+  
 }
