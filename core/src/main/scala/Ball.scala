@@ -9,7 +9,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
  *  a width and height, and Renderable to handle the rendering when called. */
 class Ball(var x: Float, var y: Float, val number: Int) extends Vector2D with Shape with Renderable {
 
-  val radius = 0.028575f //Official billiard ball dimensions in meters
+  val mass = 0.16f //In kg according to the WPA spec
+  val radius = 0.028575f //In m according to the WPA spec
   var velocity = Vector2D(0f, 0f)
   
   def render(renderer: ShapeRenderer, scale: Float): Unit = {
