@@ -30,6 +30,7 @@ class Eightball extends Game {
       Gdx.gl.glClearColor(1, 1, 1, 1);
       Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
       
+      PhysicsHandler.updateVelocities(balls, Gdx.graphics.getDeltaTime)
       PhysicsHandler.moveBalls(balls, Gdx.graphics.getDeltaTime)
 
       shapeRenderer.begin(ShapeType.Filled)
