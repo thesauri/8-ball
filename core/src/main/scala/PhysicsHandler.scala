@@ -32,7 +32,7 @@ object PhysicsHandler {
          * between the edge of the ball and the table is
          * almost zero. */
         
-        if (getPerimeterVelocity(ball).norm <= 0.02f) {
+        if (getRelativeVelocity(ball).norm <= 0.02f) {
           
           //Calculate the new velocity according to ∆v = -µg (v/|v|) ∆t
           val newVelocity = ball.velocity + (-cfr * 9.8f * ball.velocity.normalized * t)
@@ -53,7 +53,7 @@ object PhysicsHandler {
         } else {
           
           //--Sliding ball--
-          val pv = getPerimeterVelocity(ball).normalized
+          val pv = getRelativeVelocity(ball).normalized
           
           //Calculate the new velocity according to ∆v = -µg (v/|v|) ∆t
           ball.velocity += -cfs * 9.8f * pv * t
@@ -67,12 +67,12 @@ object PhysicsHandler {
     }
   }
   
-  /** Returns the perimeter velocity of a ball
+  /** Returns the relative velocity between the table and the touching point of the ball
    *  
-   *  The perimeter velocity is defined as: (ω x R) + v
+   *  This velocity is determined by: (ω x R) + v
    *  where: ω is the angular velocity 
    *         R is a vector from the center of the ball to the touching point with the board (0, 0, -r) */
-  def getPerimeterVelocity(ball: Ball): Vector3D =
+  def getRelativeVelocity(ball: Ball): Vector3D =
     (ball.angularVelocity cross Vector3D(0f, 0f, -ball.radius)) + ball.velocity
   
 }
