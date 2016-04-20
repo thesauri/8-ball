@@ -80,7 +80,11 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
   }
   
   "timeUntilCollision" should "return the time correctly for two balls with one upcoming collision" in {
-    ???
+    val ball1 = new LargeBall(-2f, 0f, 0f, 1)
+    ball1.velocity = Vector3D(1f, 0f, 0f)
+    val ball2 = new LargeBall(2f, 0f, 0f, 1)
+    ball2.velocity = Vector3D(-1f, 0f, 0f)
+    PhysicsHandler.timeUntilCollision(ball1, ball2) should be (1f) 
   }
   
   "timeUntilCollision" should "return the time to the first of two upcoming collisions" in {
@@ -92,7 +96,7 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
   }
   
   /** A ball with a radius of 1m */
-  private class LargeBall(var x: Float, var y: Float, var z: Float, val number: Int) extends Ball(x, y, z, number) {
+  private class LargeBall(x: Float, y: Float, z: Float, number: Int) extends Ball(x, y, z, number) {
     override val radius = 1f
   }
   
