@@ -21,20 +21,22 @@ object PhysicsHandler {
    *  @param the balls to update
    *  @param time since last execution (in seconds) */
   def updateVelocities(balls: Seq[Ball], t: Float): Unit = {
-    //v += µgv∆t
     balls.foreach {
       ball => {
-        if (getPerimeterVelocity(ball).norm < 0.45f) {
-          val newVelocity = ball.velocity + (-0.01f * 9.8f * ball.velocity.normalized * t)
-          if (signum(newVelocity.norm) != signum(ball.velocity.norm)) {
+        if (getPerimeterVelocity(ball).norm <= 0.02f) {
+          val newVelocity = ball.velocity + (-cfr * 9.8f * ball.velocity.normalized * t)
+          if (ball.velocity.norm < 0.01f && ball.angularVelocity.norm < 0.01f ) {
             ball.velocity = Vector3D(0f, 0f, 0f)
+            ball.angularVelocity = Vector3D(0f, 0f, 0f)
+            ball.state = BallState.Still
           } else {
             ball.velocity = newVelocity
-          }
+            val newAngularVelocity = Vector3D(-newVelocity.y / ball.radius, newVelocity.x / ball.radius, 0)
+            ball.angularVelocity = newAngularVelocity
+          }  
         } else {
           val pv = getPerimeterVelocity(ball).normalized
-          println(getPerimeterVelocity(ball) + " " + getPerimeterVelocity(ball).norm)
-          ball.velocity += -0.2f * 9.8f * pv * t
+          ball.velocity += -cfs * 9.8f * pv * t
           ball.angularVelocity += (5f * t / (2f * ball.mass * pow(ball.radius.toDouble, 2).toFloat)) * (Vector3D(0f,0f,-ball.radius) cross (-cfs * ball.mass * g * ball.radius * pv))
         }
       }
