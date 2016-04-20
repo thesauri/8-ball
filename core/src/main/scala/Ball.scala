@@ -13,6 +13,7 @@ class Ball(var x: Float, var y: Float, var z: Float, val number: Int) extends Ve
   val radius = 0.028575f //In m according to the WPA spec
   var velocity = Vector3D(0f, 0f, 0f)
   var angularVelocity = Vector3D(0f, 0f, 0f)
+  var state = BallState.Sliding
   
   def render(renderer: ShapeRenderer, scale: Float): Unit = {
     renderer.setColor(Styles.BallColor)
