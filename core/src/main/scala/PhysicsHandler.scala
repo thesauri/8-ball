@@ -18,6 +18,9 @@ object PhysicsHandler {
   
   /** Updates the velocities of the given balls
    *  
+   *  The logic is based on the equations from the following link:
+   *  http://archive.ncsa.illinois.edu/Classes/MATH198/townsend/math.html
+   *  
    *  @param the balls to update
    *  @param time since last execution (in seconds) */
   def updateVelocities(balls: Seq[Ball], t: Float): Unit = {
