@@ -67,7 +67,7 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
      *        v its perimeter velocity (angular velocity at edge + velocity)
    	 *        g gravitational acceleration (9.8) */
     
-    balls(0).angularVelocity should be (Vector3D(0f, 17.147858f, 0f))
+    balls(0).angularVelocity should be (Vector3D(0f, 0.49000004f, 0f))
   }
   
   "Perimiter velocity" should "be the total velocity at the balls edges" in {
@@ -76,7 +76,7 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     ball.angularVelocity = Vector3D(5f, -2f, 0f)
     
     //(5f, -2f, 0f) x (0f, 0f, -1f) + (2f, 1f, 0f)
-    PhysicsHandler.getPerimeterVelocity(ball) should be (Vector3D(4f, 6f, 0f))
+    PhysicsHandler.getPerimeterVelocity(ball) should be (Vector3D(2.05715f, 1.142875f, 0f))
   }
   
 }
