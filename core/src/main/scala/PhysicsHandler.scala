@@ -67,6 +67,9 @@ object PhysicsHandler {
     }
   }
   
+  /** Returns the time until the next collision between two balls (-1 if they won't collide) */
+  def timeUntilCollision(ball1: Ball, ball2: Ball): Float = ???
+  
   /** Returns the relative velocity between the table and the touching point of the ball
    *  
    *  This velocity is determined by: (ω x R) + v
