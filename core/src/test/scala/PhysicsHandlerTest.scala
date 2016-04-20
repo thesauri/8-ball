@@ -88,7 +88,10 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
   }
   
   "timeUntilCollision" should "return the time to the first of two upcoming collisions" in {
-    ???
+    val ball1 = new LargeBall(-2f, 0f, 0f, 1)
+    ball1.velocity = Vector3D(1f, 0f, 0f)
+    val ball2 = new LargeBall(2f, 0f, 0f, 1)
+    PhysicsHandler.timeUntilCollision(ball1, ball2) should be (2f) 
   }
   
   "timeUntilCollision" should "return -1 if there is no upcoming collision" in {
