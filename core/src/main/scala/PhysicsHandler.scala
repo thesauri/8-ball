@@ -1,6 +1,6 @@
 package com.walter.eightball
 
-import scala.math.pow
+import scala.math._
 
 object PhysicsHandler {
   
@@ -24,9 +24,19 @@ object PhysicsHandler {
     //v += µgv∆t
     balls.foreach {
       ball => {
-        val pv = getPerimeterVelocity(ball).normalized
-        ball.velocity += -0.2f * 9.8f * pv * t
-        ball.angularVelocity += (5f * t / (2f * ball.mass * pow(ball.radius.toDouble, 2).toFloat)) * (Vector3D(0f,0f,-ball.radius) cross (-cfs * ball.mass * g * ball.radius * pv))
+        if (getPerimeterVelocity(ball).norm < 0.45f) {
+          val newVelocity = ball.velocity + (-0.01f * 9.8f * ball.velocity.normalized * t)
+          if (signum(newVelocity.norm) != signum(ball.velocity.norm)) {
+            ball.velocity = Vector3D(0f, 0f, 0f)
+          } else {
+            ball.velocity = newVelocity
+          }
+        } else {
+          val pv = getPerimeterVelocity(ball).normalized
+          println(getPerimeterVelocity(ball) + " " + getPerimeterVelocity(ball).norm)
+          ball.velocity += -0.2f * 9.8f * pv * t
+          ball.angularVelocity += (5f * t / (2f * ball.mass * pow(ball.radius.toDouble, 2).toFloat)) * (Vector3D(0f,0f,-ball.radius) cross (-cfs * ball.mass * g * ball.radius * pv))
+        }
       }
     }
   }

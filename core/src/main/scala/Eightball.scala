@@ -23,6 +23,7 @@ class Eightball extends Game {
       
       balls += new Ball(0.25f, 0.25f, 0f, 1)
       balls(0).velocity = Vector3D(2f, 0f, 0f)
+      balls(0).angularVelocity = Vector3D(-10f, 0f, 0f)
       ()
     }
 
