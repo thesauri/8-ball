@@ -26,20 +26,41 @@ object PhysicsHandler {
   def updateVelocities(balls: Seq[Ball], t: Float): Unit = {
     balls.foreach {
       ball => {
+        
+        /* Determine if the ball is rolling or not, this is
+         * deemed to be the case if the relative velocity
+         * between the edge of the ball and the table is
+         * almost zero. */
+        
         if (getPerimeterVelocity(ball).norm <= 0.02f) {
+          
+          //Calculate the new velocity according to ∆v = -µg (v/|v|) ∆t
           val newVelocity = ball.velocity + (-cfr * 9.8f * ball.velocity.normalized * t)
+          
+          //If both the velocity and the angular velocity are almost zero, stop the ball completely
           if (ball.velocity.norm < 0.01f && ball.angularVelocity.norm < 0.01f ) {
             ball.velocity = Vector3D(0f, 0f, 0f)
             ball.angularVelocity = Vector3D(0f, 0f, 0f)
             ball.state = BallState.Still
           } else {
+            
+            //Otherwise update the velocities
             ball.velocity = newVelocity
-            val newAngularVelocity = Vector3D(-newVelocity.y / ball.radius, newVelocity.x / ball.radius, 0)
-            ball.angularVelocity = newAngularVelocity
+            
+            //As the ball is rolling, the angular velocity should equal the velocity
+            ball.angularVelocity = Vector3D(-newVelocity.y / ball.radius, newVelocity.x / ball.radius, 0)
           }  
         } else {
+          
+          //--Sliding ball--
           val pv = getPerimeterVelocity(ball).normalized
+          
+          //Calculate the new velocity according to ∆v = -µg (v/|v|) ∆t
           ball.velocity += -cfs * 9.8f * pv * t
+          
+          /* Calculate the new angular velocity using ∆ω = 5/2 (R x (-µmgr (v/|v|))) ∆t/(m*r^2)
+           * where R is a vector pointing from the middle of the ball to the touching point
+           * with the table (0,0,-r) */
           ball.angularVelocity += (5f * t / (2f * ball.mass * pow(ball.radius.toDouble, 2).toFloat)) * (Vector3D(0f,0f,-ball.radius) cross (-cfs * ball.mass * g * ball.radius * pv))
         }
       }
