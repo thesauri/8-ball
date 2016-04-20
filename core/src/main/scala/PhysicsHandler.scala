@@ -24,9 +24,9 @@ object PhysicsHandler {
     //v += µgv∆t
     balls.foreach {
       ball => {
-        val pv = getPerimeterVelocity(ball)
+        val pv = getPerimeterVelocity(ball).normalized
         ball.velocity += -0.2f * 9.8f * pv * t
-        ball.angularVelocity += (5f * t / (2f * ball.mass * pow(ball.radius.toDouble, 2).toFloat)) * (Vector3D(0f,0f,-1f) cross (-1f * cfs * ball.mass * g * ball.radius * pv))
+        ball.angularVelocity += (5f * t / (2f * ball.mass * pow(ball.radius.toDouble, 2).toFloat)) * (Vector3D(0f,0f,-ball.radius) cross (-cfs * ball.mass * g * ball.radius * pv))
       }
     }
   }
@@ -35,8 +35,8 @@ object PhysicsHandler {
    *  
    *  The perimeter velocity is defined as: (ω x R) + v
    *  where: ω is the angular velocity 
-   *         R is a vector from the center of the ball to the touching point with the board (0, 0, -1) */
+   *         R is a vector from the center of the ball to the touching point with the board (0, 0, -r) */
   def getPerimeterVelocity(ball: Ball): Vector3D =
-    (ball.angularVelocity cross Vector3D(0f, 0f, -1f)) + ball.velocity
+    (ball.angularVelocity cross Vector3D(0f, 0f, -ball.radius)) + ball.velocity
   
 }
