@@ -79,4 +79,9 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     PhysicsHandler.getRelativeVelocity(ball) should be (Vector3D(2.05715f, 1.142875f, 0f))
   }
   
+  /** A ball with a radius of 1m */
+  private class LargeBall(var x: Float, var y: Float, var z: Float, val number: Int) extends Ball(x, y, z, number) {
+    override val radius = 1f
+  }
+  
 }
