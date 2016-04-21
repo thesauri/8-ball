@@ -94,8 +94,15 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     PhysicsHandler.timeUntilCollision(ball1, ball2) should be (2f) 
   }
   
-  "timeUntilCollision" should "return -1 if there is no upcoming collision" in {
+  "timeUntilCollision" should "return -1 if the balls are not colliding and standing still" in {
     val ball1 = new LargeBall(-2f, 0f, 0f, 1)
+    val ball2 = new LargeBall(2f, 0f, 0f, 1)
+    PhysicsHandler.timeUntilCollision(ball1, ball2) should be (-1f) 
+  }
+  
+  "timeUntilCollision" should "return -1 if the balls are moving but won't collide" in {
+    val ball1 = new LargeBall(-2f, 0f, 0f, 1)
+    ball1.velocity = Vector3D(0f, 1f, 0f)
     val ball2 = new LargeBall(2f, 0f, 0f, 1)
     PhysicsHandler.timeUntilCollision(ball1, ball2) should be (-1f) 
   }
