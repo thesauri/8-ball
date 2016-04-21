@@ -12,7 +12,7 @@ trait Vector3D {
   def +(v: Vector3D): Vector3D = Vector3D(x + v.x, y + v.y, z + v.z)
   
   /** Returns the difference of two vectors */
-  def -(v: Vector3D): Vector3D = ???
+  def -(v: Vector3D): Vector3D = Vector3D(x - v.x, y - v.y, z - v.z)
   
   /** Adds a vector to this vector
    *  
