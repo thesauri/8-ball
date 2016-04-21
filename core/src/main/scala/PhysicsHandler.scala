@@ -126,7 +126,7 @@ object PhysicsHandler {
     if (ball.velocity.y == 0f) {
       -1f
     } else {
-      val t = (ball.radius + wallY - ball.x)/ball.velocity.y
+      val t = (wallY - ball.radius - ball.y)/ball.velocity.y
       if (t < 0f) {
         -1f
       } else {
