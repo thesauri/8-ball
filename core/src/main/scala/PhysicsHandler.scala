@@ -10,8 +10,8 @@ object PhysicsHandler {
   
   /** Moves the given balls according to their velocities
    *  
-   *  @param the balls to move
-   *  @param time since last execution (in seconds) */
+   *  @param balls the balls to move
+   *  @param t time since last execution (in seconds) */
   def moveBalls(balls: Seq[Ball], t: Float): Unit = {
     balls foreach (ball => ball += t * ball.velocity)
   }
@@ -21,8 +21,8 @@ object PhysicsHandler {
    *  The logic is based on the equations from the following link:
    *  http://archive.ncsa.illinois.edu/Classes/MATH198/townsend/math.html
    *  
-   *  @param the balls to update
-   *  @param time since last execution (in seconds) */
+   *  @param balls the balls to update
+   *  @param t time since last execution (in seconds) */
   def updateVelocities(balls: Seq[Ball], t: Float): Unit = {
     balls.foreach {
       ball => {
@@ -120,8 +120,8 @@ object PhysicsHandler {
    *  The wall is assumed to be infinitely wide (which is OK as the
    *  game board is enclosed anyways)
    *  
-   *  @param the ball
-   *  @param the x coordinate of the ball */
+   *  @param ball the ball
+   *  @param wallY the y coordinate of the ball */
   def timeUntilHorizontalWallCollision(ball: Ball, wallY: Float): Float = ???
   
   /** Returns the time when the ball will collide with a vertical wall (-1 if no collision)
@@ -129,8 +129,8 @@ object PhysicsHandler {
    *  The wall is assumed to be infinitely tall (which is OK as the
    *  game board is enclosed anyways)
    *  
-   *  @param the ball
-   *  @param the x coordinate of the ball */
+   *  @param ball the ball
+   *  @param wallX the x coordinate of the ball */
   def timeUntilVerticalWallCollision(ball: Ball, wallX: Float): Float = ???
   
   /** Returns the relative velocity between the table and the touching point of the ball
