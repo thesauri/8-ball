@@ -21,6 +21,13 @@ class Vector3DTest extends FlatSpec with Matchers {
     v should be (Vector3D(-8f, 1f, -4f))
   }
   
+  "-=" should "subtract this vector with the values of another vector" in {
+    val v = Vector3D(10f, 2f, 10f)
+    val expectedResult = Vector3D(8f, -3f, 15f)
+    (v -= Vector3D(2f, 5f, -5f)) should be (expectedResult)
+    v should be (expectedResult)
+  }
+  
   "*" should "return the vector multiplied by a constant" in {
     (Vector3D(12f, 6f, 4f) * 0.25f) should be (Vector3D(3f, 1.5f, 1f))
   }
