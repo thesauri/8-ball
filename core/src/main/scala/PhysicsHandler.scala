@@ -122,7 +122,18 @@ object PhysicsHandler {
    *  
    *  @param ball the ball
    *  @param wallY the y coordinate of the ball */
-  def timeUntilHorizontalWallCollision(ball: Ball, wallY: Float): Float = ???
+  def timeUntilHorizontalWallCollision(ball: Ball, wallY: Float): Float = {
+    if (ball.velocity.y == 0f) {
+      -1f
+    } else {
+      val t = (ball.radius + wallY - ball.x)/ball.velocity.y
+      if (t < 0f) {
+        -1f
+      } else {
+        t
+      }
+    }
+  }
   
   /** Returns the time when the ball will collide with a vertical wall (-1 if no collision)
    *  
