@@ -45,6 +45,9 @@ trait Vector3D {
   def cross(v: Vector3D): Vector3D =
     Vector3D(y*v.z - z*v.y, z*v.x - x*v.z, x*v.y - y*v.x)
   
+  /** Returns the dot product of this vector with another vector */
+  def dot(v: Vector3D): Vector3D = ???
+  
   /** Returns the norm (length) of the vector */
   def norm: Float = sqrt(pow(x.toDouble, 2) + pow(y.toDouble, 2) + pow(z.toDouble, 2)).toFloat
     
