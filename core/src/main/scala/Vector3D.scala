@@ -31,7 +31,12 @@ trait Vector3D {
    *  @param v the vector to substract
    *  @return the vector itself
    */
-  def -=(v: Vector3D): Vector3D = ???
+  def -=(v: Vector3D): Vector3D = {
+    x -= v.x
+    y -= v.y
+    z -= v.z
+    this
+  }
   
   /** Returns the vector multiplied with a constant */
   def *(c: Float): Vector3D = Vector3D(x * c, y * c, z * c)
