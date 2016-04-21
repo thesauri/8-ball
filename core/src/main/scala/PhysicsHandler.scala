@@ -115,6 +115,15 @@ object PhysicsHandler {
     }
   }
   
+  /** Returns the time when the ball will collide with a horizontal wall
+   *  
+   *  The wall is assumed to be infinitely wide (which is OK as the
+   *  game board is enclosed anyways)
+   *  
+   *  @param the ball
+   *  @param the x coordinate of the ball */
+  def timeUntilHorizontalWallCollision(ball: Ball, wallY: Float): Float = ???
+  
   /** Returns the time when the ball will collide with a vertical wall
    *  
    *  The wall is assumed to be infinitely tall (which is OK as the
