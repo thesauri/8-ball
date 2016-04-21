@@ -142,7 +142,18 @@ object PhysicsHandler {
    *  
    *  @param ball the ball
    *  @param wallX the x coordinate of the ball */
-  def timeUntilVerticalWallCollision(ball: Ball, wallX: Float): Float = ???
+  def timeUntilVerticalWallCollision(ball: Ball, wallX: Float): Float = {
+    if (ball.velocity.x == 0f) {
+      -1f
+    } else {
+      val t = (wallX - ball.radius - ball.x)/ball.velocity.x
+      if (t < 0f) {
+        -1f
+      } else {
+        t
+      }
+    }
+  }
   
   /** Returns the relative velocity between the table and the touching point of the ball
    *  
