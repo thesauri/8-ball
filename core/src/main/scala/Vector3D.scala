@@ -11,6 +11,9 @@ trait Vector3D {
   /** Returns the sum of two vectors */
   def +(v: Vector3D): Vector3D = Vector3D(x + v.x, y + v.y, z + v.z)
   
+  /** Returns the difference of two vectors */
+  def -(v: Vector3D): Vector3D = ???
+  
   /** Adds a vector to this vector
    *  
    *  @param v the vector to add
