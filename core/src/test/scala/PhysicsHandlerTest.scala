@@ -107,6 +107,28 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     PhysicsHandler.timeUntilCollision(ball1, ball2) should be (-1f) 
   }
   
+  "timeUntilHorizontalCollision" should "return the time when a ball will collide with a horzintal wall" in {
+    val ball = new LargeBall(0f, 0f, 0f, 1)
+    ball.velocity = Vector3D(0f, 2f, 0f)
+    PhysicsHandler.timeUntilHorizontalWallCollision(ball, 1.5f) should be (0.75f)
+  }
+  
+  "timeUntilHorizontalCollision" should "return -1 if the ball won't collide with a wall" in {
+    val ball = new LargeBall(0f, 0f, 0f, 1)
+    PhysicsHandler.timeUntilHorizontalWallCollision(ball, 1.5f) should be (-1f)
+  }
+  
+  "timeUntilVerticalCollision" should "return the time when a ball will collide with a vertical wall" in {
+    val ball = new LargeBall(0f, 0f, 0f, 1)
+    ball.velocity = Vector3D(2f, 0f, 0f)
+    PhysicsHandler.timeUntilVerticalWallCollision(ball, 1.5f) should be (0.75f)
+  }
+  
+  "timeUntilVerticalCollision" should "return -1 if the ball won't collide with a wall" in {
+    val ball = new LargeBall(0f, 0f, 0f, 1)
+    PhysicsHandler.timeUntilVerticalWallCollision(ball, 1.5f) should be (-1f)
+  }
+  
   /** A ball with a radius of 1m */
   private class LargeBall(x: Float, y: Float, z: Float, number: Int) extends Ball(x, y, z, number) {
     override val radius = 1f
