@@ -96,14 +96,18 @@ object PhysicsHandler {
     println("oh yeah" + disc)
     
     if (disc < 0f) {
+      //No real solutions => no upcoming collisions
       -1f
     } else if (disc == 0f) {
+      //Both velocities are zero => they won't collide
       if (2*a == 0f) {
         -1f
       } else {
+        //Otherwise calculate the collision time
         -b/(2*a)
       }
     } else {
+      //Two upcoming collisions, choose the next one (but not any past solutions)
       val t1 = ((-b - sqrt(disc.toDouble).toFloat)/(2*a))
       val t2 = ((-b + sqrt(disc.toDouble).toFloat)/(2*a))
       min(if (t1 < 0f) Float.MaxValue else t1,
