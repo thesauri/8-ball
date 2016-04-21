@@ -68,7 +68,34 @@ object PhysicsHandler {
   }
   
   /** Returns the time until the next collision between two balls (-1 if they won't collide) */
-  def timeUntilCollision(ball1: Ball, ball2: Ball): Float = ???
+  def timeUntilCollision(ball1: Ball, ball2: Ball): Float = {
+    
+    val v12 = ball1.velocity - ball2.velocity
+    val r12 = ball1 - ball2
+    
+    val a = v12 dot v12
+    val b = 2 * (r12 dot v12)
+    val c = (r12 dot r12) - pow(ball1.radius.toDouble + ball2.radius, 2).toFloat
+    
+    val disc = pow(b.toDouble, 2).toFloat - 4*a*c
+    
+    println("oh yeah" + disc)
+    
+    if (disc < 0f) {
+      -1f
+    } else if (disc == 0f) {
+      if (2*a == 0f) {
+        -1f
+      } else {
+        -b/(2*a)
+      }
+    } else {
+      val t1 = ((-b - sqrt(disc.toDouble).toFloat)/(2*a))
+      val t2 = ((-b + sqrt(disc.toDouble).toFloat)/(2*a))
+      min(if (t1 < 0f) Float.MaxValue else t1,
+          if (t2 < 0f) Float.MaxValue else t2)
+    }
+  }
   
   /** Returns the relative velocity between the table and the touching point of the ball
    *  
