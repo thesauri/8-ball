@@ -115,6 +115,15 @@ object PhysicsHandler {
     }
   }
   
+  /** Returns the time when the ball will collide with a vertical wall
+   *  
+   *  The wall is assumed to be infinitely tall (which is OK as the
+   *  game board is enclosed anyways)
+   *  
+   *  @param the ball
+   *  @param the x coordinate of the ball */
+  def timeUntilVerticalWallCollision(ball: Ball, wallX: Float): Float = ???
+  
   /** Returns the relative velocity between the table and the touching point of the ball
    *  
    *  This velocity is determined by: (ω x R) + v
