@@ -110,23 +110,23 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
   "timeUntilHorizontalCollision" should "return the time when a ball will collide with a horzintal wall" in {
     val ball = new LargeBall(0f, 0f, 0f, 1)
     ball.velocity = Vector3D(0f, 2f, 0f)
-    PhysicsHandler.timeUntilHorizontalWallCollision(ball, 1.5f) should be (0.75f)
+    PhysicsHandler.timeUntilHorizontalWallCollision(ball, 2f) should be (0.5f)
   }
   
   "timeUntilHorizontalCollision" should "return -1 if the ball won't collide with a wall" in {
     val ball = new LargeBall(0f, 0f, 0f, 1)
-    PhysicsHandler.timeUntilHorizontalWallCollision(ball, 1.5f) should be (-1f)
+    PhysicsHandler.timeUntilHorizontalWallCollision(ball, 2f) should be (-1f)
   }
   
   "timeUntilVerticalCollision" should "return the time when a ball will collide with a vertical wall" in {
     val ball = new LargeBall(0f, 0f, 0f, 1)
     ball.velocity = Vector3D(2f, 0f, 0f)
-    PhysicsHandler.timeUntilVerticalWallCollision(ball, 1.5f) should be (0.75f)
+    PhysicsHandler.timeUntilVerticalWallCollision(ball, 2f) should be (0.5f)
   }
   
   "timeUntilVerticalCollision" should "return -1 if the ball won't collide with a wall" in {
     val ball = new LargeBall(0f, 0f, 0f, 1)
-    PhysicsHandler.timeUntilVerticalWallCollision(ball, 1.5f) should be (-1f)
+    PhysicsHandler.timeUntilVerticalWallCollision(ball, 2f) should be (-1f)
   }
   
   /** A ball with a radius of 1m */
