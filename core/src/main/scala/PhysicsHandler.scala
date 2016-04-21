@@ -67,7 +67,21 @@ object PhysicsHandler {
     }
   }
   
-  /** Returns the time until the next collision between two balls (-1 if they won't collide) */
+  /** Returns the time until the next collision between two balls (-1 if they won't collide) 
+   *  
+   *  The collision time is determined by treating the balls as if they were having a linear
+   *  trajectory. This allows us to use a quadratic equation to determine the distance d
+   *  between the balls for a certain time t. The potential collision occurs when the
+   *  distance between the balls is the sum of their radii.
+   *  
+   *  The equation is as following:
+   *  
+   *  d(t) = t^2 (∆v.∆v) + 2t (∆r.∆v) + (∆r.∆r) - (R1+R1)^2 
+   *  where: ∆r is the difference in position between the balls
+   *  			 R  are the radii of the balls
+   *  
+   *  This method is based on the following source:
+   *  http://twobitcoder.blogspot.fi/2010/04/circle-collision-detection.html */
   def timeUntilCollision(ball1: Ball, ball2: Ball): Float = {
     
     val v12 = ball1.velocity - ball2.velocity
