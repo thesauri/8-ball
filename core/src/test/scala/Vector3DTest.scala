@@ -45,6 +45,10 @@ class Vector3DTest extends FlatSpec with Matchers {
     (v3 cross v4) should be (Vector3D(14f, 133f, 2379f))
   }
   
+  "vector dot vector" should "return the dot product of the vectors" in {
+    (Vector3D(12f,3f,-2f) dot (Vector3D(8f,2f,1f))) should be (100f)
+  }
+  
   "normalized" should "return a normalized version of the vector" in {
     Vector3D(0f, 3f, 4f).normalized should be (Vector3D(0, 0.6f, 0.8f))
   }
