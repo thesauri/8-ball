@@ -180,8 +180,9 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     ball2.angularVelocity should be (Vector3D(0f, 0f, 0.5f))
   }
   
-  /** A ball with a radius of 1m */
+  /** A ball with a radius of 1m and a mass of 1 kg */
   private class LargeBall(x: Float, y: Float, z: Float, number: Int) extends Ball(x, y, z, number) {
+    override val mass = 1f
     override val radius = 1f
   }
   
