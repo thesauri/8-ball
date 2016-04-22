@@ -129,6 +129,42 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     PhysicsHandler.timeUntilVerticalWallCollision(ball, 2f) should be (-1f)
   }
   
+  "collide" should "update the velocities of balls for collisions" in {
+    //Case 1: A horizontally moving ball collides with a stationary ball
+    val ball1 = new LargeBall(0f, 0f, 0f, 1)
+    ball1.velocity = Vector3D(1f, 0f , 0f)
+    val ball2 = new LargeBall(2f, 0f, 0f, 1)
+    ball2.velocity = Vector3D(0f, 0f , 0f)
+    
+    PhysicsHandler.collide(ball1, ball2)
+    
+    ball1.velocity should be (Vector3D(0f, 0f, 0f))
+    ball2.velocity should be (Vector3D(1f, 0f, 0f))
+    
+    /*Case 2: A vertically moving ball collides with the lower edge
+              of a horizontally moving ball */
+    val ball3 = new LargeBall(0f, 0f, 0f, 1)
+    ball3.velocity = Vector3D(0f, 1f , 0f)
+    val ball4 = new LargeBall(0f, 1f, 0f, 1)
+    ball4.velocity = Vector3D(1f, 0f , 0f)
+    
+    PhysicsHandler.collide(ball3, ball4)
+    
+    ball3.velocity should be (Vector3D(0f, 0f, 0f))
+    ball4.velocity should be (Vector3D(1f, 1f, 0f))
+    
+    //Case 3: A vertically moving ball collides at an angle with a horizontally moving ball
+    val ball5 = new LargeBall(0f, 1f, 0f, 1)
+    ball5.velocity = Vector3D(1f, 0f , 0f)
+    val ball6 = new LargeBall(1f, 0f, 0f, 1)
+    ball6.velocity = Vector3D(0f, 1f , 0f)
+    
+    PhysicsHandler.collide(ball5, ball6)
+    
+    ball5.velocity should be (Vector3D(0f, 1f, 0f))
+    ball6.velocity should be (Vector3D(1f, 0f, 0f))
+  }
+  
   /** A ball with a radius of 1m */
   private class LargeBall(x: Float, y: Float, z: Float, number: Int) extends Ball(x, y, z, number) {
     override val radius = 1f
