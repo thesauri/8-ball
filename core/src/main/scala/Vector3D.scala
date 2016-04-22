@@ -59,7 +59,7 @@ trait Vector3D {
     case _ => false
   }
   
-  override def toString: String = s"(${x}x${y}x${z})"
+  override def toString: String = s"(${x},${y},${z})"
  
 }
 
