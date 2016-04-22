@@ -8,6 +8,14 @@ object PhysicsHandler {
   val cfs = 0.2f //Coefficient of friction while sliding
   val cfr = 0.01f //Coefficient of friction while rolling
   
+  /** Returns the relative velocity between the table and the touching point of the ball
+   *  
+   *  This velocity is determined by: (ω x R) + v
+   *  where: ω is the angular velocity 
+   *         R is a vector from the center of the ball to the touching point with the board (0, 0, -r) */
+  def getRelativeVelocity(ball: Ball): Vector3D =
+    (ball.angularVelocity cross Vector3D(0f, 0f, -ball.radius)) + ball.velocity
+  
   /** Moves the given balls according to their velocities
    *  
    *  @param balls the balls to move
@@ -154,13 +162,5 @@ object PhysicsHandler {
       }
     }
   }
-  
-  /** Returns the relative velocity between the table and the touching point of the ball
-   *  
-   *  This velocity is determined by: (ω x R) + v
-   *  where: ω is the angular velocity 
-   *         R is a vector from the center of the ball to the touching point with the board (0, 0, -r) */
-  def getRelativeVelocity(ball: Ball): Vector3D =
-    (ball.angularVelocity cross Vector3D(0f, 0f, -ball.radius)) + ball.velocity
   
 }
