@@ -14,7 +14,22 @@ object PhysicsHandler {
    *  are updated. The collision is assumed to be perfectly
    *  elastic, conserving both the total kinetic energy,
    *  momentum, and angular momentum. */
-  def collide(ball1: Ball, ball2: Ball): Unit = ???
+  def collide(ball1: Ball, ball2: Ball): Unit = {
+    val n = 1f/(ball2 - ball1).norm * (ball2 - ball1)
+    
+    //Calculate the normal components of the velocity vectors
+    val vn1 = (ball1.velocity dot (-1f * n))*(-1f * n)
+    val vn2 = (ball2.velocity dot n)*n
+    
+    //Calculate the tangential components of the velocity vectors
+    val vt1 = ball1.velocity - vn1
+    val vt2 = ball2.velocity - vn2
+    
+    /* Add the tangential component of the velocity vector with the
+     * normal component of the other vector to get the resulting velocity */
+    ball1.velocity = vt1 + vn2
+    ball2.velocity = vt2 + vn1
+  }
   
   /** Returns the relative velocity between the table and the touching point of the ball
    *  
