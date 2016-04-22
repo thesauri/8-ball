@@ -5,8 +5,10 @@ import scala.math._
 object PhysicsHandler {
   
   val g = 9.8f //Gravitational constant
+  val cfc = 0.1f //Coefficient of friction between two colliding balls
   val cfs = 0.2f //Coefficient of friction while sliding
   val cfr = 0.01f //Coefficient of friction while rolling
+  val td = 0.0002f //Duration of a collision between two balls
   
   /** Updates the velocities of the balls after a collision
    *  
@@ -29,6 +31,22 @@ object PhysicsHandler {
      * normal component of the other vector to get the resulting velocity */
     ball1.velocity = vt1 + vn2
     ball2.velocity = vt2 + vn1
+    
+    //Vectors to the touching points between the balls
+    val r1 = ball1.radius * n.normalized
+    val r2 = ball2.radius * -1f * n.normalized
+    
+    //Relative speed at the point of contact
+    val vpr = (r2 cross ball2.angularVelocity) - (r1 cross ball1.angularVelocity)
+    
+    //∆v of the normal velocities before and after the collisions
+    val dvn1 = (vn2 - vn1).norm
+    val dvn2 = (vn1 - vn2).norm
+    
+    //Calculate the new angular speeds
+    ball1.angularVelocity += (5f/2f) * (r1 cross (1/td * -cfc * (ball1.mass*dvn2) * (vpr + vt1).normalized))*(td/(ball1.mass * pow(ball1.radius.toDouble, 2).toFloat))
+    ball2.angularVelocity += (5f/2f) * (r2 cross (1/td * -cfc * (ball2.mass*dvn1) * (vpr + vt2).normalized))*(td/(ball2.mass * pow(ball2.radius.toDouble, 2).toFloat))
+    ()
   }
   
   /** Returns the relative velocity between the table and the touching point of the ball
