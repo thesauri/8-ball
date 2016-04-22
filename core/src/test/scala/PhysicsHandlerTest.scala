@@ -167,6 +167,19 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     ball6.velocity.y should be (0f +- 0.001f)
   }
   
+  "collide" should "update the angular velocities for collisions" in {
+    val ball1 = new LargeBall(0f, 0f, 0f, 1)
+    ball1.velocity = Vector3D(1f, 0f, 0f)
+    ball1.angularVelocity = Vector3D(0f, 0f, 1f)
+    val ball2 = new LargeBall(2f, 0f, 0f, 1)
+    ball2.velocity = Vector3D(-1f, 0f, 0f) 
+    ball2.angularVelocity = Vector3D(0f, 0f, 1f)
+    
+    PhysicsHandler.collide(ball1, ball2)
+    ball1.angularVelocity should be (Vector3D(0f, 0f, 0.5f))
+    ball2.angularVelocity should be (Vector3D(0f, 0f, 0.5f))
+  }
+  
   /** A ball with a radius of 1m */
   private class LargeBall(x: Float, y: Float, z: Float, number: Int) extends Ball(x, y, z, number) {
     override val radius = 1f
