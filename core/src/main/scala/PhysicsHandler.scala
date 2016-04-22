@@ -8,6 +8,9 @@ object PhysicsHandler {
   val cfs = 0.2f //Coefficient of friction while sliding
   val cfr = 0.01f //Coefficient of friction while rolling
   
+  /** Updates the velocities of the balls after a collision */
+  def collide(ball1: Ball, ball2: Ball): Unit = ???
+  
   /** Returns the relative velocity between the table and the touching point of the ball
    *  
    *  This velocity is determined by: (ω x R) + v
