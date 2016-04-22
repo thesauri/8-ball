@@ -164,7 +164,7 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     ball5.velocity.x should be (0f +- 0.001f)
     ball5.velocity.y should be (1f +- 0.001f)
     ball6.velocity.x should be (1f +- 0.001f)
-    ball6.velocity.y should be (0f +- 0.001f)//(Vector3D(1f, 0f, 0f))
+    ball6.velocity.y should be (0f +- 0.001f)
   }
   
   /** A ball with a radius of 1m */
