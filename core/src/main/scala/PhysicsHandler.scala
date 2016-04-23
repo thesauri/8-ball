@@ -47,8 +47,10 @@ object PhysicsHandler {
     val dvn2 = signum((vn1 - vn2) dot (nNorm)) * (vn1 - vn2).norm
     
     //Calculate the new angular speeds
-    ball1.angularVelocity += (5f/2f) * (r1 cross (1/td * -cfc * (ball1.mass*dvn2) * (vpr + vt1).normalized))*(td/(ball1.mass * pow(ball1.radius.toDouble, 2).toFloat))
-    ball2.angularVelocity += (5f/2f) * (r2 cross (1/td * -cfc * (ball2.mass*dvn1) * (vpr + vt2).normalized))*(td/(ball2.mass * pow(ball2.radius.toDouble, 2).toFloat))
+    ball1.angularVelocity += (5f/2f) * (r1 cross (1/td * -cfc * (ball1.mass*dvn2) * (vpr + vt1).normalized)) *
+                             (td/(ball1.mass * pow(ball1.radius.toDouble, 2).toFloat))
+    ball2.angularVelocity += (5f/2f) * (r2 cross (1/td * -cfc * (ball2.mass*dvn1) *
+                             (vpr + vt2).normalized))*(td/(ball2.mass * pow(ball2.radius.toDouble, 2).toFloat))
     ()
   }
   
@@ -190,7 +192,7 @@ object PhysicsHandler {
     }
     
     if (nextCollision.exists( _ < t ) && !hasCollided) {
-      
+
       //A collision will occur this timestep
       
       for (collisionTime <- nextCollision;
@@ -202,11 +204,10 @@ object PhysicsHandler {
         
         //Update the velocities of the colliding balls
         collide(cBalls._1, cBalls._2)
+        moveBalls(Seq(cBalls._1, cBalls._2), 0.001f)
+        println("New position " + cBalls._1 + " and new velocity: " + cBalls._1.velocity)
  
         hasCollided = true
-        
-        println("New velocitities: " + cBalls._1.velocity + " at " + cBalls._1)
-        
         //Process the rest of the timestep
         //update(balls, t - collisionTime)
       }
@@ -215,7 +216,8 @@ object PhysicsHandler {
       moveBalls(balls, t)
     }
     
-    println("Collides in " + nextCollision.getOrElse("N/A"))
+    println("Ball 1: " + balls(0) + " \n" +
+            "Ball 2: " + balls(1))
   }
   
   /** Returns the time when the ball will collide with a horizontal wall (-1 if no collision)
