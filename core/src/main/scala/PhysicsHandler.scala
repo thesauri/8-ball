@@ -4,8 +4,6 @@ import scala.math._
 
 object PhysicsHandler {
   
-  var hasCollided = false
-  
   val g = 9.8f //Gravitational constant
   val cfc = 0.1f //Coefficient of friction between two colliding balls
   val cfs = 0.2f //Coefficient of friction while sliding
@@ -191,7 +189,7 @@ object PhysicsHandler {
       }
     }
     
-    if (nextCollision.exists( _ < t ) && !hasCollided) {
+    if (nextCollision.exists( _ < t )) {
 
       //A collision will occur this timestep
       
@@ -206,10 +204,9 @@ object PhysicsHandler {
         collide(cBalls._1, cBalls._2)
         moveBalls(Seq(cBalls._1, cBalls._2), 0.001f)
         println("New position " + cBalls._1 + " and new velocity: " + cBalls._1.velocity)
- 
-        //hasCollided = true
+
         //Process the rest of the timestep
-        //update(balls, t - collisionTime)
+        update(balls, t - collisionTime)
       }
     } else {
       updateVelocities(balls, t)
