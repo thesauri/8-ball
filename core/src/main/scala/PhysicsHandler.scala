@@ -207,7 +207,7 @@ object PhysicsHandler {
         moveBalls(Seq(cBalls._1, cBalls._2), 0.001f)
         println("New position " + cBalls._1 + " and new velocity: " + cBalls._1.velocity)
  
-        hasCollided = true
+        //hasCollided = true
         //Process the rest of the timestep
         //update(balls, t - collisionTime)
       }
