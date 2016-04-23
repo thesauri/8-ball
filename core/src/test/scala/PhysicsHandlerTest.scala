@@ -79,17 +79,6 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     PhysicsHandler.getRelativeVelocity(ball) should be (Vector3D(2.05715f, 1.142875f, 0f))
   }
   
-  "timeUntilCollision" should "return a positive value for upcoming collisions" in {
-    val ball1 = new Ball(0.25f, 0.25f, 0f, 1)
-    ball1.velocity = Vector3D(2f, 0f, 0f)
-    ball1.angularVelocity = Vector3D(0f, 0f, 0f)
-    val ball2 = new Ball(2f, 0.25f, 0f, 1)
-    ball2.velocity = Vector3D(-2f, 0f, 0f)
-    ball2.angularVelocity = Vector3D(0f, 0f, 0f)
-    
-    println(PhysicsHandler.timeUntilCollision(ball1, ball2))
-  }
-  
   "timeUntilCollision" should "return the time correctly for two balls with one upcoming collision" in {
     val ball1 = new LargeBall(-2f, 0f, 0f, 1)
     ball1.velocity = Vector3D(1f, 0f, 0f)
