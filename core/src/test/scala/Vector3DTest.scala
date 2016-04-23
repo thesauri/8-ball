@@ -50,7 +50,12 @@ class Vector3DTest extends FlatSpec with Matchers {
   }
   
   "normalized" should "return a normalized version of the vector" in {
-    Vector3D(0f, 3f, 4f).normalized should be (Vector3D(0, 0.6f, 0.8f))
+    Vector3D(0f, 3f, 4f).normalized should be (Vector3D(0f, 0.6f, 0.8f))
+  }
+
+  "normalized" should "return itself if the norm is 0 or 1" in {
+    Vector3D(0f, 0f, 0f).normalized should be (Vector3D(0f, 0f, 0f))
+    Vector3D(1f, 1f, 1f).normalized should be (Vector3D(1f, 1f, 1f))
   }
   
   "norm" should "return the length of a vector" in {
