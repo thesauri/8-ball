@@ -20,13 +20,32 @@ class Eightball extends Game {
       camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0f)
       camera.update()
       shapeRenderer.setProjectionMatrix(camera.combined)
-      
-      balls += new Ball(0.25f, 0.25f, 0f, 1)
-      balls(0).velocity = Vector3D(2f, 0f, 0f)
+
+      //Cue ball
+      balls += new Ball(0.25f, 0.635f, 0f, 1)
+      balls(0).velocity = Vector3D(3f, 0f, 0f)
       balls(0).angularVelocity = Vector3D(0f, 0f, 0f)
-      balls += new Ball(2f, 0.25f, 0f, 1)
-      balls(1).velocity = Vector3D(0f, 0f, 0f)
-      balls(1).angularVelocity = Vector3D(0f, 0f, 0f)
+
+      balls += new Ball(1.69f, 0.635f, 0f, 1)
+
+      balls += new Ball(1.69f + 2f * balls(0).radius, 0.635f - balls(0).radius, 0f, 1)
+      balls += new Ball(1.69f + 2f * balls(0).radius, 0.635f + balls(0).radius, 0f, 1)
+
+      balls += new Ball(1.69f + 4f * balls(0).radius, 0.635f - 2f * balls(0).radius, 0f, 1)
+      balls += new Ball(1.69f + 4f * balls(0).radius, 0.635f, 0f, 1)
+      balls += new Ball(1.69f + 4f * balls(0).radius, 0.635f + 2f * balls(0).radius, 0f, 1)
+
+      balls += new Ball(1.69f + 6f * balls(0).radius, 0.635f - 3f * balls(0).radius, 0f, 1)
+      balls += new Ball(1.69f + 6f * balls(0).radius, 0.635f - 1f * balls(0).radius, 0f, 1)
+      balls += new Ball(1.69f + 6f * balls(0).radius, 0.635f + 1f * balls(0).radius, 0f, 1)
+      balls += new Ball(1.69f + 6f * balls(0).radius, 0.635f + 3f * balls(0).radius, 0f, 1)
+
+      balls += new Ball(1.69f + 8f * balls(0).radius, 0.635f - 4f * balls(0).radius, 0f, 1)
+      balls += new Ball(1.69f + 8f * balls(0).radius, 0.635f - 2f * balls(0).radius, 0f, 1)
+      balls += new Ball(1.69f + 8f * balls(0).radius, 0.635f, 0f, 1)
+      balls += new Ball(1.69f + 8f * balls(0).radius, 0.635f + 2f * balls(0).radius, 0f, 1)
+      balls += new Ball(1.69f + 8f * balls(0).radius, 0.635f + 4f * balls(0).radius, 0f, 1)
+
       ()
     }
 
