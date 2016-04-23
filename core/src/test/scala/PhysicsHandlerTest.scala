@@ -95,27 +95,27 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     ball1.velocity = Vector3D(1f, 0f, 0f)
     val ball2 = new LargeBall(2f, 0f, 0f, 1)
     ball2.velocity = Vector3D(-1f, 0f, 0f)
-    PhysicsHandler.timeUntilCollision(ball1, ball2) should be (1f) 
+    PhysicsHandler.timeUntilCollision(ball1, ball2) foreach (_ should be (1f))
   }
   
   "timeUntilCollision" should "return the time to the first of two upcoming collisions" in {
     val ball1 = new LargeBall(-2f, 0f, 0f, 1)
     ball1.velocity = Vector3D(1f, 0f, 0f)
     val ball2 = new LargeBall(2f, 0f, 0f, 1)
-    PhysicsHandler.timeUntilCollision(ball1, ball2) should be (2f) 
+    PhysicsHandler.timeUntilCollision(ball1, ball2) foreach (_ should be (2f))
   }
   
   "timeUntilCollision" should "return -1 if the balls are not colliding and standing still" in {
     val ball1 = new LargeBall(-2f, 0f, 0f, 1)
     val ball2 = new LargeBall(2f, 0f, 0f, 1)
-    PhysicsHandler.timeUntilCollision(ball1, ball2) should be (-1f) 
+    PhysicsHandler.timeUntilCollision(ball1, ball2) should be (None)
   }
   
   "timeUntilCollision" should "return -1 if the balls are moving but won't collide" in {
     val ball1 = new LargeBall(-2f, 0f, 0f, 1)
     ball1.velocity = Vector3D(0f, 1f, 0f)
     val ball2 = new LargeBall(2f, 0f, 0f, 1)
-    PhysicsHandler.timeUntilCollision(ball1, ball2) should be (-1f) 
+    PhysicsHandler.timeUntilCollision(ball1, ball2) should be (None)
   }
   
   "timeUntilHorizontalCollision" should "return the time when a ball will collide with a horzintal wall" in {

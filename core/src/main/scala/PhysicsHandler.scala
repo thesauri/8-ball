@@ -119,7 +119,7 @@ object PhysicsHandler {
     }
   }
   
-  /** Returns the time until the next collision between two balls (-1 if they won't collide) 
+  /** Returns the time until the next collision between two balls
    *  
    *  The collision time is determined by treating the balls as if they were having a linear
    *  trajectory. This allows us to use a quadratic equation to determine the distance d
@@ -134,7 +134,7 @@ object PhysicsHandler {
    *  
    *  This method is based on the following source:
    *  http://twobitcoder.blogspot.fi/2010/04/circle-collision-detection.html */
-  def timeUntilCollision(ball1: Ball, ball2: Ball): Float = {
+  def timeUntilCollision(ball1: Ball, ball2: Ball): Option[Float] = {
     
     val v12 = ball1.velocity - ball2.velocity
     val r12 = ball1 - ball2
@@ -147,14 +147,14 @@ object PhysicsHandler {
     
     if (disc < 0f) {
       //No real solutions => no upcoming collisions
-      -1f
+      None
     } else if (disc == 0f) {
       //Both velocities are zero => they won't collide
       if (2*a == 0f) {
-        -1f
+        None
       } else {
         //Otherwise calculate the collision time
-        -b/(2*a)
+        Some(-b/(2*a))
       }
     } else {
       //Two upcoming collisions, choose the next one (but not any past solutions)
@@ -162,7 +162,7 @@ object PhysicsHandler {
       val t2 = ((-b + sqrt(disc.toDouble).toFloat)/(2*a))
       val tmp = min(if (t1 < 0f) Float.MaxValue else t1,
                     if (t2 < 0f) Float.MaxValue else t2)
-      if (tmp == Float.MaxValue) -1f else tmp          
+      if (tmp == Float.MaxValue) None else Some(tmp)
     }
   }
   
@@ -182,9 +182,9 @@ object PhysicsHandler {
     for (i <- 0 until balls.size) {
       for (n <- i + 1 until balls.size) {
         val time = timeUntilCollision(balls(i), balls(n))
-        if (nextCollision.forall( time < _ )) {
+        if (time.exists(ct => nextCollision.forall(ct < _))) {
           collidingBalls = Some((balls(i), balls(n)))
-          nextCollision = Some(time)
+          nextCollision = time
         }
       }
     }
