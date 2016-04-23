@@ -18,6 +18,7 @@ object PhysicsHandler {
    *  momentum, and angular momentum. */
   def collide(ball1: Ball, ball2: Ball): Unit = {
     val n = 1f/(ball2 - ball1).norm * (ball2 - ball1)
+    val nNorm = n.normalized
     
     //Calculate the normal components of the velocity vectors
     val vn1 = (ball1.velocity dot (-1f * n))*(-1f * n)
@@ -33,15 +34,15 @@ object PhysicsHandler {
     ball2.velocity = vt2 + vn1
     
     //Vectors to the touching points between the balls
-    val r1 = ball1.radius * n.normalized
-    val r2 = ball2.radius * -1f * n.normalized
+    val r1 = ball1.radius * nNorm
+    val r2 = -1f * ball2.radius * nNorm
     
     //Relative speed at the point of contact
     val vpr = (r2 cross ball2.angularVelocity) - (r1 cross ball1.angularVelocity)
     
     //∆v of the normal velocities before and after the collisions
-    val dvn1 = (vn2 - vn1).norm
-    val dvn2 = (vn1 - vn2).norm
+    val dvn1 = signum((vn2 - vn1) dot (nNorm)) * (vn2 - vn1).norm
+    val dvn2 = signum((vn1 - vn2) dot (nNorm)) * (vn1 - vn2).norm
     
     //Calculate the new angular speeds
     ball1.angularVelocity += (5f/2f) * (r1 cross (1/td * -cfc * (ball1.mass*dvn2) * (vpr + vt1).normalized))*(td/(ball1.mass * pow(ball1.radius.toDouble, 2).toFloat))
