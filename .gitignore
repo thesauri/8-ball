@@ -14,6 +14,9 @@ local.properties
 .loadpath
 .recommenders
 
+#IntelliJ
+.idea/
+
 # Eclipse Core
 .project
 
@@ -62,7 +65,7 @@ project/boot/
 .cache
 android/gen/
 android/libs/
-
+proguard-sbt.txt
 .cache-main
 android/assets/
 .cache-tests
