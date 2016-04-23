@@ -52,7 +52,14 @@ trait Vector3D {
   def norm: Float = sqrt(pow(x.toDouble, 2) + pow(y.toDouble, 2) + pow(z.toDouble, 2)).toFloat
     
   /** Returns a normalized version of the vector */
-  def normalized: Vector3D = (1 / norm) * this
+  def normalized: Vector3D = {
+    val curNorm = norm
+    if (curNorm == 0f) {
+      this
+    } else {
+      (1 / curNorm) * this
+    }
+  }
   
   override def equals(v: Any): Boolean = v match {
     case v: Vector3D => (x == v.x) && (y == v.y) && (z == v.z)
