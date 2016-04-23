@@ -4,6 +4,8 @@ import scala.math._
 
 object PhysicsHandler {
   
+  var hasCollided = false
+  
   val g = 9.8f //Gravitational constant
   val cfc = 0.1f //Coefficient of friction between two colliding balls
   val cfs = 0.2f //Coefficient of friction while sliding
@@ -143,8 +145,6 @@ object PhysicsHandler {
     
     val disc = pow(b.toDouble, 2).toFloat - 4*a*c
     
-    println("oh yeah" + disc)
-    
     if (disc < 0f) {
       //No real solutions => no upcoming collisions
       -1f
@@ -160,9 +160,62 @@ object PhysicsHandler {
       //Two upcoming collisions, choose the next one (but not any past solutions)
       val t1 = ((-b - sqrt(disc.toDouble).toFloat)/(2*a))
       val t2 = ((-b + sqrt(disc.toDouble).toFloat)/(2*a))
-      min(if (t1 < 0f) Float.MaxValue else t1,
-          if (t2 < 0f) Float.MaxValue else t2)
+      val tmp = min(if (t1 < 0f) Float.MaxValue else t1,
+                    if (t2 < 0f) Float.MaxValue else t2)
+      if (tmp == Float.MaxValue) -1f else tmp          
     }
+  }
+  
+  /** Updates the state of the balls
+   *  
+   *  Call once every step
+   *  
+   *  @param balls the balls to update
+   *  @param t the duration of the time step
+   */
+  def update(balls: Seq[Ball], t: Float): Unit = {
+    //Check when the next collision is going to occur
+    var nextCollision: Option[Float] = None
+    var collidingBalls: Option[(Ball, Ball)] = None
+    
+    //Check all unordered pairs
+    for (i <- 0 until balls.size) {
+      for (n <- i + 1 until balls.size) {
+        val time = timeUntilCollision(balls(i), balls(n))
+        if (nextCollision.forall( time < _ )) {
+          collidingBalls = Some((balls(i), balls(n)))
+          nextCollision = Some(time)
+        }
+      }
+    }
+    
+    if (nextCollision.exists( _ < t ) && !hasCollided) {
+      
+      //A collision will occur this timestep
+      
+      for (collisionTime <- nextCollision;
+           cBalls <- collidingBalls) {
+        
+        //Move the balls to the collision point and update their velocities
+        moveBalls(balls, collisionTime)
+        updateVelocities(balls, collisionTime)
+        
+        //Update the velocities of the colliding balls
+        collide(cBalls._1, cBalls._2)
+ 
+        hasCollided = true
+        
+        println("New velocitities: " + cBalls._1.velocity + " at " + cBalls._1)
+        
+        //Process the rest of the timestep
+        //update(balls, t - collisionTime)
+      }
+    } else {
+      updateVelocities(balls, t)
+      moveBalls(balls, t)
+    }
+    
+    println("Collides in " + nextCollision.getOrElse("N/A"))
   }
   
   /** Returns the time when the ball will collide with a horizontal wall (-1 if no collision)

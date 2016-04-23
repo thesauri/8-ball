@@ -23,7 +23,10 @@ class Eightball extends Game {
       
       balls += new Ball(0.25f, 0.25f, 0f, 1)
       balls(0).velocity = Vector3D(2f, 0f, 0f)
-      balls(0).angularVelocity = Vector3D(-10f, 0f, 0f)
+      balls(0).angularVelocity = Vector3D(0f, 0f, 0f)
+      balls += new Ball(2f, 0.25f, 0f, 1)
+      balls(1).velocity = Vector3D(0f, 0f, 0f)
+      balls(1).angularVelocity = Vector3D(0f, 0f, 0f)
       ()
     }
 
@@ -31,8 +34,7 @@ class Eightball extends Game {
       Gdx.gl.glClearColor(1, 1, 1, 1);
       Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
       
-      PhysicsHandler.updateVelocities(balls, Gdx.graphics.getDeltaTime)
-      PhysicsHandler.moveBalls(balls, Gdx.graphics.getDeltaTime)
+      PhysicsHandler.update(balls, Gdx.graphics.getDeltaTime)
 
       shapeRenderer.begin(ShapeType.Filled)
       gameBoard.render(shapeRenderer, scale)
