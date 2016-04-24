@@ -1,6 +1,8 @@
 package com.walter.eightball
 
 import scala.math._
+import scala.collection.mutable.Buffer
+import scala.collection.mutable.Map
 
 object PhysicsHandler {
   
@@ -9,6 +11,8 @@ object PhysicsHandler {
   val cfs = 0.2f //Coefficient of friction while sliding
   val cfr = 0.01f //Coefficient of friction while rolling
   val td = 0.0002f //Duration of a collision between two balls
+
+  case class VelocityState(velocity: Vector3D, angularVelocity: Vector3D)
   
   /** Updates the velocities of the balls after a collision
    *  
@@ -50,6 +54,49 @@ object PhysicsHandler {
     ball2.angularVelocity += (5f/2f) * (r2 cross (1/td * -cfc * (ball2.mass*dvn1) *
                              (vpr + vt2).normalized))*(td/(ball2.mass * pow(ball2.radius.toDouble, 2).toFloat))
     ()
+  }
+
+  /**  Returns the resulting delta velocities of a collision
+    *
+    *  Both the velocity and the angular velocity of the balls
+    *  are updated. The collision is assumed to be perfectly
+    *  elastic, conserving both the total kinetic energy,
+    *  momentum, and angular momentum. */
+  def collideImmutable(ball1: Ball, ball2: Ball): (VelocityState, VelocityState) = {
+    val n = 1f/(ball2 - ball1).norm * (ball2 - ball1)
+    val nNorm = n.normalized
+
+    //Calculate the normal components of the velocity vectors
+    val vn1 = (ball1.velocity dot (-1f * n))*(-1f * n)
+    val vn2 = (ball2.velocity dot n)*n
+
+    //Calculate the tangential components of the velocity vectors
+    val vt1 = ball1.velocity - vn1
+    val vt2 = ball2.velocity - vn2
+
+    /* Add the tangential component of the velocity vector with the
+     * normal component of the other vector to get the resulting velocity */
+    val newDVelocity1 = vt1 + vn2
+    val newDVelocity2 = vt2 + vn1
+
+    //Vectors to the touching points between the balls
+    val r1 = ball1.radius * nNorm
+    val r2 = -1f * ball2.radius * nNorm
+
+    //Relative speed at the point of contact
+    val vpr = (r2 cross ball2.angularVelocity) - (r1 cross ball1.angularVelocity)
+
+    //∆v of the normal velocities before and after the collisions
+    val dvn1 = signum((vn2 - vn1) dot (nNorm)) * (vn2 - vn1).norm
+    val dvn2 = signum((vn1 - vn2) dot (nNorm)) * (vn1 - vn2).norm
+
+    //Calculate the new angular speeds
+    val newDAngularVelocity1 = (5f/2f) * (r1 cross (1/td * -cfc * (ball1.mass*dvn2) * (vpr + vt1).normalized)) *
+      (td/(ball1.mass * pow(ball1.radius.toDouble, 2).toFloat))
+    val newDAngularVelocity2 = (5f/2f) * (r2 cross (1/td * -cfc * (ball2.mass*dvn1) *
+      (vpr + vt2).normalized))*(td/(ball2.mass * pow(ball2.radius.toDouble, 2).toFloat))
+
+    (new VelocityState(newDVelocity1, newDAngularVelocity1), new VelocityState(newDVelocity2, newDAngularVelocity2))
   }
   
   /** Returns the relative velocity between the table and the touching point of the ball
@@ -174,47 +221,66 @@ object PhysicsHandler {
    *  @param t the duration of the time step
    */
   def update(balls: Seq[Ball], t: Float): Unit = {
-    //Check when the next collision is going to occur
+
     var nextCollision: Option[Float] = None
-    var collidingBalls: Option[(Ball, Ball)] = None
-    
-    //Check all unordered pairs
+    val collisions = Buffer[(Ball, Ball)]()
+
+    //Checks all unordered pairs and finds the next set of balls that will collide
     for (i <- 0 until balls.size) {
       for (n <- i + 1 until balls.size) {
         val time = timeUntilCollision(balls(i), balls(n))
         if (time.exists(ct => nextCollision.forall(ct < _))) {
-          collidingBalls = Some((balls(i), balls(n)))
+          collisions.clear()
           nextCollision = time
+          collisions += ((balls(i), balls(n)))
+        } else if (time.exists(ct => nextCollision.forall(ct == _))) {
+          collisions += ((balls(i), balls(n)))
         }
       }
     }
-    
-    if (nextCollision.exists( _ < t )) {
 
-      //A collision will occur this timestep
-      
-      for (collisionTime <- nextCollision;
-           cBalls <- collidingBalls) {
-        
-        //Move the balls to the collision point and update their velocities
-        moveBalls(balls, collisionTime)
-        updateVelocities(balls, collisionTime)
-        
-        //Update the velocities of the colliding balls
-        collide(cBalls._1, cBalls._2)
-        moveBalls(Seq(cBalls._1, cBalls._2), 0.001f)
-        println("New position " + cBalls._1 + " and new velocity: " + cBalls._1.velocity)
+    if (nextCollision.exists( _ < t)) {
 
-        //Process the rest of the timestep
-        update(balls, t - collisionTime)
+      val newVelocity = Map[Ball, Vector[Vector3D]]().withDefaultValue(Vector[Vector3D]())
+      val newAngularVelocity = Map[Ball, Vector[Vector3D]]().withDefaultValue(Vector[Vector3D]())
+
+      //A collision is going to occur this timestep
+      for (collidingPair <- collisions) {
+        val result = collideImmutable(collidingPair._1, collidingPair._2)
+
+        newVelocity += collidingPair._1 -> (newVelocity(collidingPair._1) :+ result._1.velocity)
+        newVelocity += collidingPair._2 -> (newVelocity(collidingPair._2) :+ result._2.velocity)
+
+        newAngularVelocity += collidingPair._1 -> (newAngularVelocity(collidingPair._1) :+ result._1.angularVelocity)
+        newAngularVelocity += collidingPair._2 -> (newAngularVelocity(collidingPair._2) :+ result._2.angularVelocity)
       }
+
+      //Update the velocity
+      newVelocity foreach { case (ball, dVelocities) => {
+        val p = (1f / dVelocities.size)
+        ball.velocity +=  p * dVelocities.foldLeft(Vector3D(0f, 0f, 0f))(_ + _)
+      }}
+
+      //Update the angular velocity
+      newAngularVelocity foreach { case (ball, dAVelocities) => {
+        val p = 1f / dAVelocities.size
+        ball.angularVelocity += p * dAVelocities.foldLeft(Vector3D(0f, 0f, 0f))(_ + _)
+      }}
+
+      nextCollision foreach { ct => {
+        updateVelocities(balls, ct)
+        moveBalls(balls, ct)
+      }}
+
+      updateVelocities(balls, nextCollision.get)
+      moveBalls(balls, nextCollision.get)
+      update(balls, nextCollision.get)
+
     } else {
       updateVelocities(balls, t)
       moveBalls(balls, t)
     }
-    
-    println("Ball 1: " + balls(0) + " \n" +
-            "Ball 2: " + balls(1))
+
   }
   
   /** Returns the time when the ball will collide with a horizontal wall (-1 if no collision)
