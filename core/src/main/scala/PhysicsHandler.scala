@@ -197,7 +197,7 @@ object PhysicsHandler {
       None
     } else if (disc == 0f) {
       //Both velocities are zero => they won't collide
-      if (2*a == 0f) {
+      if (2*a == 0f || -b/(2*a) < 0f) {
         None
       } else {
         //Otherwise calculate the collision time
@@ -278,7 +278,7 @@ object PhysicsHandler {
       }}
 
       println("The balls are now " + collisions.map( ball => ball._1.toString + ball._1.velocity + ball._2.toString + ball._2.velocity ))
-      update(balls, t + nextCollision.get)
+      update(balls, t - nextCollision.get)
 
     } else {
       updateVelocities(balls, t)
