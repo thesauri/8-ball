@@ -76,8 +76,8 @@ object PhysicsHandler {
 
     /* Add the tangential component of the velocity vector with the
      * normal component of the other vector to get the resulting velocity */
-    val newDVelocity1 = vt1 + vn2
-    val newDVelocity2 = vt2 + vn1
+    val newDVelocity1 = vn2 - vn1
+    val newDVelocity2 = vn1 - vn2
 
     //Vectors to the touching points between the balls
     val r1 = ball1.radius * nNorm
@@ -241,6 +241,8 @@ object PhysicsHandler {
 
     if (nextCollision.exists( _ < t)) {
 
+      println(s"ct is ${nextCollision.get}")
+
       val newVelocity = Map[Ball, Vector[Vector3D]]().withDefaultValue(Vector[Vector3D]())
       val newAngularVelocity = Map[Ball, Vector[Vector3D]]().withDefaultValue(Vector[Vector3D]())
 
@@ -248,12 +250,20 @@ object PhysicsHandler {
       for (collidingPair <- collisions) {
         val result = collideImmutable(collidingPair._1, collidingPair._2)
 
+        println(result)
+
         newVelocity += collidingPair._1 -> (newVelocity(collidingPair._1) :+ result._1.velocity)
         newVelocity += collidingPair._2 -> (newVelocity(collidingPair._2) :+ result._2.velocity)
 
         newAngularVelocity += collidingPair._1 -> (newAngularVelocity(collidingPair._1) :+ result._1.angularVelocity)
         newAngularVelocity += collidingPair._2 -> (newAngularVelocity(collidingPair._2) :+ result._2.angularVelocity)
       }
+
+      //Move the balls to collision positions before updating the velocities
+      nextCollision foreach { ct => {
+        updateVelocities(balls, ct)
+        moveBalls(balls, ct)
+      }}
 
       //Update the velocity
       newVelocity foreach { case (ball, dVelocities) => {
@@ -267,14 +277,8 @@ object PhysicsHandler {
         ball.angularVelocity += p * dAVelocities.foldLeft(Vector3D(0f, 0f, 0f))(_ + _)
       }}
 
-      nextCollision foreach { ct => {
-        updateVelocities(balls, ct)
-        moveBalls(balls, ct)
-      }}
-
-      updateVelocities(balls, nextCollision.get)
-      moveBalls(balls, nextCollision.get)
-      update(balls, nextCollision.get)
+      println("The balls are now " + collisions.map( ball => ball._1.toString + ball._1.velocity + ball._2.toString + ball._2.velocity ))
+      update(balls, t + nextCollision.get)
 
     } else {
       updateVelocities(balls, t)
