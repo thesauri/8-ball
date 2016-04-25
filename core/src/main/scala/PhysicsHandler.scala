@@ -191,8 +191,11 @@ object PhysicsHandler {
     val c = (r12 dot r12) - pow(ball1.radius.toDouble + ball2.radius, 2).toFloat
     
     val disc = pow(b.toDouble, 2).toFloat - 4*a*c
-    
-    if (disc < 0f) {
+
+
+    if ((ball2 - ball1).norm < ball1.radius + ball2.radius) {
+      None
+    } else if (disc < 0f) {
       //No real solutions => no upcoming collisions
       None
     } else if (disc == 0f) {
@@ -285,16 +288,13 @@ object PhysicsHandler {
 
       if (nextCollision.exists( _ < rt )) {
 
-        println(s"ct is ${nextCollision.get}")
-
         val newVelocity = Map[Ball, Vector[Vector3D]]().withDefaultValue(Vector[Vector3D]())
         val newAngularVelocity = Map[Ball, Vector[Vector3D]]().withDefaultValue(Vector[Vector3D]())
 
         //A collision is going to occur this timestep
         for (collidingPair <- collisions) {
-          val result = collideImmutable(collidingPair._1, collidingPair._2)
 
-          println(result)
+          val result = collideImmutable(collidingPair._1, collidingPair._2)
 
           newVelocity += collidingPair._1 -> (newVelocity(collidingPair._1) :+ result._1.velocity)
           newVelocity += collidingPair._2 -> (newVelocity(collidingPair._2) :+ result._2.velocity)
@@ -321,7 +321,6 @@ object PhysicsHandler {
           ball.angularVelocity += p * dAVelocities.foldLeft(Vector3D(0f, 0f, 0f))(_ + _)
         }}
 
-        println("The balls are now " + collisions.map( ball => ball._1.toString + ball._1.velocity + ball._2.toString + ball._2.velocity ))
         applyCollisionsRecursive(rt - nextCollision.get)
 
       } else {
