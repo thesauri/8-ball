@@ -262,68 +262,74 @@ object PhysicsHandler {
     */
   def update(balls: Seq[Ball], t: Float): Unit = {
 
-    var nextCollision: Option[Float] = None
-    val collisions = Buffer[(Ball, Ball)]()
+    updateVelocities(balls, t)
 
-    //Checks all unordered pairs and finds the next set of balls that will collide
-    for (i <- 0 until balls.size) {
-      for (n <- i + 1 until balls.size) {
-        val time = timeUntilCollision(balls(i), balls(n))
-        if (time.exists(ct => nextCollision.forall(ct < _))) {
-          collisions.clear()
-          nextCollision = time
-          collisions += ((balls(i), balls(n)))
-        } else if (time.exists(ct => nextCollision.forall(ct == _))) {
-          collisions += ((balls(i), balls(n)))
+    def applyCollisionsRecursive(rt: Float): Unit = {
+
+      var nextCollision: Option[Float] = None
+      val collisions = Buffer[(Ball, Ball)]()
+
+      //Checks all unordered pairs and finds the next set of balls that will collide
+      for (i <- 0 until balls.size) {
+        for (n <- i + 1 until balls.size) {
+          val time = timeUntilCollision(balls(i), balls(n))
+          if (time.exists(ct => nextCollision.forall(ct < _))) {
+            collisions.clear()
+            nextCollision = time
+            collisions += ((balls(i), balls(n)))
+          } else if (time.exists(ct => nextCollision.forall(ct == _))) {
+            collisions += ((balls(i), balls(n)))
+          }
         }
       }
-    }
 
-    if (nextCollision.exists( _ < t)) {
+      if (nextCollision.exists( _ < rt )) {
 
-      println(s"ct is ${nextCollision.get}")
+        println(s"ct is ${nextCollision.get}")
 
-      val newVelocity = Map[Ball, Vector[Vector3D]]().withDefaultValue(Vector[Vector3D]())
-      val newAngularVelocity = Map[Ball, Vector[Vector3D]]().withDefaultValue(Vector[Vector3D]())
+        val newVelocity = Map[Ball, Vector[Vector3D]]().withDefaultValue(Vector[Vector3D]())
+        val newAngularVelocity = Map[Ball, Vector[Vector3D]]().withDefaultValue(Vector[Vector3D]())
 
-      //A collision is going to occur this timestep
-      for (collidingPair <- collisions) {
-        val result = collideImmutable(collidingPair._1, collidingPair._2)
+        //A collision is going to occur this timestep
+        for (collidingPair <- collisions) {
+          val result = collideImmutable(collidingPair._1, collidingPair._2)
 
-        println(result)
+          println(result)
 
-        newVelocity += collidingPair._1 -> (newVelocity(collidingPair._1) :+ result._1.velocity)
-        newVelocity += collidingPair._2 -> (newVelocity(collidingPair._2) :+ result._2.velocity)
+          newVelocity += collidingPair._1 -> (newVelocity(collidingPair._1) :+ result._1.velocity)
+          newVelocity += collidingPair._2 -> (newVelocity(collidingPair._2) :+ result._2.velocity)
 
-        newAngularVelocity += collidingPair._1 -> (newAngularVelocity(collidingPair._1) :+ result._1.angularVelocity)
-        newAngularVelocity += collidingPair._2 -> (newAngularVelocity(collidingPair._2) :+ result._2.angularVelocity)
+          newAngularVelocity += collidingPair._1 -> (newAngularVelocity(collidingPair._1) :+ result._1.angularVelocity)
+          newAngularVelocity += collidingPair._2 -> (newAngularVelocity(collidingPair._2) :+ result._2.angularVelocity)
+        }
+
+        //Move the balls to collision positions before updating the velocities
+        nextCollision foreach { ct => {
+          //updateVelocities(balls, ct)
+          moveBalls(balls, ct)
+        }}
+
+        //Update the velocity
+        newVelocity foreach { case (ball, dVelocities) => {
+          val p = (1f / dVelocities.size)
+          ball.velocity +=  p * dVelocities.foldLeft(Vector3D(0f, 0f, 0f))(_ + _)
+        }}
+
+        //Update the angular velocity
+        newAngularVelocity foreach { case (ball, dAVelocities) => {
+          val p = 1f / dAVelocities.size
+          ball.angularVelocity += p * dAVelocities.foldLeft(Vector3D(0f, 0f, 0f))(_ + _)
+        }}
+
+        println("The balls are now " + collisions.map( ball => ball._1.toString + ball._1.velocity + ball._2.toString + ball._2.velocity ))
+        applyCollisionsRecursive(rt - nextCollision.get)
+
+      } else {
+        moveBalls(balls, rt)
       }
-
-      //Move the balls to collision positions before updating the velocities
-      nextCollision foreach { ct => {
-        updateVelocities(balls, ct)
-        moveBalls(balls, ct)
-      }}
-
-      //Update the velocity
-      newVelocity foreach { case (ball, dVelocities) => {
-        val p = (1f / dVelocities.size)
-        ball.velocity +=  p * dVelocities.foldLeft(Vector3D(0f, 0f, 0f))(_ + _)
-      }}
-
-      //Update the angular velocity
-      newAngularVelocity foreach { case (ball, dAVelocities) => {
-        val p = 1f / dAVelocities.size
-        ball.angularVelocity += p * dAVelocities.foldLeft(Vector3D(0f, 0f, 0f))(_ + _)
-      }}
-
-      println("The balls are now " + collisions.map( ball => ball._1.toString + ball._1.velocity + ball._2.toString + ball._2.velocity ))
-      update(balls, t - nextCollision.get)
-
-    } else {
-      updateVelocities(balls, t)
-      moveBalls(balls, t)
     }
+
+    applyCollisionsRecursive(t)
 
   }
   
