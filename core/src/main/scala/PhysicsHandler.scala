@@ -267,7 +267,7 @@ object PhysicsHandler {
 
     updateVelocities(balls, t)
 
-    def applyCollisionsRecursive(rt: Float): Unit = {
+    def applyCollisionsRecursive(rt: Float, depth: Int = 0): Unit = {
 
       var nextCollision: Option[Float] = None
       val collisions = Buffer[(Ball, Ball)]()
@@ -321,7 +321,9 @@ object PhysicsHandler {
           ball.angularVelocity += p * dAVelocities.foldLeft(Vector3D(0f, 0f, 0f))(_ + _)
         }}
 
-        applyCollisionsRecursive(rt - nextCollision.get)
+        if (depth < 100) {
+          applyCollisionsRecursive(rt - nextCollision.get, depth + 1)
+        }
 
       } else {
         moveBalls(balls, rt)
