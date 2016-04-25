@@ -213,13 +213,53 @@ object PhysicsHandler {
     }
   }
   
+  /** Returns the time when the ball will collide with a horizontal wall (-1 if no collision)
+   *  
+   *  The wall is assumed to be infinitely wide (which is OK as the
+   *  game board is enclosed anyways)
+   *  
+   *  @param ball the ball
+   *  @param wallY the y coordinate of the ball */
+  def timeUntilHorizontalWallCollision(ball: Ball, wallY: Float): Float = {
+    if (ball.velocity.y == 0f) {
+      -1f
+    } else {
+      val t = (wallY - ball.radius - ball.y)/ball.velocity.y
+      if (t < 0f) {
+        -1f
+      } else {
+        t
+      }
+    }
+  }
+  
+  /** Returns the time when the ball will collide with a vertical wall (-1 if no collision)
+   *  
+   *  The wall is assumed to be infinitely tall (which is OK as the
+   *  game board is enclosed anyways)
+   *  
+   *  @param ball the ball
+   *  @param wallX the x coordinate of the ball */
+  def timeUntilVerticalWallCollision(ball: Ball, wallX: Float): Float = {
+    if (ball.velocity.x == 0f) {
+      -1f
+    } else {
+      val t = (wallX - ball.radius - ball.x)/ball.velocity.x
+      if (t < 0f) {
+        -1f
+      } else {
+        t
+      }
+    }
+  }
+
   /** Updates the state of the balls
-   *  
-   *  Call once every step
-   *  
-   *  @param balls the balls to update
-   *  @param t the duration of the time step
-   */
+    *
+    *  Call once every step
+    *
+    *  @param balls the balls to update
+    *  @param t the duration of the time step
+    */
   def update(balls: Seq[Ball], t: Float): Unit = {
 
     var nextCollision: Option[Float] = None
@@ -285,46 +325,6 @@ object PhysicsHandler {
       moveBalls(balls, t)
     }
 
-  }
-  
-  /** Returns the time when the ball will collide with a horizontal wall (-1 if no collision)
-   *  
-   *  The wall is assumed to be infinitely wide (which is OK as the
-   *  game board is enclosed anyways)
-   *  
-   *  @param ball the ball
-   *  @param wallY the y coordinate of the ball */
-  def timeUntilHorizontalWallCollision(ball: Ball, wallY: Float): Float = {
-    if (ball.velocity.y == 0f) {
-      -1f
-    } else {
-      val t = (wallY - ball.radius - ball.y)/ball.velocity.y
-      if (t < 0f) {
-        -1f
-      } else {
-        t
-      }
-    }
-  }
-  
-  /** Returns the time when the ball will collide with a vertical wall (-1 if no collision)
-   *  
-   *  The wall is assumed to be infinitely tall (which is OK as the
-   *  game board is enclosed anyways)
-   *  
-   *  @param ball the ball
-   *  @param wallX the x coordinate of the ball */
-  def timeUntilVerticalWallCollision(ball: Ball, wallX: Float): Float = {
-    if (ball.velocity.x == 0f) {
-      -1f
-    } else {
-      val t = (wallX - ball.radius - ball.x)/ball.velocity.x
-      if (t < 0f) {
-        -1f
-      } else {
-        t
-      }
-    }
   }
   
 }
