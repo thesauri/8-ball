@@ -11,7 +11,7 @@ object PhysicsHandler {
   val cfs = 0.2f //Coefficient of friction while sliding
   val cfr = 0.01f //Coefficient of friction while rolling
   val td = 0.0002f //Duration of a collision between two balls
-  val separationOffset = 0.0005f //Minimum separation between objects when calling method separate
+  val separationOffset = 0.001f //Minimum separation between objects when calling method separate
 
   case class VelocityState(velocity: Vector3D, angularVelocity: Vector3D)
   
@@ -117,7 +117,13 @@ object PhysicsHandler {
   }
 
   /** Separates two overlapping balls */
-  def separate(ball1: Ball, ball2: Ball): Unit = ???
+  def separate(ball1: Ball, ball2: Ball): Unit = {
+    if ((ball2 - ball1).norm <= ball1.radius + ball2.radius) {
+      //Desired displacement between the balls
+      val newD = (ball1.radius + ball2.radius + separationOffset) * (ball2 - ball1).normalized
+      ball2 += newD - (ball2 - ball1)
+    }
+  }
   
   /** Returns the time until the next collision between two balls
    *  
