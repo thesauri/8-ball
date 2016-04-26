@@ -11,6 +11,7 @@ object PhysicsHandler {
   val cfs = 0.2f //Coefficient of friction while sliding
   val cfr = 0.01f //Coefficient of friction while rolling
   val td = 0.0002f //Duration of a collision between two balls
+  val separationOffset = 0.0005f //Minimum separation between objects when calling method separate
 
   case class VelocityState(velocity: Vector3D, angularVelocity: Vector3D)
   
