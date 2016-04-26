@@ -116,6 +116,9 @@ object PhysicsHandler {
     balls foreach (ball => ball += t * ball.velocity)
   }
 
+  /** Separates a set of overlappng balls */
+  def separate(balls: Seq[Ball]): Unit = ???
+
   /** Separates two overlapping balls */
   def separate(ball1: Ball, ball2: Ball): Unit = {
     if ((ball2 - ball1).norm <= ball1.radius + ball2.radius) {
