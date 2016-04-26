@@ -179,6 +179,22 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     ball1.angularVelocity should be (Vector3D(0f, 0f, 0.5f))
     ball2.angularVelocity should be (Vector3D(0f, 0f, 0.5f))
   }
+
+  "separate" should "not move balls that don't overlap" in {
+    val ball1 = new LargeBall(0f, 0f, 0f, 1)
+    val ball2 = new LargeBall(2f, 0f, 0f, 1)
+    PhysicsHandler.separate(ball1, ball2)
+    ball1 should be (Vector3D(0f, 0f, 0f))
+    ball2 should be (Vector3D(2f, 0f, 0f))
+  }
+
+  "separate" should "separate overlapping balls" in {
+    val ball1 = new LargeBall(0f, 0f, 0f, 1)
+    val ball2 = new LargeBall(0.5f, 0f, 0f, 1)
+    PhysicsHandler.separate(ball1, ball2)
+    ball1 should be (Vector3D(0f, 0f, 0f))
+    ball2 should be (Vector3D(2f + PhysicsHandler.separationOffset, 0f, 0f))
+  }
   
   /** A ball with a radius of 1m and a mass of 1 kg */
   private class LargeBall(x: Float, y: Float, z: Float, number: Int) extends Ball(x, y, z, number) {
