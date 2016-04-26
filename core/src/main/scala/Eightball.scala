@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.badlogic.gdx.graphics.GL20
+
 import scala.collection.mutable.Buffer
+import scala.util.Random
 
 class Eightball extends Game {
 
@@ -45,6 +47,12 @@ class Eightball extends Game {
       balls += new Ball(1.69f + 8f * balls(0).radius, 0.635f, 0f, 1)
       balls += new Ball(1.69f + 8f * balls(0).radius, 0.635f + 2f * balls(0).radius, 0f, 1)
       balls += new Ball(1.69f + 8f * balls(0).radius, 0.635f + 4f * balls(0).radius, 0f, 1)
+
+      //Distribute balls a bit randomly
+      val random = new Random()
+      balls foreach { ball => {
+        ball += Vector3D(0.00008f * random.nextInt(100), 0.00008f * random.nextInt(100), 0f)
+      }}
 
       ()
     }
