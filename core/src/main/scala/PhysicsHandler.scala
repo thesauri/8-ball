@@ -114,6 +114,9 @@ object PhysicsHandler {
   def moveBalls(balls: Seq[Ball], t: Float): Unit = {
     balls foreach (ball => ball += t * ball.velocity)
   }
+
+  /** Separates two overlapping balls */
+  def separate(ball1: Ball, ball2: Ball): Unit = ???
   
   /** Returns the time until the next collision between two balls
    *  
