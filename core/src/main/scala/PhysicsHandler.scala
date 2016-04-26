@@ -3,6 +3,7 @@ package com.walter.eightball
 import scala.math._
 import scala.collection.mutable.Buffer
 import scala.collection.mutable.Map
+import scala.annotation.tailrec
 
 object PhysicsHandler {
   
@@ -119,13 +120,52 @@ object PhysicsHandler {
   /** Separates a sequence of overlapping balls
     *
     * @return returns whether the balls were moved or not */
-  def separate(balls: Seq[Ball]): Boolean = ???
+  def separate(balls: Seq[Ball]): Boolean = {
+
+    @tailrec def separateRecursive(hasSeparated: Boolean): Boolean = {
+      var found = false
+      for (i <- 0 until balls.size) {
+        for (n <- i + 1 until balls.size) {
+          if (separate(balls(i), balls(n))) {
+            found = true
+            println(s"${balls(i)} and ${balls(n)} collide")
+          }
+        }
+      }
+
+      if (found)
+        separateRecursive(true)
+      else
+        hasSeparated
+    }
+
+    separateRecursive(false)
+  }
 
   /** Separates two overlapping balls
     *
+    * This is done by moving ball2 backwards (opposite to its
+    * velocity) so that the new distance between them is
+    * ball1.radius + ball2.radius + separationOffset.
+    *
+    * If ball2 is not moving, ball1 will be moved instead.
+    *
+    * If none of the balls are moving, they will be moved
+    * along the vector formed to the touching point of the balls.
+    *
+    * If both of the balls are still and completely overlapping,
+    * ball2 will be moved to the left by ball1.radius + separationOffset
+    *
+    * If the velocity is zero,
+    *
     * @return returns whether the balls were moved or not */
   def separate(ball1: Ball, ball2: Ball): Boolean = {
-    if ((ball2 - ball1).norm <= ball1.radius + ball2.radius) {
+
+    val d = (ball2 - ball1).norm
+
+    if (d == 0f) {
+      //If they are completely
+    } else if (d <= ball1.radius + ball2.radius) {
       //Desired displacement between the balls
       val newD = (ball1.radius + ball2.radius + separationOffset) * (ball2 - ball1).normalized
       ball2 += newD - (ball2 - ball1)

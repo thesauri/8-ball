@@ -25,7 +25,7 @@ class Eightball extends Game {
 
       //Cue ball
       balls += new Ball(0.25f, 0.635f, 0f, 1)
-      balls(0).velocity = Vector3D(3f, 0f, 0f)
+      balls(0).velocity = Vector3D(4f, 0f, 0f)
       balls(0).angularVelocity = Vector3D(0f, 0f, 0f)
 
       balls += new Ball(1.69f, 0.635f, 0f, 1)
