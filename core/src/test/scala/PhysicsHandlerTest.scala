@@ -212,11 +212,11 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     ball2 should be (Vector3D(0f, 2f + PhysicsHandler.separationOffset, 0f))
   }
 
-  "separate" should "only move ball2 even if both of them are moving and the two balls overlap" in {
+  "separate" should "move the faster one of them if both are moving and the two balls overlap" in {
     val ball1 = new LargeBall(0f, 0f, 0f, 1)
     val ball2 = new LargeBall(0f, 0f, 0f, 1)
     ball1.velocity = Vector3D(0f, -1f, 0f)
-    ball2.velocity = Vector3D(0f, -1f, 0f)
+    ball2.velocity = Vector3D(0f, -2f, 0f)
     PhysicsHandler.separate(ball1, ball2)
     ball1 should be (Vector3D(0f, 0f, 0f))
     ball2 should be (Vector3D(0f, 2f + PhysicsHandler.separationOffset, 0f))

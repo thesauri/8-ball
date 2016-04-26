@@ -119,6 +119,18 @@ object PhysicsHandler {
 
   /** Separates a sequence of overlapping balls
     *
+    * This is done by moving the fastest moving ball backwards (opposite to its
+    * velocity) so that the new distance between them is
+    * ball1.radius + ball2.radius + separationOffset.
+    *
+    * If none of the balls are moving, they will be moved
+    * along the vector formed to the touching point of the balls.
+    *
+    * If both of the balls are still and completely overlapping,
+    * ball2 will be moved to the left by ball1.radius + separationOffset
+    *
+    * If the velocity is zero,
+    *
     * @return returns whether the balls were moved or not */
   def separate(balls: Seq[Ball]): Boolean = {
 
@@ -144,11 +156,9 @@ object PhysicsHandler {
 
   /** Separates two overlapping balls
     *
-    * This is done by moving ball2 backwards (opposite to its
+    * This is done by moving the fastest moving ball backwards (opposite to its
     * velocity) so that the new distance between them is
     * ball1.radius + ball2.radius + separationOffset.
-    *
-    * If ball2 is not moving, ball1 will be moved instead.
     *
     * If none of the balls are moving, they will be moved
     * along the vector formed to the touching point of the balls.
@@ -163,12 +173,29 @@ object PhysicsHandler {
 
     val d = (ball2 - ball1).norm
 
-    if (d == 0f) {
-      //If they are completely
-    } else if (d <= ball1.radius + ball2.radius) {
-      //Desired displacement between the balls
-      val newD = (ball1.radius + ball2.radius + separationOffset) * (ball2 - ball1).normalized
-      ball2 += newD - (ball2 - ball1)
+    if (d <= ball1.radius + ball2.radius) {
+
+      val v1n = ball1.velocity.norm
+      val v2n = ball2.velocity.norm
+
+      val n = if (v2n > v1n) {
+        -1f * ball2.velocity.normalized
+      } else if (v1n > v2n) {
+        -1f * ball1.velocity.normalized
+      } else if (d > 0f) {
+        (ball2 - ball1).normalized
+      } else {
+        Vector3D(1f, 0f, 0f)
+      }
+
+      val newD = (ball1.radius + ball2.radius + separationOffset) * n
+
+      if (v1n > v2n) {
+        ball1 += newD - (ball1 - ball2)
+      } else {
+        ball2 += newD - (ball2 - ball1)
+      }
+
       true
     } else {
       false
