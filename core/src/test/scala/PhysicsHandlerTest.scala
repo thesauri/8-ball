@@ -188,12 +188,38 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     ball2 should be (Vector3D(5f, 0f, 0f))
   }
 
-  "separate" should "separate overlapping balls" in {
+  "separate" should "separate overlapping balls according to their touching point if they are not moving" in {
     val ball1 = new LargeBall(0f, 0f, 0f, 1)
     val ball2 = new LargeBall(0.5f, 0f, 0f, 1)
     PhysicsHandler.separate(ball1, ball2) should be (true)
     ball1 should be (Vector3D(0f, 0f, 0f))
     ball2 should be (Vector3D(2f + PhysicsHandler.separationOffset, 0f, 0f))
+  }
+
+  "separate" should "move ball1 if it is moving and the two balls overlap" in {
+    val ball1 = new LargeBall(0f, 0f, 0f, 1)
+    val ball2 = new LargeBall(0f, 0f, 0f, 1)
+    ball1.velocity = Vector3D(0f, -1f, 0f)
+    PhysicsHandler.separate(ball1, ball2)
+    ball1 should be (Vector3D(0f, 2f + PhysicsHandler.separationOffset, 0f))
+  }
+
+  "separate" should "move ball2 if it is moving and the two balls overlap" in {
+    val ball1 = new LargeBall(0f, 0f, 0f, 1)
+    val ball2 = new LargeBall(0f, 0f, 0f, 1)
+    ball2.velocity = Vector3D(0f, -1f, 0f)
+    PhysicsHandler.separate(ball1, ball2)
+    ball2 should be (Vector3D(0f, 2f + PhysicsHandler.separationOffset, 0f))
+  }
+
+  "separate" should "only move ball2 even if both of them are moving and the two balls overlap" in {
+    val ball1 = new LargeBall(0f, 0f, 0f, 1)
+    val ball2 = new LargeBall(0f, 0f, 0f, 1)
+    ball1.velocity = Vector3D(0f, -1f, 0f)
+    ball2.velocity = Vector3D(0f, -1f, 0f)
+    PhysicsHandler.separate(ball1, ball2)
+    ball1 should be (Vector3D(0f, 0f, 0f))
+    ball2 should be (Vector3D(0f, 2f + PhysicsHandler.separationOffset, 0f))
   }
 
   "separate" should "not move any balls in a sequence if none of them are overlapping" in {
@@ -209,7 +235,7 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
   "separate" should "separate sequences of overlapping balls" in {
     val ball1 = new LargeBall(0f, 0f, 0f, 1)
     val ball2 = new LargeBall(0.5f, 0f, 0f, 1)
-    val ball3 = new LargeBall(1.5f, 0f, 0f, 1)
+    val ball3 = new LargeBall(3.5f, 0f, 0f, 1)
     PhysicsHandler.separate(Vector(ball1, ball2, ball3)) should be (true)
     ball1 should be (Vector3D(0f, 0f, 0f))
     ball2 should be (Vector3D(2f + PhysicsHandler.separationOffset, 0f, 0f))
