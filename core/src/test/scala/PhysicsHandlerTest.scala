@@ -182,10 +182,10 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
 
   "separate" should "not move balls that don't overlap" in {
     val ball1 = new LargeBall(0f, 0f, 0f, 1)
-    val ball2 = new LargeBall(2f, 0f, 0f, 1)
+    val ball2 = new LargeBall(5f, 0f, 0f, 1)
     PhysicsHandler.separate(ball1, ball2)
     ball1 should be (Vector3D(0f, 0f, 0f))
-    ball2 should be (Vector3D(2f, 0f, 0f))
+    ball2 should be (Vector3D(5f, 0f, 0f))
   }
 
   "separate" should "separate overlapping balls" in {
