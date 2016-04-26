@@ -116,15 +116,22 @@ object PhysicsHandler {
     balls foreach (ball => ball += t * ball.velocity)
   }
 
-  /** Separates a sequence of overlapping balls */
-  def separate(balls: Seq[Ball]): Unit = ???
+  /** Separates a sequence of overlapping balls
+    *
+    * @return returns whether the balls were moved or not */
+  def separate(balls: Seq[Ball]): Boolean = ???
 
-  /** Separates two overlapping balls */
-  def separate(ball1: Ball, ball2: Ball): Unit = {
+  /** Separates two overlapping balls
+    *
+    * @return returns whether the balls were moved or not */
+  def separate(ball1: Ball, ball2: Ball): Boolean = {
     if ((ball2 - ball1).norm <= ball1.radius + ball2.radius) {
       //Desired displacement between the balls
       val newD = (ball1.radius + ball2.radius + separationOffset) * (ball2 - ball1).normalized
       ball2 += newD - (ball2 - ball1)
+      true
+    } else {
+      false
     }
   }
   
