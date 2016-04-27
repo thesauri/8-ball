@@ -25,7 +25,6 @@ class Eightball extends Game {
 
       //Cue ball
       balls += new Ball(0.25f, 0.635f, 0f, 1)
-      balls(0).velocity = Vector3D(8f, 0f, 0f)
       balls(0).angularVelocity = Vector3D(0f, 0f, 0f)
 
       balls += new Ball(1.69f, 0.635f, 0f, 1)
@@ -66,6 +65,11 @@ class Eightball extends Game {
     override def render(): Unit = {
       Gdx.gl.glClearColor(1, 1, 1, 1);
       Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+
+      if (Gdx.input.isTouched()) {
+        val random = new Random()
+        balls(0).velocity = Vector3D(random.nextFloat() * 5f, random.nextFloat() * 5f, 0f)
+      }
       
       PhysicsHandler.update(balls, Gdx.graphics.getDeltaTime)
 
