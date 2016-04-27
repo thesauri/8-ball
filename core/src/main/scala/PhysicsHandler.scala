@@ -22,6 +22,8 @@ object PhysicsHandler {
   }
 
   val pockets: Vector[Ball] = Vector(new Pocket(0f, 0f, 0f),
+                                     new Pocket(Board.Width / 2f, 0f, 0f),
+                                     new Pocket(Board.Width / 2f, Board.Height, 0f),
                                      new Pocket(Board.Width, 0f, 0f),
                                      new Pocket(0f, Board.Height, 0f),
                                      new Pocket(Board.Width, Board.Height, 0f))
