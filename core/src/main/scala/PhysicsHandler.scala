@@ -16,6 +16,16 @@ object PhysicsHandler {
   val td = 0.0002f //Duration of a collision between two balls
   val separationOffset = 0.001f //Minimum separation between objects when calling method separate
 
+  private class Pocket(x: Float, y: Float, z: Float) extends Ball(x, y, z, 0) {
+    override val mass = 1f
+    override val radius = Board.PocketRadius
+  }
+
+  val pockets: Vector[Ball] = Vector(new Pocket(0f, 0f, 0f),
+                                     new Pocket(Board.Width, 0f, 0f),
+                                     new Pocket(0f, Board.Height, 0f),
+                                     new Pocket(Board.Width, Board.Height, 0f))
+
   case class VelocityState(velocity: Vector3D, angularVelocity: Vector3D)
 
   object CollisionType extends Enumeration {
@@ -338,7 +348,18 @@ object PhysicsHandler {
   }
 
   /** Returns the time until the ball will be pocketed */
-  def timeUntilPocketed(ball: Ball): Option[Float] = ???
+  def timeUntilPocketed(ball: Ball): Option[Float] = {
+    var foundTime: Option[Float] = None
+
+    for (pocket <- pockets) {
+      val curTime = timeUntilCollision(ball, pocket)
+      if (curTime.exists( ct => foundTime.forall( ct < _ ) )) {
+        foundTime = curTime
+      }
+    }
+
+    foundTime
+  }
   
   /** Returns the time when the ball will collide with a vertical wall (-1 if no collision)
    *  
