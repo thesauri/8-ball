@@ -439,6 +439,10 @@ object PhysicsHandler {
           case CollisionType.VerticalBall =>
             newVelocity += ball1 -> (newVelocity(ball1) :+ Vector3D(-2f * ball1.velocity.x, 0f, 0f))
 
+          //Remove pocketed balls
+          case CollisionType.Pocketed =>
+            balls.remove(balls.indexOf(ball1))
+
         }}
 
         println(s"New velocity: $newVelocity")
