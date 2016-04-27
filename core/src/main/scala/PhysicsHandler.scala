@@ -1,5 +1,7 @@
 package com.walter.eightball
 
+import com.walter.eightball.PhysicsHandler.CollisionType.CollisionType
+
 import scala.math._
 import scala.collection.mutable.Buffer
 import scala.collection.mutable.Map
@@ -17,9 +19,10 @@ object PhysicsHandler {
   case class VelocityState(velocity: Vector3D, angularVelocity: Vector3D)
 
   object CollisionType extends Enumeration {
+    type CollisionType = Value
     val BallBall, HorizontalWall, VerticalWall = Value
   }
-  
+
   /** Updates the velocities of the balls after a collision
    *  
    *  Both the velocity and the angular velocity of the balls
@@ -104,7 +107,21 @@ object PhysicsHandler {
 
     (new VelocityState(newDVelocity1, newDAngularVelocity1), new VelocityState(newDVelocity2, newDAngularVelocity2))
   }
-  
+
+  /** Returns the time when the next collisions will occur
+    * and what types of collisions that will occur
+    *
+    * The first element in the returned tuple specifies when
+    * it's going to occur (if it will occur), the second a
+    * vector containing collision type, the affected ball
+    * as well as a second ball, if it's a collision with
+    * another ball
+    *
+    * @param balls
+    * @return
+    */
+  def getNextCollisons(balls: Seq[Ball]): (Option[Float], Vector[(CollisionType, Ball, Option[Ball])]) = ???
+
   /** Returns the relative velocity between the table and the touching point of the ball
    *  
    *  This velocity is determined by: (ω x R) + v
