@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
  *  a width and height, and Renderable to handle the rendering when called. */
 class Ball(var x: Float, var y: Float, var z: Float, val number: Int) extends Vector3D with Renderable {
 
-  val mass = 0.16f //In kg according to the WPA spec
-  val radius = 0.028575f //In m according to the WPA spec
+  val mass = Ball.Mass
+  val radius = Ball.Radius
   var velocity = Vector3D(0f, 0f, 0f)
   var angularVelocity = Vector3D(0f, 0f, 0f)
   var state = BallState.Sliding
@@ -20,5 +20,12 @@ class Ball(var x: Float, var y: Float, var z: Float, val number: Int) extends Ve
     renderer.set(ShapeType.Filled)
     renderer.circle(x * scale, y * scale, radius * scale)
   }
+
+}
+
+object Ball {
+
+  val Mass = 0.16f //In kg according to the WPA spec
+  val Radius = 0.028575f //In m according to the WPA spec
 
 }

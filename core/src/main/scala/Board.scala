@@ -19,6 +19,6 @@ object Board {
 
   val Height = 1.17f
   val Width = 2.34f
-  val PocketRadius = 0.04572f //1.6x ball radius
+  val PocketRadius = 1.6f * Ball.Radius //1.6x ball radius
 
 }
