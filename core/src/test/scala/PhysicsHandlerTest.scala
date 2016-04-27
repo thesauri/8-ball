@@ -296,6 +296,16 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     collision(0)._1 should be (CollisionType.VerticalBall)
   }
 
+  "getNextCollisions" should "detect pocketed events" in {
+    val ball1 = new Ball(0.1f, 0.1f, 0f, 1)
+    ball1.velocity = Vector3D(-0.1f, -0.1f, 0f)
+    val (time, collision) = PhysicsHandler.getNextCollisions(Vector(ball1))
+    time.isDefined should be (true)
+    time.get should be (0.47465f +- 0.001f)
+    collision.length should be (1)
+    collision(0)._1 should be (CollisionType.Pocketed)
+  }
+
   "timeUntilPocketed" should "return None if the ball won't be pocketed" in {
     val ball1 = new Ball(1f, 1f, 0f, 1)
     PhysicsHandler.timeUntilPocketed(ball1) should be (None)

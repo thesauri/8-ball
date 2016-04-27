@@ -30,7 +30,7 @@ object PhysicsHandler {
 
   object CollisionType extends Enumeration {
     type CollisionType = Value
-    val BallBall, HorizontalWall, VerticalBall = Value
+    val BallBall, HorizontalWall, VerticalBall, Pocketed = Value
   }
 
   /** Updates the velocities of the balls after a collision
