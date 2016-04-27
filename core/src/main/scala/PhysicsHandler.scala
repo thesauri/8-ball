@@ -336,6 +336,9 @@ object PhysicsHandler {
       }
     }
   }
+
+  /** Returns the time until the ball will be pocketed */
+  def timeUntilPocketed(ball: Ball): Option[Float] = ???
   
   /** Returns the time when the ball will collide with a vertical wall (-1 if no collision)
    *  
