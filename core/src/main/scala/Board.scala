@@ -17,7 +17,7 @@ class Board(var x: Float = 0.0f, var y: Float = 0.0f) extends Vector2D with Rect
 
 object Board {
 
-  val Width = 2.54f
-  val Height = 1.27f
+  val Width = 2.34f
+  val Height = 1.17f
 
 }
