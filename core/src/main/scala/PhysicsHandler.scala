@@ -173,6 +173,21 @@ object PhysicsHandler {
       }
     }
 
+    //Find pocket collisions
+    for (ball <- balls) {
+
+      val curTime = timeUntilPocketed(ball)
+
+      if (curTime.exists( ct => foundTime.forall( ct < _ ) )) {
+        foundTime = curTime
+        collisions.clear()
+        collisions += ((CollisionType.Pocketed, ball, None))
+      } else if (curTime.exists( ct => foundTime.forall( ct == _ ) )) {
+        collisions += ((CollisionType.Pocketed, ball, None))
+      }
+
+    }
+
     (foundTime, collisions.toVector)
   }
 
