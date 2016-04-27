@@ -15,6 +15,10 @@ object PhysicsHandler {
   val separationOffset = 0.001f //Minimum separation between objects when calling method separate
 
   case class VelocityState(velocity: Vector3D, angularVelocity: Vector3D)
+
+  object CollisionType extends Enumeration {
+    val BallBall, HorizontalWall, VerticalWall = Value
+  }
   
   /** Updates the velocities of the balls after a collision
    *  
