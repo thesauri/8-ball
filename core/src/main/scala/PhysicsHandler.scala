@@ -20,7 +20,7 @@ object PhysicsHandler {
 
   object CollisionType extends Enumeration {
     type CollisionType = Value
-    val BallBall, HorizontalWall, VerticalWall = Value
+    val BallBall, HorizontalWall, VerticalBall = Value
   }
 
   /** Updates the velocities of the balls after a collision
@@ -120,7 +120,51 @@ object PhysicsHandler {
     * @param balls
     * @return
     */
-  def getNextCollisons(balls: Seq[Ball]): (Option[Float], Vector[(CollisionType, Ball, Option[Ball])]) = ???
+  def getNextCollisions(balls: Seq[Ball]): (Option[Float], Seq[(CollisionType, Ball, Option[Ball])]) = {
+
+    var foundTime: Option[Float] = None
+    val collisions = Buffer[(CollisionType, Ball, Option[Ball])]()
+
+    //Find all BallBall collisions
+    for (i <- 0 until balls.size) {
+      for (n <- i + 1 until balls.size) {
+
+        val curTime = timeUntilCollision(balls(i), balls(n))
+
+        if (curTime.exists( ct => foundTime.forall( ct < _ ) )) {
+          foundTime = curTime
+          collisions.clear()
+          collisions += ((CollisionType.BallBall, balls(i), Some(balls(n))))
+        } else if (curTime.exists( ct => foundTime.forall( ct == _ ) )) {
+          collisions += ((CollisionType.BallBall, balls(i), Some(balls(n))))
+        }
+
+      }
+    }
+
+    //Find wall collisions
+    for (ball <- balls) {
+
+      val curCollisions = Vector((CollisionType.HorizontalWall, timeUntilHorizontalWallCollision(ball, 0f)),
+                         (CollisionType.HorizontalWall, timeUntilHorizontalWallCollision(ball, Board.Height)),
+                         (CollisionType.VerticalBall, timeUntilVerticalWallCollision(ball, 0f)),
+                         (CollisionType.VerticalBall, timeUntilVerticalWallCollision(ball, Board.Width)))
+
+      if (curCollisions.size > 0) {
+        for ((coT, curTime) <- curCollisions) {
+          if ( curTime.exists( ct => foundTime.forall( ct < _ ) )) {
+            foundTime = curTime
+            collisions.clear()
+            collisions += ((coT, ball, None))
+          } else if (curTime.exists( ct => foundTime.forall( ct == _ ) )) {
+            collisions += ((coT, ball, None))
+          }
+        }
+      }
+    }
+
+    (foundTime, collisions.toVector)
+  }
 
   /** Returns the relative velocity between the table and the touching point of the ball
    *  
@@ -280,15 +324,15 @@ object PhysicsHandler {
    *  
    *  @param ball the ball
    *  @param wallY the y coordinate of the ball */
-  def timeUntilHorizontalWallCollision(ball: Ball, wallY: Float): Float = {
+  def timeUntilHorizontalWallCollision(ball: Ball, wallY: Float): Option[Float] = {
     if (ball.velocity.y == 0f) {
-      -1f
+      None
     } else {
       val t = (wallY - ball.radius - ball.y)/ball.velocity.y
       if (t < 0f) {
-        -1f
+        None
       } else {
-        t
+        Some(t)
       }
     }
   }
@@ -300,15 +344,15 @@ object PhysicsHandler {
    *  
    *  @param ball the ball
    *  @param wallX the x coordinate of the ball */
-  def timeUntilVerticalWallCollision(ball: Ball, wallX: Float): Float = {
+  def timeUntilVerticalWallCollision(ball: Ball, wallX: Float): Option[Float] = {
     if (ball.velocity.x == 0f) {
-      -1f
+      None
     } else {
       val t = (wallX - ball.radius - ball.x)/ball.velocity.x
       if (t < 0f) {
-        -1f
+        None
       } else {
-        t
+        Some(t)
       }
     }
   }
@@ -326,7 +370,7 @@ object PhysicsHandler {
 
     def applyCollisionsRecursive(rt: Float, depth: Int = 0): Unit = {
 
-      val (timeUntilCollision, collisions) = getNextCollisons(balls)
+      val (timeUntilCollision, collisions) = getNextCollisions(balls)
 
       if (timeUntilCollision.exists( _ < rt )) {
 
@@ -349,17 +393,21 @@ object PhysicsHandler {
 
           //Change direction of y velocity
           case CollisionType.HorizontalWall =>
-            ball1.velocity = Vector3D(ball1.velocity.x, -1f * ball1.velocity.y, ball1.velocity.z)
+            newVelocity += ball1 -> (newVelocity(ball1) :+ Vector3D(0f, -2f * ball1.velocity.y, 0f))
+
 
           //Change direction of x velocity
-          case CollisionType.VerticalWall => Vector3D(-1f * ball1.velocity.x, ball1.velocity.y, ball1.velocity.z)
+          case CollisionType.VerticalBall =>
+            newVelocity += ball1 -> (newVelocity(ball1) :+ Vector3D(-2f * ball1.velocity.x, 0f, 0f))
 
         }}
+
+        println(s"New velocity: $newVelocity")
 
         //Move the balls to collision positions before updating the velocities
         timeUntilCollision foreach { ct => {
           //updateVelocities(balls, ct)
-          moveBalls(balls, ct)
+          moveBalls(balls, 0.99f * ct)
         }}
 
         //Update the velocity
