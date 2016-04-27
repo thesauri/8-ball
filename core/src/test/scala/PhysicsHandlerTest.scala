@@ -295,6 +295,19 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     collision.length should be (1)
     collision(0)._1 should be (CollisionType.VerticalBall)
   }
+
+  "timeUntilPocketed" should "return None if the ball won't be pocketed" in {
+    val ball1 = new Ball(1f, 1f, 0f, 1)
+    PhysicsHandler.timeUntilPocketed(ball1) should be (None)
+  }
+
+  "timeUntilPocketed" should "return the time until the ball will be pocketed" in {
+    val ball1 = new Ball(0.1f, 0.1f, 0f, 1)
+    ball1.velocity = Vector3D(-0.1f, -0.1f, 0f)
+    val result = PhysicsHandler.timeUntilPocketed(ball1)
+    result.isDefined should be (true)
+    result.get should be (0.47465f +- 0.001f)
+  }
   
   /** A ball with a radius of 1m and a mass of 1 kg */
   private class LargeBall(x: Float, y: Float, z: Float, number: Int) extends Ball(x, y, z, number) {
