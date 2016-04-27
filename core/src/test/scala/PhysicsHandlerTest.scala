@@ -1,5 +1,6 @@
 package com.walter.eightball
 
+import com.walter.eightball.PhysicsHandler.CollisionType
 import org.scalatest._
 
 class PhysicsHandlerTest extends FlatSpec with Matchers {
@@ -240,6 +241,59 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     ball1 should be (Vector3D(0f, 0f, 0f))
     ball2 should be (Vector3D(2f + PhysicsHandler.separationOffset, 0f, 0f))
     ball3 should be (Vector3D(4f + 2f * PhysicsHandler.separationOffset, 0f, 0f))
+  }
+
+  "getNextCollisions" should "return None as time and an empty Vector if no collisions will occur" = {
+    val ball1 = new LargeBall(200f, 100f, 0f, 1)
+    val ball2 = new LargeBall(500f, -100f, 0f, 1)
+    val (time, collision) = PhysicsHandler.getNextCollisons(Vector(ball1, ball2))
+    time should be (None)
+    collision.isEmpty should be (true)
+  }
+
+  "getNextCollisions" should "return two collision events if they will occur simultaneously" = {
+    val ball1 = new LargeBall(10f, 10f, 0f, 1)
+    ball1.velocity = Vector3D(2f, 0f, 0f)
+    val ball2 = new LargeBall(10f, 14f, 0f, 1)
+    ball2.velocity = Vector3D(2f, 0f, 0f)
+    val ball3 = new LargeBall(14f, 10f, 0f, 1)
+    val ball4 = new LargeBall(14f, 14f, 0f, 1)
+    val (time, collision) = PhysicsHandler.getNextCollisons(Vector(ball1, ball2))
+    time should be (Some(1f))
+    collision.length should be (2)
+    collision(0)._1 should be (CollisionType.BallBall)
+    collision(1)._1 should be (CollisionType.BallBall)
+  }
+
+  "getNextCollisions" should "return the nearest collision if two will occur" = {
+    val ball1 = new LargeBall(10f, 10f, 0f, 1)
+    ball1.velocity = Vector3D(2f, 0f, 0f)
+    val ball2 = new LargeBall(10f, 14f, 0f, 1)
+    ball2.velocity = Vector3D(1f, 0f, 0f)
+    val ball3 = new LargeBall(14f, 10f, 0f, 1)
+    val ball4 = new LargeBall(14f, 14f, 0f, 1)
+    val (time, collision) = PhysicsHandler.getNextCollisons(Vector(ball1, ball2, ball3, ball4))
+    time should be (Some(1f))
+    collision.length should be (1)
+    collision(0)._1 should be (CollisionType.BallBall)
+  }
+
+  "getNextCollisions" should "detect horizontal wall collisions" = {
+    val ball1 = new LargeBall(5f, 2f, 0f, 1)
+    ball1.velocity = Vector3D(0f, -1f, 0f)
+    val (time, collision) = PhysicsHandler.getNextCollisons(Vector(ball1))
+    time should be (Some(1f))
+    collision.length should be (1)
+    collision(0)._1 should be (CollisionType.HorizontalWall)
+  }
+
+  "getNextCollisions" should "detect vertical wall collisions" = {
+    val ball1 = new LargeBall(-2f, 5f, 0f, 1)
+    ball1.velocity = Vector3D(1f, 0f, 0f)
+    val (time, collision) = PhysicsHandler.getNextCollisons(Vector(ball1))
+    time should be (Some(1f))
+    collision.length should be (1)
+    collision(0)._1 should be (CollisionType.VerticalWall)
   }
   
   /** A ball with a radius of 1m and a mass of 1 kg */
