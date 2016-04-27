@@ -25,7 +25,7 @@ class Eightball extends Game {
 
       //Cue ball
       balls += new Ball(0.25f, 0.635f, 0f, 1)
-      balls(0).velocity = Vector3D(3f, 0f, 0f)
+      balls(0).velocity = Vector3D(8f, 0f, 0f)
       balls(0).angularVelocity = Vector3D(0f, 0f, 0f)
 
       balls += new Ball(1.69f, 0.635f, 0f, 1)
@@ -33,7 +33,7 @@ class Eightball extends Game {
       balls += new Ball(1.69f + 2.02f * balls(0).radius, 0.635f - 1.02f * balls(0).radius, 0f, 1)
       balls += new Ball(1.69f + 2.02f * balls(0).radius, 0.635f + 1.02f * balls(0).radius, 0f, 1)
 
-      /*balls += new Ball(1.69f + 4.04f * balls(0).radius, 0.635f - 2.02f * balls(0).radius, 0f, 1)
+      balls += new Ball(1.69f + 4.04f * balls(0).radius, 0.635f - 2.02f * balls(0).radius, 0f, 1)
       balls += new Ball(1.69f + 4.04f * balls(0).radius, 0.635f, 0f, 1)
       balls += new Ball(1.69f + 4.04f * balls(0).radius, 0.635f + 2.02f * balls(0).radius, 0f, 1)
 
@@ -46,13 +46,13 @@ class Eightball extends Game {
       balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f - 2.02f * balls(0).radius, 0f, 1)
       balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f, 0f, 1)
       balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f + 2.02f * balls(0).radius, 0f, 1)
-      balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f + 4.04f * balls(0).radius, 0f, 1)*/
+      balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f + 4.04f * balls(0).radius, 0f, 1)
 
       //Distribute balls a bit randomly
-      /*val random = new Random()
+      val random = new Random()
       balls foreach { ball => {
         ball += Vector3D(0.00005f * random.nextInt(100), 0.00005f * random.nextInt(100), 0f)
-      }}*/
+      }}
 
       for (i <- 0 until balls.size) {
         for (n <- i + 1 until balls.size) {

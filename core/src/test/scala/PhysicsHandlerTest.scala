@@ -177,8 +177,8 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     ball2.angularVelocity = Vector3D(0f, 0f, 1f)
     
     PhysicsHandler.collide(ball1, ball2)
-    ball1.angularVelocity should be (Vector3D(0f, 0f, 0.5f))
-    ball2.angularVelocity should be (Vector3D(0f, 0f, 0.5f))
+    ball1.angularVelocity should be (Vector3D(0f, 0f, 0.95f))
+    ball2.angularVelocity should be (Vector3D(0f, 0f, 0.95f))
   }
 
   "separate" should "not move balls that don't overlap" in {

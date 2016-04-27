@@ -10,7 +10,7 @@ import scala.annotation.tailrec
 object PhysicsHandler {
   
   val g = 9.8f //Gravitational constant
-  val cfc = 0.1f //Coefficient of friction between two colliding balls
+  val cfc = 0.01f //Coefficient of friction between two colliding balls
   val cfs = 0.2f //Coefficient of friction while sliding
   val cfr = 0.01f //Coefficient of friction while rolling
   val td = 0.0002f //Duration of a collision between two balls
