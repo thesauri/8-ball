@@ -326,42 +326,38 @@ object PhysicsHandler {
 
     def applyCollisionsRecursive(rt: Float, depth: Int = 0): Unit = {
 
-      var nextCollision: Option[Float] = None
-      val collisions = Buffer[(Ball, Ball)]()
+      val (timeUntilCollision, collisions) = getNextCollisons(balls)
 
-      //Checks all unordered pairs and finds the next set of balls that will collide
-      for (i <- 0 until balls.size) {
-        for (n <- i + 1 until balls.size) {
-          val time = timeUntilCollision(balls(i), balls(n))
-          if (time.exists(ct => nextCollision.forall(ct < _))) {
-            collisions.clear()
-            nextCollision = time
-            collisions += ((balls(i), balls(n)))
-          } else if (time.exists(ct => nextCollision.forall(ct == _))) {
-            collisions += ((balls(i), balls(n)))
-          }
-        }
-      }
-
-      if (nextCollision.exists( _ < rt )) {
+      if (timeUntilCollision.exists( _ < rt )) {
 
         val newVelocity = Map[Ball, Vector[Vector3D]]().withDefaultValue(Vector[Vector3D]())
         val newAngularVelocity = Map[Ball, Vector[Vector3D]]().withDefaultValue(Vector[Vector3D]())
 
-        //A collision is going to occur this timestep
-        for (collidingPair <- collisions) {
+        collisions foreach { case (collisionType, ball1, oBall2) => collisionType match {
 
-          val result = collideImmutable(collidingPair._1, collidingPair._2)
+          case CollisionType.BallBall => {
+            oBall2 foreach { ball2 => {
+              val result = collideImmutable(ball1, ball2)
 
-          newVelocity += collidingPair._1 -> (newVelocity(collidingPair._1) :+ result._1.velocity)
-          newVelocity += collidingPair._2 -> (newVelocity(collidingPair._2) :+ result._2.velocity)
+              newVelocity += ball1 -> (newVelocity(ball1) :+ result._1.velocity)
+              newVelocity += ball2 -> (newVelocity(ball2) :+ result._2.velocity)
 
-          newAngularVelocity += collidingPair._1 -> (newAngularVelocity(collidingPair._1) :+ result._1.angularVelocity)
-          newAngularVelocity += collidingPair._2 -> (newAngularVelocity(collidingPair._2) :+ result._2.angularVelocity)
-        }
+              newAngularVelocity += ball1 -> (newAngularVelocity(ball1) :+ result._1.angularVelocity)
+              newAngularVelocity += ball2 -> (newAngularVelocity(ball2) :+ result._2.angularVelocity)
+            }}
+          }
+
+          //Change direction of y velocity
+          case CollisionType.HorizontalWall =>
+            ball1.velocity = Vector3D(ball1.velocity.x, -1f * ball1.velocity.y, ball1.velocity.z)
+
+          //Change direction of x velocity
+          case CollisionType.VerticalWall => Vector3D(-1f * ball1.velocity.x, ball1.velocity.y, ball1.velocity.z)
+
+        }}
 
         //Move the balls to collision positions before updating the velocities
-        nextCollision foreach { ct => {
+        timeUntilCollision foreach { ct => {
           //updateVelocities(balls, ct)
           moveBalls(balls, ct)
         }}
@@ -379,7 +375,7 @@ object PhysicsHandler {
         }}
 
         if (depth < 100) {
-          applyCollisionsRecursive(rt - nextCollision.get, depth + 1)
+          applyCollisionsRecursive(rt - timeUntilCollision.get, depth + 1)
         }
 
       } else {
