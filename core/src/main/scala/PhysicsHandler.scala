@@ -364,7 +364,7 @@ object PhysicsHandler {
     *  @param balls the balls to update
     *  @param t the duration of the time step
     */
-  def update(balls: Seq[Ball], t: Float): Unit = {
+  def update(balls: Buffer[Ball], t: Float): Unit = {
 
     updateVelocities(balls, t)
 
