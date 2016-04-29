@@ -20,6 +20,7 @@ class GameScreen extends Screen with InputProcessor {
   lazy val balls = Buffer[Ball]()
   lazy val cueStick = new CueStick(Vector3D(0f, 0f, 0f), 0f, 0f)
   var gameState = GameState.Aiming
+  var lastTouchedPoint: Option[Vector3D] = None //The place on the board where the screen was touched the last frame
 
   override def hide(): Unit = ()
 
@@ -127,10 +128,26 @@ class GameScreen extends Screen with InputProcessor {
 
   override def touchUp(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = false
 
-  override def touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean = {
-    cueStick.pointAt = balls(0)
-    cueStick.rotationDegrees = (balls(0) - screenCoordToGame(Vector3D(screenX, screenY, 0f))).angle2d
-    cueStick.distance = (balls(0) - screenCoordToGame(Vector3D(screenX, screenY, 0f))).len
-    true
+  override def touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean = gameState match {
+
+    case GameState.Aiming => {
+      val curPointOnBoard = screenCoordToGame(Vector3D(screenX, screenY, 0f))
+      cueStick.pointAt = balls(0)
+      cueStick.rotationDegrees = (balls(0) - curPointOnBoard).angle2d
+      cueStick.distance = (balls(0) - curPointOnBoard).len
+
+      //If it was touched the last frame and the cue stick is very close to the ball, shoot
+      if (lastTouchedPoint.isDefined && cueStick.distance < 1.5f * balls(0).radius) {
+        val newVelocityLength = (lastTouchedPoint.get - curPointOnBoard).len / Gdx.graphics.getDeltaTime
+        balls(0).velocity = Vector3D(newVelocityLength, cueStick.rotationDegrees)
+        gameState = GameState.Rolling
+      }
+
+      lastTouchedPoint = Some(curPointOnBoard)
+
+      true
+    }
+
+    case _ => false
   }
 }
