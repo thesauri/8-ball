@@ -39,6 +39,9 @@ class GameScreen extends Screen {
 
     gameState match {
       case GameState.Aiming => {
+        cueStick.pointAt = balls(0)
+        cueStick.distance = 0.5f
+
         shapeRenderer.begin(ShapeType.Filled)
         gameBoard.render(shapeRenderer, scale)
         balls.foreach(_.render(shapeRenderer, scale))
