@@ -77,10 +77,14 @@ trait Vector3D {
 
 object Vector3D {
   class V3D(var x: Float, var y: Float, var z: Float) extends Vector3D
-  
+
+  /** Returns a Vector3D with the passed parameters x, y, and z */
   def apply(x: Float, y: Float, z: Float): Vector3D = {
     new V3D(x, y, z)
   }
+
+  /** Returns a Vector3D with the desired length and angle */
+  def apply(length: Float, angle: Float): Vector3D = ???
   
   /** Support Vector operations on floats */
   implicit class FloatVector3DSupport(f: Float) {
