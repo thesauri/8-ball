@@ -9,9 +9,7 @@ import com.walter.eightball.{Ball, Board, PhysicsHandler, Vector3D}
 import scala.collection.mutable.Buffer
 import scala.util.Random
 
-/**
-  * Created by walter on 29/04/16.
-  */
+/** Takes care of the game */
 class GameScreen extends Screen {
 
   lazy val scale = Gdx.graphics.getWidth / 3f //Scale factor for rendering
