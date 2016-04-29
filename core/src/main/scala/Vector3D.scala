@@ -1,5 +1,7 @@
 package com.walter.eightball
 
+import com.badlogic.gdx.math.Vector3
+
 import scala.math._
 
 /** Represents a vector in a 3D space */
@@ -86,4 +88,10 @@ object Vector3D {
     def *(v: Vector3D): Vector3D = v * f
     
   }
+
+  /** Implicit conversion of custom Vector3D class to libgdx Vector3 class */
+  implicit def vector3DtoVector3(v: Vector3D): Vector3 = new Vector3(v.x, v.y, v.z)
+
+  /** Implicit conversion of libgdx Vector3 class to custom Vector3D class */
+  implicit def vector3toVector3D(v: Vector3): Vector3D = Vector3D(v.x, v.y, v.z)
 }
