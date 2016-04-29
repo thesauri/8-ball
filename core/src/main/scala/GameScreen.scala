@@ -3,6 +3,7 @@ package com.walter.eightball
 import com.badlogic.gdx.graphics.{GL20, OrthographicCamera}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
+import com.badlogic.gdx.math.Vector3
 import com.badlogic.gdx.{Gdx, InputProcessor, Screen}
 import com.walter.eightball.{Ball, Board, PhysicsHandler, Vector3D}
 
@@ -39,9 +40,6 @@ class GameScreen extends Screen with InputProcessor {
 
     gameState match {
       case GameState.Aiming => {
-        cueStick.pointAt = balls(0)
-        cueStick.distance = 0.1f
-
         shapeRenderer.begin(ShapeType.Filled)
         gameBoard.render(shapeRenderer, scale)
         balls.foreach(_.render(shapeRenderer, scale))
@@ -110,6 +108,9 @@ class GameScreen extends Screen with InputProcessor {
     }
   }
 
+  /** Translates screen coordinates to game board coordinates */
+  def screenCoordToGame(coords: Vector3D): Vector3D = (1f / scale) * ((camera.unproject(coords)): Vector3D)
+
   override def resume(): Unit = ()
 
   override def mouseMoved(screenX: Int, screenY: Int): Boolean = false
@@ -126,5 +127,11 @@ class GameScreen extends Screen with InputProcessor {
 
   override def touchUp(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = false
 
-  override def touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean = false
+  override def touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean = {
+    println(screenCoordToGame(Vector3D(screenX, screenY, 0f)))
+    cueStick.pointAt = balls(0)
+    cueStick.rotationDegrees = (balls(0) - screenCoordToGame(Vector3D(screenX, screenY, 0f))).angle2d
+    cueStick.distance = (balls(0) - screenCoordToGame(Vector3D(screenX, screenY, 0f))).len
+    true
+  }
 }
