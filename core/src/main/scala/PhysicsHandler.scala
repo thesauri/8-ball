@@ -35,6 +35,9 @@ object PhysicsHandler {
     val BallBall, HorizontalWall, VerticalBall, Pocketed = Value
   }
 
+  /** Returns whether the sequence of balls are still or not */
+  def areStill(balls: Seq[Ball]): Boolean = ???
+
   /** Updates the velocities of the balls after a collision
    *  
    *  Both the velocity and the angular velocity of the balls
