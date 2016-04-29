@@ -52,11 +52,11 @@ trait Vector3D {
   def dot(v: Vector3D): Float = x * v.x + y * v.y + z * v.z
   
   /** Returns the norm (length) of the vector */
-  def norm: Float = sqrt(pow(x.toDouble, 2) + pow(y.toDouble, 2) + pow(z.toDouble, 2)).toFloat
-    
+  def len: Float = sqrt(pow(x.toDouble, 2) + pow(y.toDouble, 2) + pow(z.toDouble, 2)).toFloat
+
   /** Returns a normalized version of the vector */
   def normalized: Vector3D = {
-    val curNorm = norm
+    val curNorm = len
     if (curNorm == 0f) {
       this
     } else {

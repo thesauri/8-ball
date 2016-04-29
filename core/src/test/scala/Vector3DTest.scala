@@ -58,6 +58,6 @@ class Vector3DTest extends FlatSpec with Matchers {
   }
   
   "norm" should "return the length of a vector" in {
-    Vector3D(0f, 3f, 4f).norm should be (5f)
+    Vector3D(0f, 3f, 4f).len should be (5f)
   }
 }

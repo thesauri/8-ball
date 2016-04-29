@@ -42,7 +42,7 @@ object PhysicsHandler {
    *  elastic, conserving both the total kinetic energy,
    *  momentum, and angular momentum. */
   def collide(ball1: Ball, ball2: Ball): Unit = {
-    val n = 1f/(ball2 - ball1).norm * (ball2 - ball1)
+    val n = 1f/(ball2 - ball1).len * (ball2 - ball1)
     val nNorm = n.normalized
     
     //Calculate the normal components of the velocity vectors
@@ -66,8 +66,8 @@ object PhysicsHandler {
     val vpr = (r2 cross ball2.angularVelocity) - (r1 cross ball1.angularVelocity)
     
     //∆v of the normal velocities before and after the collisions
-    val dvn1 = signum((vn2 - vn1) dot (nNorm)) * (vn2 - vn1).norm
-    val dvn2 = signum((vn1 - vn2) dot (nNorm)) * (vn1 - vn2).norm
+    val dvn1 = signum((vn2 - vn1) dot (nNorm)) * (vn2 - vn1).len
+    val dvn2 = signum((vn1 - vn2) dot (nNorm)) * (vn1 - vn2).len
     
     //Calculate the new angular speeds
     ball1.angularVelocity += (5f/2f) * (r1 cross (1/td * -cfc * (ball1.mass*dvn2) * (vpr + vt1).normalized)) *
@@ -84,7 +84,7 @@ object PhysicsHandler {
     *  elastic, conserving both the total kinetic energy,
     *  momentum, and angular momentum. */
   def collideImmutable(ball1: Ball, ball2: Ball): (VelocityState, VelocityState) = {
-    val n = 1f/(ball2 - ball1).norm * (ball2 - ball1)
+    val n = 1f/(ball2 - ball1).len * (ball2 - ball1)
     val nNorm = n.normalized
 
     //Calculate the normal components of the velocity vectors
@@ -108,8 +108,8 @@ object PhysicsHandler {
     val vpr = (r2 cross ball2.angularVelocity) - (r1 cross ball1.angularVelocity)
 
     //∆v of the normal velocities before and after the collisions
-    val dvn1 = signum((vn2 - vn1) dot (nNorm)) * (vn2 - vn1).norm
-    val dvn2 = signum((vn1 - vn2) dot (nNorm)) * (vn1 - vn2).norm
+    val dvn1 = signum((vn2 - vn1) dot (nNorm)) * (vn2 - vn1).len
+    val dvn2 = signum((vn1 - vn2) dot (nNorm)) * (vn1 - vn2).len
 
     //Calculate the new angular speeds
     val newDAngularVelocity1 = (5f/2f) * (r1 cross (1/td * -cfc * (ball1.mass*dvn2) * (vpr + vt1).normalized)) *
@@ -263,12 +263,12 @@ object PhysicsHandler {
     * @return returns whether the balls were moved or not */
   def separate(ball1: Ball, ball2: Ball): Boolean = {
 
-    val d = (ball2 - ball1).norm
+    val d = (ball2 - ball1).len
 
     if (d <= ball1.radius + ball2.radius) {
 
-      val v1n = ball1.velocity.norm
-      val v2n = ball2.velocity.norm
+      val v1n = ball1.velocity.len
+      val v2n = ball2.velocity.len
 
       val n = if (v2n > v1n) {
         -1f * ball2.velocity.normalized
@@ -321,7 +321,7 @@ object PhysicsHandler {
     val disc = pow(b.toDouble, 2).toFloat - 4*a*c
 
 
-    if ((ball2 - ball1).norm < ball1.radius + ball2.radius) {
+    if ((ball2 - ball1).len < ball1.radius + ball2.radius) {
       None
     } else if (disc < 0f) {
       //No real solutions => no upcoming collisions
@@ -496,13 +496,13 @@ object PhysicsHandler {
          * between the edge of the ball and the table is
          * almost zero. */
 
-        if (getRelativeVelocity(ball).norm <= 0.02f) {
+        if (getRelativeVelocity(ball).len <= 0.02f) {
 
           //Calculate the new velocity according to ∆v = -µg (v/|v|) ∆t
           val newVelocity = ball.velocity + (-cfr * 9.8f * ball.velocity.normalized * t)
 
           //If both the velocity and the angular velocity are almost zero, stop the ball completely
-          if (ball.velocity.norm < 0.01f && ball.angularVelocity.norm < 0.01f ) {
+          if (ball.velocity.len < 0.01f && ball.angularVelocity.len < 0.01f ) {
             ball.velocity = Vector3D(0f, 0f, 0f)
             ball.angularVelocity = Vector3D(0f, 0f, 0f)
             ball.state = BallState.Still

@@ -103,7 +103,7 @@ class GameScreen extends Screen {
 
     for (i <- 0 until balls.size) {
       for (n <- i + 1 until balls.size) {
-        if ((balls(i) - balls(n)).norm < balls(0).radius + balls(1).radius) println("Overlapping in the beginning")
+        if ((balls(i) - balls(n)).len < balls(0).radius + balls(1).radius) println("Overlapping in the beginning")
       }
     }
   }
