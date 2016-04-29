@@ -42,7 +42,7 @@ trait Vector3D {
   def *(c: Float): Vector3D = Vector3D(x * c, y * c, z * c)
 
   /** Returns the angle formed by the x and y axes relative to (1,0) */
-  def angle2d: Float = ???
+  def angle2d: Float = (toDegrees(atan2(y, x)).toFloat + 360f) % 360f
   
   /** Returns the cross product between this and another vector */
   def cross(v: Vector3D): Vector3D =
