@@ -83,7 +83,7 @@ object Vector3D {
     new V3D(x, y, z)
   }
 
-  /** Returns a Vector3D with the desired length and angle */
+  /** Returns a two-dimensional Vector3D with the desired length and angle (in degrees) */
   def apply(length: Float, angle: Float): Vector3D = ???
   
   /** Support Vector operations on floats */
