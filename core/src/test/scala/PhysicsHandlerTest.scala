@@ -318,6 +318,19 @@ class PhysicsHandlerTest extends FlatSpec with Matchers {
     result.isDefined should be (true)
     result.get should be (0.47465f +- 0.001f)
   }
+
+  "areStill" should "return true if all balls are still" in {
+    val ball1 = new Ball(0f, 0f, 0f, 1)
+    val ball2 = new Ball(10f, 10f, 10f, 1)
+    PhysicsHandler.areStill(Vector(ball1, ball2)) should be (true)
+  }
+
+  "areStill" should "return true if there are moving balls" in {
+    val ball1 = new Ball(0f, 0f, 0f, 1)
+    val ball2 = new Ball(10f, 10f, 10f, 1)
+    ball2.velocity = Vector3D(2f, 0f, 0f)
+    PhysicsHandler.areStill(Vector(ball1, ball2)) should be (false)
+  }
   
   /** A ball with a radius of 1m and a mass of 1 kg */
   private class LargeBall(x: Float, y: Float, z: Float, number: Int) extends Ball(x, y, z, number) {
