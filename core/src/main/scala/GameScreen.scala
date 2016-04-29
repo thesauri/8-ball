@@ -129,11 +129,12 @@ class GameScreen extends Screen with InputProcessor {
 
   override def touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean = gameState match {
 
-    case GameState.Aiming => {
+    case GameState.Aiming if (pointer == 0) => {
       val curPointOnBoard = screenCoordToGame(Vector3D(screenX, screenY, 0f))
       cueStick.pointAt = balls(0)
 
-      if (!Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
+      //Don't rotate if the shift key is pressed, or a second touch is applied on the screen
+      if (!Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) && !Gdx.input.isTouched(1)) {
         cueStick.rotationDegrees = (balls(0) - curPointOnBoard).angle2d
       }
 
