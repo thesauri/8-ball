@@ -17,7 +17,7 @@ class GameScreen extends Screen {
   lazy val shapeRenderer = new ShapeRenderer()
   lazy val gameBoard = new Board()
   lazy val balls = Buffer[Ball]()
-  lazy val cueStick = new CueStick(Vector3D(0f, 0f, 0f), 0f)
+  lazy val cueStick = new CueStick(Vector3D(0f, 0f, 0f), 0f, 0f)
   var gameState = GameState.Aiming
 
   override def hide(): Unit = ()
