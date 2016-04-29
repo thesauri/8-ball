@@ -84,7 +84,8 @@ object Vector3D {
   }
 
   /** Returns a two-dimensional Vector3D with the desired length and angle (in degrees) */
-  def apply(length: Float, angle: Float): Vector3D = ???
+  def apply(length: Float, angle: Float): Vector3D =
+    Vector3D(length * cos(toRadians(angle.toDouble)).toFloat, length * sin(toRadians(angle.toDouble)).toFloat, 0f)
   
   /** Support Vector operations on floats */
   implicit class FloatVector3DSupport(f: Float) {
