@@ -36,7 +36,8 @@ object PhysicsHandler {
   }
 
   /** Returns whether the sequence of balls are still or not */
-  def areStill(balls: Seq[Ball]): Boolean = ???
+  def areStill(balls: Seq[Ball]): Boolean =
+    balls forall { _.velocity.len < 0.0001f }
 
   /** Updates the velocities of the balls after a collision
    *  
