@@ -60,4 +60,10 @@ class Vector3DTest extends FlatSpec with Matchers {
   "norm" should "return the length of a vector" in {
     Vector3D(0f, 3f, 4f).len should be (5f)
   }
+
+  "angle2d" should "return the angle of the vector from the x and y values" in {
+    Vector3D(0f, 0f, 0f).angle2d should be (0f)
+    Vector3D(-1f, 0f, 0f).angle2d should be (180f)
+    Vector3D(-1f, -1f, 0f).angle2d should be (225f)
+  }
 }
