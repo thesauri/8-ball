@@ -60,12 +60,4 @@ class Vector3DTest extends FlatSpec with Matchers {
   "norm" should "return the length of a vector" in {
     Vector3D(0f, 3f, 4f).norm should be (5f)
   }
-
-  "wrap" should "do nothing if within the maximum value" in {
-    Vector3D(1f, 1f, 1f).wrap(2f) should be (Vector3D(1f, 1f, 1f))
-  }
-
-  "wrap" should "wrap out-of-bounds values" in {
-    Vector3D(3f, 3f, 3f).wrap(2f) should be (Vector3D(1f, 1f, 1f))
-  }
 }

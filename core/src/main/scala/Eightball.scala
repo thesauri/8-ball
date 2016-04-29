@@ -1,8 +1,11 @@
 package com.walter.eightball
 
 import com.badlogic.gdx.Game
-import com.badlogic.gdx.graphics.{Color, GL20, PerspectiveCamera}
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
+import com.badlogic.gdx.graphics.GL20
 
 import scala.collection.mutable.Buffer
 import scala.util.Random
@@ -10,17 +13,15 @@ import scala.util.Random
 class Eightball extends Game {
 
     lazy val scale = Gdx.graphics.getWidth / 3f //Scale factor for rendering
-    lazy val camera = new PerspectiveCamera(67, Gdx.graphics.getWidth, Gdx.graphics.getHeight)
+    lazy val camera = new OrthographicCamera(Gdx.graphics.getWidth.toFloat, Gdx.graphics.getHeight.toFloat)
+    lazy val shapeRenderer = new ShapeRenderer()
     lazy val gameBoard = new Board()
     lazy val balls = Buffer[Ball]()
 
     override def create(): Unit = {
-      //camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 10f)
-      camera.position.set(Board.Width / 2f, Board.Height / 2f, 1.1f)
-      camera.lookAt(Board.Width / 2f, Board.Height / 2f, 0f);
-      camera.near = 0.01f
-      camera.far = 200f
+      camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0f)
       camera.update()
+      shapeRenderer.setProjectionMatrix(camera.combined)
 
       //Cue ball
       balls += new Ball(0.25f, 0.635f, 0f, 1)
@@ -72,10 +73,13 @@ class Eightball extends Game {
       
       PhysicsHandler.update(balls, Gdx.graphics.getDeltaTime)
 
-      WorldRenderer.render(camera, balls)
+      shapeRenderer.begin(ShapeType.Filled)
+      gameBoard.render(shapeRenderer, scale)
+      balls.foreach(_.render(shapeRenderer, scale))
+      shapeRenderer.end()
     }
     
     override def dispose(): Unit = {
-
+      shapeRenderer.dispose()
     }
 }
