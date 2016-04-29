@@ -54,6 +54,10 @@ class GameScreen extends Screen with InputProcessor {
         gameBoard.render(shapeRenderer, scale)
         balls.foreach(_.render(shapeRenderer, scale))
         shapeRenderer.end()
+
+        if (PhysicsHandler.areStill(balls)) {
+          gameState = GameState.Aiming
+        }
       }
     }
 
@@ -128,6 +132,7 @@ class GameScreen extends Screen with InputProcessor {
     case GameState.Aiming => {
       val curPointOnBoard = screenCoordToGame(Vector3D(screenX, screenY, 0f))
       cueStick.pointAt = balls(0)
+      
       cueStick.rotationDegrees = (balls(0) - curPointOnBoard).angle2d
       cueStick.distance = (balls(0) - curPointOnBoard).len
 
