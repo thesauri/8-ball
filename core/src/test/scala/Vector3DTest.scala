@@ -66,4 +66,10 @@ class Vector3DTest extends FlatSpec with Matchers {
     Vector3D(-1f, 0f, 0f).angle2d should be (180f)
     Vector3D(-1f, -1f, 0f).angle2d should be (225f)
   }
+
+  "apply(length, angle)" should "return a vector of the desired length and angle" in {
+    Vector3D(1f, 0f) should be (Vector3D(1f, 0f, 0f))
+    Vector3D(1f, 270f).x should be (0f +- 0.0001f)
+    Vector3D(1f, 270f).y should be (-1f +- 0.0001f)
+  }
 }
