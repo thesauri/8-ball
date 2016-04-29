@@ -1,7 +1,7 @@
 package com.walter.eightball
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 
-class CueStick(var pointAt: Vector3D, var distance: Float) extends Renderable {
+class CueStick(var pointAt: Vector3D, var distance: Float, var rotationRad: Float = 0f) extends Renderable {
 
   /** Renders a stick pointing at the given point at the given distance */
   override def render(renderer: ShapeRenderer, scale: Float): Unit = {
