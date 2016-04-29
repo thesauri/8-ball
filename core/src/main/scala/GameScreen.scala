@@ -34,11 +34,6 @@ class GameScreen extends Screen with InputProcessor {
     Gdx.gl.glClearColor(1, 1, 1, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
-    if (Gdx.input.isTouched()) {
-      val random = new Random()
-      balls(0).velocity = Vector3D(random.nextFloat() * 5f, random.nextFloat() * 5f, 0f)
-    }
-
     gameState match {
       case GameState.Aiming => {
         shapeRenderer.begin(ShapeType.Filled)
