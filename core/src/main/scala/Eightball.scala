@@ -19,7 +19,7 @@ class Eightball extends Game {
     }
 
     override def render(): Unit = {
-      gameScreen.render(Gdx.graphics.getDeltaTime())
+      gameScreen.render(Gdx.graphics.getDeltaTime)
     }
     
     override def dispose(): Unit = ()

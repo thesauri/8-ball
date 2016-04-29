@@ -3,14 +3,14 @@ package com.walter.eightball
 import com.badlogic.gdx.graphics.{GL20, OrthographicCamera}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
-import com.badlogic.gdx.{Gdx, Screen}
+import com.badlogic.gdx.{Gdx, InputProcessor, Screen}
 import com.walter.eightball.{Ball, Board, PhysicsHandler, Vector3D}
 
 import scala.collection.mutable.Buffer
 import scala.util.Random
 
 /** Takes care of the game */
-class GameScreen extends Screen {
+class GameScreen extends Screen with InputProcessor {
 
   lazy val scale = Gdx.graphics.getWidth / 3f //Scale factor for rendering
   lazy val camera = new OrthographicCamera(Gdx.graphics.getWidth.toFloat, Gdx.graphics.getHeight.toFloat)
@@ -67,6 +67,8 @@ class GameScreen extends Screen {
   }
 
   override def show(): Unit = {
+    Gdx.input.setInputProcessor(this)
+
     camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0f)
     camera.update()
     shapeRenderer.setProjectionMatrix(camera.combined)
@@ -110,4 +112,19 @@ class GameScreen extends Screen {
 
   override def resume(): Unit = ()
 
+  override def mouseMoved(screenX: Int, screenY: Int): Boolean = false
+
+  override def keyTyped(character: Char): Boolean = false
+
+  override def keyDown(keycode: Int): Boolean = false
+
+  override def touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = false
+
+  override def keyUp(keycode: Int): Boolean = false
+
+  override def scrolled(amount: Int): Boolean = false
+
+  override def touchUp(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = false
+
+  override def touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean = false
 }
