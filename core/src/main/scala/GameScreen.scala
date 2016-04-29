@@ -128,7 +128,6 @@ class GameScreen extends Screen with InputProcessor {
   override def touchUp(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = false
 
   override def touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean = {
-    println(screenCoordToGame(Vector3D(screenX, screenY, 0f)))
     cueStick.pointAt = balls(0)
     cueStick.rotationDegrees = (balls(0) - screenCoordToGame(Vector3D(screenX, screenY, 0f))).angle2d
     cueStick.distance = (balls(0) - screenCoordToGame(Vector3D(screenX, screenY, 0f))).len
