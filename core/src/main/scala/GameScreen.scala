@@ -17,6 +17,8 @@ class GameScreen extends Screen {
   lazy val shapeRenderer = new ShapeRenderer()
   lazy val gameBoard = new Board()
   lazy val balls = Buffer[Ball]()
+  lazy val cueStick = new CueStick(Vector3D(0f, 0f, 0f), 0f)
+  var gameState = GameState.Aiming
 
   override def hide(): Unit = ()
 
@@ -35,12 +37,30 @@ class GameScreen extends Screen {
       balls(0).velocity = Vector3D(random.nextFloat() * 5f, random.nextFloat() * 5f, 0f)
     }
 
-    PhysicsHandler.update(balls, delta)
+    gameState match {
+      case GameState.Aiming => {
+        shapeRenderer.begin(ShapeType.Filled)
+        gameBoard.render(shapeRenderer, scale)
+        balls.foreach(_.render(shapeRenderer, scale))
+        cueStick.render(shapeRenderer, scale)
+        shapeRenderer.end()
+      }
 
-    shapeRenderer.begin(ShapeType.Filled)
-    gameBoard.render(shapeRenderer, scale)
-    balls.foreach(_.render(shapeRenderer, scale))
-    shapeRenderer.end()
+      case GameState.Shooting => {
+        ???
+      }
+
+      case GameState.Rolling => {
+        PhysicsHandler.update(balls, delta)
+
+        shapeRenderer.begin(ShapeType.Filled)
+        gameBoard.render(shapeRenderer, scale)
+        balls.foreach(_.render(shapeRenderer, scale))
+        shapeRenderer.end()
+      }
+    }
+
+
   }
 
   override def show(): Unit = {
