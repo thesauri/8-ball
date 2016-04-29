@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.{GL20, OrthographicCamera}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.badlogic.gdx.math.Vector3
-import com.badlogic.gdx.{Gdx, InputProcessor, Screen}
+import com.badlogic.gdx.{Gdx, Input, InputProcessor, Screen}
 import com.walter.eightball.{Ball, Board, PhysicsHandler, Vector3D}
 
 import scala.collection.mutable.Buffer
@@ -132,8 +132,11 @@ class GameScreen extends Screen with InputProcessor {
     case GameState.Aiming => {
       val curPointOnBoard = screenCoordToGame(Vector3D(screenX, screenY, 0f))
       cueStick.pointAt = balls(0)
-      
-      cueStick.rotationDegrees = (balls(0) - curPointOnBoard).angle2d
+
+      if (!Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
+        cueStick.rotationDegrees = (balls(0) - curPointOnBoard).angle2d
+      }
+
       cueStick.distance = (balls(0) - curPointOnBoard).len
 
       //If it was touched the last frame and the cue stick is very close to the ball, shoot
