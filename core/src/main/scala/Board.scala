@@ -3,17 +3,14 @@ package com.walter.eightball
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 
-class Board(var x: Float = 0.0f, var y: Float = 0.0f) extends Vector2D with Rectangle with Renderable {
-
-  var height = Board.Height
-  var width = Board.Width
+class Board extends Renderable {
 
   def render(renderer: ShapeRenderer, scale: Float) = {
     renderer.setColor(Styles.BoardColor)
 
     //Draw the board
     renderer.set(ShapeType.Filled)
-    renderer.rect(x * scale, y * scale, width * scale, height * scale)
+    renderer.rect(0f, 0f, Board.Width * scale, Board.Height * scale)
 
     //Draw the pockets
     renderer.setColor(Styles.PocketColor)
