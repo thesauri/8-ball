@@ -3,9 +3,7 @@ package com.walter.eightball
 import com.badlogic.gdx.graphics.{GL20, OrthographicCamera}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
-import com.badlogic.gdx.math.Vector3
 import com.badlogic.gdx.{Gdx, Input, InputProcessor, Screen}
-import com.walter.eightball.{Ball, Board, PhysicsHandler, Vector3D}
 
 import scala.collection.mutable.Buffer
 import scala.util.Random
