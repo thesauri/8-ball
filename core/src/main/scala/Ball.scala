@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
  *  
  *  Balls implement 2D vectors that define their position, Shapes to give them
  *  a width and height, and Renderable to handle the rendering when called.
- *  The numbering of the balls is as following:
+ *  The numbering of the balls is as follows:
 
       0.  The cue balls
       1.  Yellow
