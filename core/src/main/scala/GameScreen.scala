@@ -14,11 +14,9 @@ class GameScreen extends Screen with InputProcessor {
   var scale = 1f //Scale factor for rendering, updated whenever the window size changes in resize()
   lazy val camera = new OrthographicCamera()
   lazy val shapeRenderer = new ShapeRenderer()
-  lazy val gameBoard = new Board()
-  lazy val balls = Buffer[Ball]()
-  lazy val cueStick = new CueStick(Vector3D(0f, 0f, 0f), 0f, 0f)
-  var gameState = GameState.Aiming
+  val gameBoard = new Board()
   var lastTouchedPoint: Option[Vector3D] = None //The place on the board where the screen was touched the last frame
+  lazy val state = new GameState()
 
   override def show(): Unit = {
     Gdx.input.setInputProcessor(this)
@@ -27,37 +25,37 @@ class GameScreen extends Screen with InputProcessor {
     shapeRenderer.setProjectionMatrix(camera.combined)
 
     //Cue ball
-    balls += new Ball(0.25f, 0.635f, 0f, 0)
+    state.balls += new Ball(0.25f, 0.635f, 0f, 0)
 
-    balls += new Ball(1.69f, 0.635f, 0f, 1)
+    state.balls += new Ball(1.69f, 0.635f, 0f, 1)
 
-    balls += new Ball(1.69f + 2.02f * balls(0).radius, 0.635f - 1.02f * balls(0).radius, 0f, 15)
-    balls += new Ball(1.69f + 2.02f * balls(0).radius, 0.635f + 1.02f * balls(0).radius, 0f, 2)
+    state.balls += new Ball(1.69f + 2.02f * state.balls(0).radius, 0.635f - 1.02f * state.balls(0).radius, 0f, 15)
+    state.balls += new Ball(1.69f + 2.02f * state.balls(0).radius, 0.635f + 1.02f * state.balls(0).radius, 0f, 2)
 
-    balls += new Ball(1.69f + 4.04f * balls(0).radius, 0.635f - 2.02f * balls(0).radius, 0f, 14)
-    balls += new Ball(1.69f + 4.04f * balls(0).radius, 0.635f, 0f, 8)
-    balls += new Ball(1.69f + 4.04f * balls(0).radius, 0.635f + 2.02f * balls(0).radius, 0f, 13)
+    state.balls += new Ball(1.69f + 4.04f * state.balls(0).radius, 0.635f - 2.02f * state.balls(0).radius, 0f, 14)
+    state.balls += new Ball(1.69f + 4.04f * state.balls(0).radius, 0.635f, 0f, 8)
+    state.balls += new Ball(1.69f + 4.04f * state.balls(0).radius, 0.635f + 2.02f * state.balls(0).radius, 0f, 13)
 
-    balls += new Ball(1.69f + 6.06f * balls(0).radius, 0.635f - 3.03f * balls(0).radius, 0f, 4)
-    balls += new Ball(1.69f + 6.06f * balls(0).radius, 0.635f - 1.02f * balls(0).radius, 0f, 12)
-    balls += new Ball(1.69f + 6.06f * balls(0).radius, 0.635f + 1.02f * balls(0).radius, 0f, 5)
-    balls += new Ball(1.69f + 6.06f * balls(0).radius, 0.635f + 3.03f * balls(0).radius, 0f, 11)
+    state.balls += new Ball(1.69f + 6.06f * state.balls(0).radius, 0.635f - 3.03f * state.balls(0).radius, 0f, 4)
+    state.balls += new Ball(1.69f + 6.06f * state.balls(0).radius, 0.635f - 1.02f * state.balls(0).radius, 0f, 12)
+    state.balls += new Ball(1.69f + 6.06f * state.balls(0).radius, 0.635f + 1.02f * state.balls(0).radius, 0f, 5)
+    state.balls += new Ball(1.69f + 6.06f * state.balls(0).radius, 0.635f + 3.03f * state.balls(0).radius, 0f, 11)
 
-    balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f - 4.04f * balls(0).radius, 0f, 6)
-    balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f - 2.02f * balls(0).radius, 0f, 10)
-    balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f, 0f, 7)
-    balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f + 2.02f * balls(0).radius, 0f, 9)
-    balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f + 4.04f * balls(0).radius, 0f, 3)
+    state.balls += new Ball(1.69f + 8.08f * state.balls(0).radius, 0.635f - 4.04f * state.balls(0).radius, 0f, 6)
+    state.balls += new Ball(1.69f + 8.08f * state.balls(0).radius, 0.635f - 2.02f * state.balls(0).radius, 0f, 10)
+    state.balls += new Ball(1.69f + 8.08f * state.balls(0).radius, 0.635f, 0f, 7)
+    state.balls += new Ball(1.69f + 8.08f * state.balls(0).radius, 0.635f + 2.02f * state.balls(0).radius, 0f, 9)
+    state.balls += new Ball(1.69f + 8.08f * state.balls(0).radius, 0.635f + 4.04f * state.balls(0).radius, 0f, 3)
 
-    //Distribute balls a bit randomly
+    //Distribute gameState.balls a bit randomly
     val random = new Random()
-    balls foreach { ball => {
+    state.balls foreach { ball => {
       //ball += Vector3D(0.000005f * random.nextInt(100), 0.00005f * random.nextInt(100), 0f)
     }}
 
-    for (i <- 0 until balls.size) {
-      for (n <- i + 1 until balls.size) {
-        if ((balls(i) - balls(n)).len < balls(0).radius + balls(1).radius) println("Overlapping in the beginning")
+    for (i <- 0 until state.balls.size) {
+      for (n <- i + 1 until state.balls.size) {
+        if ((state.balls(i) - state.balls(n)).len < state.balls(0).radius + state.balls(1).radius) println("Overlapping in the beginning")
       }
     }
   }
@@ -66,12 +64,12 @@ class GameScreen extends Screen with InputProcessor {
     Gdx.gl.glClearColor(1, 1, 1, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
-    gameState match {
+    state.gameState match {
       case GameState.Aiming => {
         shapeRenderer.begin(ShapeType.Filled)
         gameBoard.render(shapeRenderer, scale)
-        balls.foreach(_.render(shapeRenderer, scale))
-        cueStick.render(shapeRenderer, scale)
+        state.balls.foreach(_.render(shapeRenderer, scale))
+        state.cueStick.render(shapeRenderer, scale)
         shapeRenderer.end()
       }
 
@@ -80,15 +78,15 @@ class GameScreen extends Screen with InputProcessor {
       }
 
       case GameState.Rolling => {
-        PhysicsHandler.update(balls, delta)
+        PhysicsHandler.update(state.balls, delta)
 
         shapeRenderer.begin(ShapeType.Filled)
         gameBoard.render(shapeRenderer, scale)
-        balls.foreach(_.render(shapeRenderer, scale))
+        state.balls.foreach(_.render(shapeRenderer, scale))
         shapeRenderer.end()
 
-        if (PhysicsHandler.areStill(balls)) {
-          gameState = GameState.Aiming
+        if (PhysicsHandler.areStill(state.balls)) {
+          state.gameState = GameState.Aiming
         }
       }
     }
@@ -128,24 +126,24 @@ class GameScreen extends Screen with InputProcessor {
 
   override def touchUp(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = false
 
-  override def touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean = gameState match {
+  override def touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean = state.gameState match {
 
     case GameState.Aiming if (pointer == 0) => {
       val curPointOnBoard = screenCoordToGame(Vector3D(screenX, screenY, 0f))
-      cueStick.pointAt = balls(0)
+      state.cueStick.pointAt = state.balls(0)
 
       //Don't rotate if the shift key is pressed, or a second touch is applied on the screen
       if (!Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) && !Gdx.input.isTouched(1)) {
-        cueStick.rotationDegrees = (balls(0) - curPointOnBoard).angle2d
+        state.cueStick.rotationDegrees = (state.balls(0) - curPointOnBoard).angle2d
       }
 
-      cueStick.distance = (balls(0) - curPointOnBoard).len
+      state.cueStick.distance = (state.balls(0) - curPointOnBoard).len
 
       //If it was touched the last frame and the cue stick is very close to the ball, shoot
-      if (lastTouchedPoint.isDefined && cueStick.distance < 1.5f * balls(0).radius) {
+      if (lastTouchedPoint.isDefined && state.cueStick.distance < 1.5f * state.balls(0).radius) {
         val newVelocityLength = (lastTouchedPoint.get - curPointOnBoard).len / Gdx.graphics.getDeltaTime
-        balls(0).velocity = Vector3D(newVelocityLength, cueStick.rotationDegrees)
-        gameState = GameState.Rolling
+        state.balls(0).velocity = Vector3D(newVelocityLength, state.cueStick.rotationDegrees)
+        state.gameState = GameState.Rolling
       }
 
       lastTouchedPoint = Some(curPointOnBoard)
