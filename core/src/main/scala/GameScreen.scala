@@ -22,48 +22,6 @@ class GameScreen extends Screen with InputProcessor {
   var gameState = GameState.Aiming
   var lastTouchedPoint: Option[Vector3D] = None //The place on the board where the screen was touched the last frame
 
-  override def hide(): Unit = ()
-
-  override def resize(width: Int, height: Int): Unit = ()
-
-  override def dispose(): Unit = ()
-
-  override def pause(): Unit = ()
-
-  override def render(delta: Float): Unit = {
-    Gdx.gl.glClearColor(1, 1, 1, 1);
-    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-
-    gameState match {
-      case GameState.Aiming => {
-        shapeRenderer.begin(ShapeType.Filled)
-        gameBoard.render(shapeRenderer, scale)
-        balls.foreach(_.render(shapeRenderer, scale))
-        cueStick.render(shapeRenderer, scale)
-        shapeRenderer.end()
-      }
-
-      case GameState.Shooting => {
-        ???
-      }
-
-      case GameState.Rolling => {
-        PhysicsHandler.update(balls, delta)
-
-        shapeRenderer.begin(ShapeType.Filled)
-        gameBoard.render(shapeRenderer, scale)
-        balls.foreach(_.render(shapeRenderer, scale))
-        shapeRenderer.end()
-
-        if (PhysicsHandler.areStill(balls)) {
-          gameState = GameState.Aiming
-        }
-      }
-    }
-
-
-  }
-
   override def show(): Unit = {
     Gdx.input.setInputProcessor(this)
 
@@ -107,6 +65,48 @@ class GameScreen extends Screen with InputProcessor {
       }
     }
   }
+
+  override def render(delta: Float): Unit = {
+    Gdx.gl.glClearColor(1, 1, 1, 1);
+    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+
+    gameState match {
+      case GameState.Aiming => {
+        shapeRenderer.begin(ShapeType.Filled)
+        gameBoard.render(shapeRenderer, scale)
+        balls.foreach(_.render(shapeRenderer, scale))
+        cueStick.render(shapeRenderer, scale)
+        shapeRenderer.end()
+      }
+
+      case GameState.Shooting => {
+        ???
+      }
+
+      case GameState.Rolling => {
+        PhysicsHandler.update(balls, delta)
+
+        shapeRenderer.begin(ShapeType.Filled)
+        gameBoard.render(shapeRenderer, scale)
+        balls.foreach(_.render(shapeRenderer, scale))
+        shapeRenderer.end()
+
+        if (PhysicsHandler.areStill(balls)) {
+          gameState = GameState.Aiming
+        }
+      }
+    }
+
+
+  }
+
+  override def hide(): Unit = ()
+
+  override def resize(width: Int, height: Int): Unit = ()
+
+  override def dispose(): Unit = ()
+
+  override def pause(): Unit = ()
 
   /** Translates screen coordinates to game board coordinates */
   def screenCoordToGame(coords: Vector3D): Vector3D = (1f / scale) * ((camera.unproject(coords)): Vector3D)
