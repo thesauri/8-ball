@@ -46,6 +46,15 @@ object Ball {
 
   val Mass = 0.16f //In kg according to the WPA spec
   val Radius = 0.028575f //In m according to the WPA spec
-  val ColorOfBall: Map[Color] =
+  val ColorOfBall: Map[Int, Color] = Map(
+      0 -> Styles.White,
+      1 -> Styles.Yellow,
+      2 -> Styles.Red,
+      3 -> Styles.Purple,
+      4 -> Styles.Purple,
+      5 -> Styles.Orange,
+      6 -> Styles.Green,
+      7 -> Styles.Brown,
+      8 -> Styles.Black)
 
 }
