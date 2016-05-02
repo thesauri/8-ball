@@ -66,13 +66,11 @@ object Ball {
       6  -> Styles.Green,
       7  -> Styles.Brown,
       8  -> Styles.Black,
-      9  -> Styles.White,
-      10 -> Styles.Yellow,
-      11 -> Styles.Blue,
-      12 -> Styles.Red,
-      13 -> Styles.Purple,
-      14 -> Styles.Orange,
-      15 -> Styles.Green,
-      16 -> Styles.Brown)
-
+      9  -> Styles.Yellow,
+      10 -> Styles.Blue,
+      11 -> Styles.Red,
+      12 -> Styles.Purple,
+      13 -> Styles.Orange,
+      14 -> Styles.Green,
+      15 -> Styles.Brown)
 }
