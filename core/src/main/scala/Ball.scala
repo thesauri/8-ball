@@ -6,7 +6,24 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 /** Represents a ball on the pool table
  *  
  *  Balls implement 2D vectors that define their position, Shapes to give them
- *  a width and height, and Renderable to handle the rendering when called. */
+ *  a width and height, and Renderable to handle the rendering when called.
+ *  The numbering of the balls is as following:
+
+      1.  Yellow
+      2.  Blue
+      3.  Red
+      4.  Purple
+      5.  Orange
+      6.  Green
+      7.  Brown or maroon
+      8.  Black
+      9.  Yellow and white
+      10.  Blue and white
+      11.  Red and white
+      12.  Purple and white
+      13.  Orange and white
+      14.  Green and white
+      15.  Brown, or maroon, and white */
 class Ball(var x: Float, var y: Float, var z: Float, val number: Int) extends Vector3D with Renderable {
 
   val mass = Ball.Mass
