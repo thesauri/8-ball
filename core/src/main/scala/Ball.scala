@@ -1,5 +1,6 @@
 package com.walter.eightball
 
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 
@@ -45,5 +46,6 @@ object Ball {
 
   val Mass = 0.16f //In kg according to the WPA spec
   val Radius = 0.028575f //In m according to the WPA spec
+  val ColorOfBall: Map[Color] =
 
 }
