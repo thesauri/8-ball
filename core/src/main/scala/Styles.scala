@@ -16,6 +16,7 @@ object Styles {
   def Purple: Color = Color.valueOf("9B59B6FF")
   def Red: Color = Color.valueOf("E74C3CFF")
   def Yellow: Color = Color.valueOf("F1C40FFF")
+  def White: Color = Color.valueOf("ECf0F1FF")
 
 
 }
