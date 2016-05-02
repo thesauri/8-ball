@@ -11,8 +11,8 @@ import scala.util.Random
 /** Takes care of the game */
 class GameScreen extends Screen with InputProcessor {
 
-  lazy val scale = Gdx.graphics.getWidth / 3f //Scale factor for rendering
-  lazy val camera = new OrthographicCamera(Gdx.graphics.getWidth.toFloat, Gdx.graphics.getHeight.toFloat)
+  var scale = 1f //Scale factor for rendering, updated whenever the window size changes in resize()
+  lazy val camera = new OrthographicCamera()
   lazy val shapeRenderer = new ShapeRenderer()
   lazy val gameBoard = new Board()
   lazy val balls = Buffer[Ball]()
@@ -23,8 +23,7 @@ class GameScreen extends Screen with InputProcessor {
   override def show(): Unit = {
     Gdx.input.setInputProcessor(this)
 
-    camera.position.set(scale * Board.Width / 2f, scale * Board.Height / 2f, 0f)
-    camera.update()
+    resize(Gdx.graphics.getWidth, Gdx.graphics.getHeight)
     shapeRenderer.setProjectionMatrix(camera.combined)
 
     //Cue ball
@@ -93,13 +92,18 @@ class GameScreen extends Screen with InputProcessor {
         }
       }
     }
-
-
   }
 
   override def hide(): Unit = ()
 
-  override def resize(width: Int, height: Int): Unit = ()
+  /** Updates camera parameters and the scale factor after a window resize */
+  override def resize(width: Int, height: Int): Unit = {
+    scale = width / 3f
+    camera.viewportWidth = width
+    camera.viewportHeight = height
+    camera.position.set(scale * Board.Width / 2f, scale * Board.Height / 2f, 0f)
+    camera.update()
+  }
 
   override def dispose(): Unit = ()
 
