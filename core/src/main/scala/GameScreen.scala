@@ -23,7 +23,7 @@ class GameScreen extends Screen with InputProcessor {
   override def show(): Unit = {
     Gdx.input.setInputProcessor(this)
 
-    camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0f)
+    camera.position.set(scale * Board.Width / 2f, scale * Board.Height / 2f, 0f)
     camera.update()
     shapeRenderer.setProjectionMatrix(camera.combined)
 
