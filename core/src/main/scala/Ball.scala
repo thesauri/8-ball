@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
  *  a width and height, and Renderable to handle the rendering when called.
  *  The numbering of the balls is as following:
 
+      0.  The cue balls
       1.  Yellow
       2.  Blue
       3.  Red
