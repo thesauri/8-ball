@@ -9,5 +9,6 @@ object Main extends App {
     cfg.width = 800
     cfg.forceExit = false
     cfg.useHDPI = true
+    cfg.samples = 4
     new LwjglApplication(new Eightball, cfg)
 }
