@@ -18,10 +18,9 @@ class Board(var x: Float = 0.0f, var y: Float = 0.0f) extends Vector2D with Rect
     //Draw the pockets
     renderer.setColor(Styles.PocketColor)
 
-    for (px <- (0.0f to 1.0f by 0.5f);
-         py <- (0.0f to 1.0f by 0.5f)) {
-      if (px != 0.5f && py != 0.5f)
-        renderer.circle(px * Board.Width * scale, py * Board.Height * scale, scale * Board.PocketRadius)
+    for (px <- 0.0f to 1.0f by 0.5f;
+         py <- 0.0f to 1.0f by 1f) {
+      renderer.circle(px * Board.Width * scale, py * Board.Height * scale, scale * Board.PocketRadius)
     }
 
 
