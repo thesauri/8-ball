@@ -52,7 +52,7 @@ class GameScreen extends Screen with InputProcessor {
     //Distribute balls a bit randomly
     val random = new Random()
     balls foreach { ball => {
-      ball += Vector3D(0.00005f * random.nextInt(100), 0.00005f * random.nextInt(100), 0f)
+      //ball += Vector3D(0.000005f * random.nextInt(100), 0.00005f * random.nextInt(100), 0f)
     }}
 
     for (i <- 0 until balls.size) {
