@@ -35,9 +35,19 @@ class Ball(var x: Float, var y: Float, var z: Float, val number: Int) extends Ve
   var state = BallState.Sliding
   
   def render(renderer: ShapeRenderer, scale: Float): Unit = {
-    renderer.setColor(Styles.BallColor)
     renderer.set(ShapeType.Filled)
-    renderer.circle(x * scale, y * scale, radius * scale)
+
+    renderer.setColor(Ball.ColorOfBall(number))
+
+    if (number > 8) {
+      renderer.setColor(Styles.White)
+      renderer.circle(x * scale, y * scale, radius * scale)
+      renderer.setColor(Ball.ColorOfBall(number))
+      renderer.circle(x * scale, y * scale, 0.8f * radius * scale)
+    } else {
+      renderer.setColor(Ball.ColorOfBall(number))
+      renderer.circle(x * scale, y * scale, radius * scale)
+    }
   }
 
 }
@@ -47,14 +57,22 @@ object Ball {
   val Mass = 0.16f //In kg according to the WPA spec
   val Radius = 0.028575f //In m according to the WPA spec
   val ColorOfBall: Map[Int, Color] = Map(
-      0 -> Styles.White,
-      1 -> Styles.Yellow,
-      2 -> Styles.Red,
-      3 -> Styles.Purple,
-      4 -> Styles.Purple,
-      5 -> Styles.Orange,
-      6 -> Styles.Green,
-      7 -> Styles.Brown,
-      8 -> Styles.Black)
+      0  -> Styles.White,
+      1  -> Styles.Yellow,
+      2  -> Styles.Blue,
+      3  -> Styles.Red,
+      4  -> Styles.Purple,
+      5  -> Styles.Orange,
+      6  -> Styles.Green,
+      7  -> Styles.Brown,
+      8  -> Styles.Black,
+      9  -> Styles.White,
+      10 -> Styles.Yellow,
+      11 -> Styles.Blue,
+      12 -> Styles.Red,
+      13 -> Styles.Purple,
+      14 -> Styles.Orange,
+      15 -> Styles.Green,
+      16 -> Styles.Brown)
 
 }
