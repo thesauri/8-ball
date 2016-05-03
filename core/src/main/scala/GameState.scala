@@ -42,6 +42,8 @@ class GameState {
 
   /** Adds balls to the game state at their default positions */
   def placeBallsAtDefaultPositions(): Unit = {
+    balls.clear()
+
     balls += new Ball(0.25f, 0.635f, 0f, 0)
 
     balls += new Ball(1.69f, 0.635f, 0f, 1)
@@ -63,6 +65,14 @@ class GameState {
     balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f, 0f, 7)
     balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f + 2.02f * balls(0).radius, 0f, 9)
     balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f + 4.04f * balls(0).radius, 0f, 3)
+
+    gameState = GameState.Aiming
+    hasPocketedCueBall = false
+    hasPocketedRightBall = false
+    hasPocketedWrongBall = false
+    hasPocketedEightBall = false
+    hasSolids = None
+    isPlayer1sTurn = true
   }
 
   /** Returns the number of balls that player 1 has remaining */

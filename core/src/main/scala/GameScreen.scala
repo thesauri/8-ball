@@ -110,7 +110,16 @@ class GameScreen extends Screen with InputProcessor {
 
   override def keyDown(keycode: Int): Boolean = false
 
-  override def touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = false
+  override def touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = state.gameState match {
+
+    case GameState.Lost => {
+      state.placeBallsAtDefaultPositions()
+      true
+    }
+
+    case _ => false
+
+  }
 
   override def keyUp(keycode: Int): Boolean = false
 
