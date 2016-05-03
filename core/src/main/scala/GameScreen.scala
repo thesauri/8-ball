@@ -1,11 +1,10 @@
 package com.walter.eightball
 
-import com.badlogic.gdx.graphics.Texture.TextureFilter
 import com.badlogic.gdx.graphics.g2d.{BitmapFont, GlyphLayout, SpriteBatch}
-import com.badlogic.gdx.graphics.{GL20, OrthographicCamera}
+import com.badlogic.gdx.graphics.{GL20, OrthographicCamera, Pixmap}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
-import com.badlogic.gdx.utils.Align
+import com.badlogic.gdx.utils.{Align, BufferUtils, ScreenUtils}
 import com.badlogic.gdx.{Gdx, Input, InputProcessor, Screen}
 
 import scala.collection.mutable.Buffer
@@ -108,7 +107,13 @@ class GameScreen extends Screen with InputProcessor {
 
   override def keyTyped(character: Char): Boolean = false
 
-  override def keyDown(keycode: Int): Boolean = false
+  override def keyDown(keycode: Int): Boolean = {
+    val pixels = ScreenUtils.getFrameBufferPixels(0, 0, Gdx.graphics.getBackBufferWidth, Gdx.graphics.getBackBufferHeight, true)
+    val pixmap = new Pixmap(Gdx.graphics.getBackBufferWidth, Gdx.graphics.getBackBufferHeight, Pixmap.Format.RGBA8888)
+    BufferUtils.copy(pixels, 0, pixmap.getPixels, pixels.length)
+
+    GameState.save(state, pixmap)
+  }
 
   override def touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = state.gameState match {
 

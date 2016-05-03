@@ -1,5 +1,6 @@
 package com.walter.eightball
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 
@@ -19,8 +20,6 @@ class Board extends Renderable {
          py <- 0.0f to 1.0f by 1f) {
       renderer.circle(px * Board.Width * scale, py * Board.Height * scale, scale * Board.PocketRadius)
     }
-
-
   }
 }
 

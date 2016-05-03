@@ -5,7 +5,8 @@ import com.badlogic.gdx.math.Vector3
 import scala.math._
 
 /** Represents a vector in a 3D space */
-trait Vector3D {
+@SerialVersionUID(1L)
+trait Vector3D extends Serializable {
   var x: Float
   var y: Float
   var z: Float

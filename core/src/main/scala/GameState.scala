@@ -1,9 +1,16 @@
 package com.walter.eightball
 
+import java.io.ObjectOutputStream
+import java.time.LocalDateTime
+
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.{Pixmap, PixmapIO}
+
 import scala.collection.mutable
 
 /** A mutable class to store and manipulate the current state of the game */
-class GameState {
+@SerialVersionUID(1L)
+class GameState extends Serializable{
 
   val balls = mutable.Buffer[Ball]()
   var gameState = GameStateType.Aiming
@@ -143,9 +150,26 @@ class GameState {
 /** Companion object for loading and saving game states */
 object GameState {
 
+  /** Saves the given game state and the associated screenshot to the file system
+    *
+    * The serialized object is saved as saves/<datetime> and
+    * the screenshot as saves/<datetime>.png */
+  def save(gameState: GameState, screenshot: Pixmap): Boolean = {
+    val datetime = LocalDateTime.now.toString
 
-  def save(gameState: GameState): Boolean = {
-    ???
+    val stateFile = Gdx.files.local(s"saves/$datetime")
+    val imageFile= Gdx.files.local(s"saves/${datetime}.png")
+
+    //Save the serialized game state
+    val out = stateFile.write(false)
+    val oos = new ObjectOutputStream(out)
+    oos.writeObject(gameState)
+    oos.close()
+
+    //Save the screenshot
+    PixmapIO.writePNG(imageFile, screenshot)
+
+    true
   }
 
 }

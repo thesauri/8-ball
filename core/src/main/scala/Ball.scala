@@ -26,7 +26,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
       13.  Orange and white
       14.  Green and white
       15.  Brown and white */
-class Ball(var x: Float, var y: Float, var z: Float, val number: Int) extends Vector3D {
+@SerialVersionUID(1L)
+class Ball(var x: Float, var y: Float, var z: Float, val number: Int) extends Vector3D with Serializable {
 
   val mass = Ball.Mass
   val radius = Ball.Radius
