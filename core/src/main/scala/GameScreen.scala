@@ -67,19 +67,12 @@ class GameScreen extends Screen with InputProcessor {
     Gdx.gl.glClearColor(1, 1, 1, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
-    /** Returns true if the ball should be shot by the current player */
-    def isActive(ball: Ball): Boolean = state.hasSolids match {
-      case Some(1) => ball.number <= 8
-      case Some(2) => ball.number >= 8
-      case None => true
-    }
-
     //Draw the game board
     state.gameState match {
       case GameState.Aiming => {
         shapeRenderer.begin(ShapeType.Filled)
         gameBoard.render(shapeRenderer, scale)
-        state.balls.foreach(ball => ball.render(shapeRenderer, scale, isActive(ball)))
+        state.balls.foreach(ball => ball.render(shapeRenderer, scale, state.shouldBeShot(ball)))
         state.cueStick.render(shapeRenderer, scale)
         shapeRenderer.end()
       }
@@ -93,7 +86,7 @@ class GameScreen extends Screen with InputProcessor {
 
         shapeRenderer.begin(ShapeType.Filled)
         gameBoard.render(shapeRenderer, scale)
-        state.balls.foreach(ball => ball.render(shapeRenderer, scale, isActive(ball)))
+        state.balls.foreach(ball => ball.render(shapeRenderer, scale, state.shouldBeShot(ball)))
         shapeRenderer.end()
 
         if (PhysicsHandler.areStill(state.balls)) {

@@ -72,6 +72,13 @@ class GameState {
 
     balls.remove(balls.indexOf(ball))
   }
+
+  /** Returns true if the ball should be shot by the current player */
+  def shouldBeShot(ball: Ball): Boolean = hasSolids match {
+    case Some(1) => ball.number <= 8 && playerTurn == 1 || ball.number >= 8 && playerTurn == 2 || ball.number == 0
+    case Some(2) => ball.number <= 8 && playerTurn == 2 || ball.number >= 8 && playerTurn == 1 || ball.number == 0
+    case None => true
+  }
 }
 
 /** Describes the current state of the game
