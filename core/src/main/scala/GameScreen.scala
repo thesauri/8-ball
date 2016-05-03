@@ -102,24 +102,28 @@ class GameScreen extends Screen with InputProcessor {
   override def touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean = state.gameState match {
 
     case GameState.Aiming if (pointer == 0) => {
-      val curPointOnBoard = screenCoordToGame(Vector3D(screenX, screenY, 0f))
-      state.cueStick.pointAt = state.balls(0)
+      state.cueBall foreach { cueBall => {
+        val curPointOnBoard = screenCoordToGame(Vector3D(screenX, screenY, 0f))
+        state.cueStick.pointAt = cueBall
 
-      //Don't rotate if the shift key is pressed, or a second touch is applied on the screen
-      if (!Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) && !Gdx.input.isTouched(1)) {
-        state.cueStick.rotationDegrees = (state.balls(0) - curPointOnBoard).angle2d
-      }
+        //Don't rotate if the shift key is pressed, or a second touch is applied on the screen
+        if (!Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) && !Gdx.input.isTouched(1)) {
+          state.cueStick.rotationDegrees = (cueBall - curPointOnBoard).angle2d
+        }
 
-      state.cueStick.distance = (state.balls(0) - curPointOnBoard).len
+        state.cueStick.distance = (cueBall - curPointOnBoard).len
 
-      //If it was touched the last frame and the cue stick is very close to the ball, shoot
-      if (lastTouchedPoint.isDefined && state.cueStick.distance < 1.5f * state.balls(0).radius) {
-        val newVelocityLength = (lastTouchedPoint.get - curPointOnBoard).len / Gdx.graphics.getDeltaTime
-        state.balls(0).velocity = Vector3D(newVelocityLength, state.cueStick.rotationDegrees)
-        state.gameState = GameState.Rolling
-      }
+        //If it was touched the last frame and the cue stick is very close to the ball, shoot
+        if (lastTouchedPoint.isDefined && state.cueStick.distance < 1.5f * cueBall.radius) {
+          val newVelocityLength = (lastTouchedPoint.get - curPointOnBoard).len / Gdx.graphics.getDeltaTime
+          cueBall.velocity = Vector3D(newVelocityLength, state.cueStick.rotationDegrees)
+          state.gameState = GameState.Rolling
+        }
 
-      lastTouchedPoint = Some(curPointOnBoard)
+        lastTouchedPoint = Some(curPointOnBoard)
+      }}
+
+
 
       true
     }

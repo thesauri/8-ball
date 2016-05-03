@@ -16,6 +16,9 @@ class GameState {
   private var hasPocketedWrongBall = false
   private var hasPocketedEightBall = false
 
+  /** Optionally returns the cue ball */
+  def cueBall: Option[Ball] = balls.find( _.number == 0 )
+
   /** Advances the game to the next round */
   def nextRound(): Unit = {
     if (hasPocketedEightBall) {
