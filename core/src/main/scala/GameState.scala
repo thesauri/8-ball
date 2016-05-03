@@ -172,4 +172,7 @@ object GameState {
     true
   }
 
+  /** Returns a sequence of file names to saved games */
+  def savedGames: Seq[String] = Gdx.files.local("saves/").list.map( _.name )
+
 }
