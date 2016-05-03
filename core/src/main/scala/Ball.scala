@@ -26,26 +26,30 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
       13.  Orange and white
       14.  Green and white
       15.  Brown and white */
-class Ball(var x: Float, var y: Float, var z: Float, val number: Int) extends Vector3D with Renderable {
+class Ball(var x: Float, var y: Float, var z: Float, val number: Int) extends Vector3D {
 
   val mass = Ball.Mass
   val radius = Ball.Radius
   var velocity = Vector3D(0f, 0f, 0f)
   var angularVelocity = Vector3D(0f, 0f, 0f)
   var state = BallState.Sliding
-  
-  def render(renderer: ShapeRenderer, scale: Float): Unit = {
+
+  /** Renders the ball
+    *
+    * If active is set to false, the ball will be rendered with a gray color */
+  def render(renderer: ShapeRenderer, scale: Float, active: Boolean): Unit = {
     renderer.set(ShapeType.Filled)
 
-    renderer.setColor(Ball.ColorOfBall(number))
+    val color = if (active) Ball.ColorOfBall(number) else Styles.Gray
+    renderer.setColor(color)
 
     if (number > 8) {
       renderer.setColor(Styles.White)
       renderer.circle(x * scale, y * scale, radius * scale)
-      renderer.setColor(Ball.ColorOfBall(number))
+      renderer.setColor(color)
       renderer.circle(x * scale, y * scale, 0.8f * radius * scale)
     } else {
-      renderer.setColor(Ball.ColorOfBall(number))
+      renderer.setColor(color)
       renderer.circle(x * scale, y * scale, radius * scale)
     }
   }
