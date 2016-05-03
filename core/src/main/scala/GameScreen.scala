@@ -77,10 +77,6 @@ class GameScreen extends Screen with InputProcessor {
         shapeRenderer.end()
       }
 
-      case GameState.Shooting => {
-        ???
-      }
-
       case GameState.Rolling => {
         PhysicsHandler.update(state, delta)
 
