@@ -19,7 +19,7 @@ class GameScreen extends Screen with InputProcessor {
   lazy val shapeRenderer = new ShapeRenderer()
   val gameBoard = new Board()
   var lastTouchedPoint: Option[Vector3D] = None //The place on the board where the screen was touched the last frame
-  lazy val state = new GameState()
+  lazy val state = new GameStateType()
 
   override def show(): Unit = {
     Gdx.input.setInputProcessor(this)
@@ -42,7 +42,7 @@ class GameScreen extends Screen with InputProcessor {
 
     //Draw the game board
     state.gameState match {
-      case GameState.Aiming => {
+      case GameStateType.Aiming => {
         shapeRenderer.begin(ShapeType.Filled)
         gameBoard.render(shapeRenderer, scale)
         state.balls.foreach(ball => ball.render(shapeRenderer, scale, state.shouldBeShot(ball)))
@@ -50,7 +50,7 @@ class GameScreen extends Screen with InputProcessor {
         shapeRenderer.end()
       }
 
-      case GameState.Rolling => {
+      case GameStateType.Rolling => {
         PhysicsHandler.update(state, delta)
 
         shapeRenderer.begin(ShapeType.Filled)
@@ -63,7 +63,7 @@ class GameScreen extends Screen with InputProcessor {
         }
       }
 
-      case GameState.Lost => {
+      case GameStateType.Lost => {
         Gdx.graphics.getGL20.glEnable(GL20.GL_BLEND)
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA)
 
@@ -112,7 +112,7 @@ class GameScreen extends Screen with InputProcessor {
 
   override def touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = state.gameState match {
 
-    case GameState.Lost => {
+    case GameStateType.Lost => {
       state.placeBallsAtDefaultPositions()
       true
     }
@@ -129,7 +129,7 @@ class GameScreen extends Screen with InputProcessor {
 
   override def touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean = state.gameState match {
 
-    case GameState.Aiming if (pointer == 0) => {
+    case GameStateType.Aiming if (pointer == 0) => {
       state.cueBall foreach { cueBall => {
         val curPointOnBoard = screenCoordToGame(Vector3D(screenX, screenY, 0f))
         state.cueStick.pointAt = cueBall
@@ -145,7 +145,7 @@ class GameScreen extends Screen with InputProcessor {
         if (lastTouchedPoint.isDefined && state.cueStick.distance < 1.5f * cueBall.radius) {
           val newVelocityLength = (lastTouchedPoint.get - curPointOnBoard).len / Gdx.graphics.getDeltaTime
           cueBall.velocity = Vector3D(newVelocityLength, state.cueStick.rotationDegrees)
-          state.gameState = GameState.Rolling
+          state.gameState = GameStateType.Rolling
         }
 
         lastTouchedPoint = Some(curPointOnBoard)

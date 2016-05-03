@@ -3,10 +3,10 @@ package com.walter.eightball
 import scala.collection.mutable
 
 /** A mutable class to store and manipulate the current state of the game */
-class GameState {
+class GameStateType {
 
   val balls = mutable.Buffer[Ball]()
-  var gameState = GameState.Aiming
+  var gameState = GameStateType.Aiming
   var hasSolids: Option[Int] = None //The player that shoots solids (fully colored balls), None, 1 or 2
   val cueStick = new CueStick(Vector3D(0f, 0f, 0f), 0f, 0f)
   var isPlayer1sTurn = true //Whether it's player 1's turn or not
@@ -22,7 +22,7 @@ class GameState {
   /** Advances the game to the next round */
   def nextRound(): Unit = {
     if (hasPocketedEightBall) {
-      gameState = GameState.Lost
+      gameState = GameStateType.Lost
     } else if (hasPocketedCueBall) {
       balls += new Ball(0.25f, 0.635f, 0f, 0)
       isPlayer1sTurn = !isPlayer1sTurn
@@ -35,8 +35,8 @@ class GameState {
     hasPocketedWrongBall = false
     hasPocketedEightBall = false
 
-    if (gameState != GameState.Lost) {
-      gameState = GameState.Aiming
+    if (gameState != GameStateType.Lost) {
+      gameState = GameStateType.Aiming
     }
   }
 
@@ -66,7 +66,7 @@ class GameState {
     balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f + 2.02f * balls(0).radius, 0f, 9)
     balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f + 4.04f * balls(0).radius, 0f, 3)
 
-    gameState = GameState.Aiming
+    gameState = GameStateType.Aiming
     hasPocketedCueBall = false
     hasPocketedRightBall = false
     hasPocketedWrongBall = false
@@ -144,6 +144,6 @@ class GameState {
   *
   * Shooting is the time between the aim and
   * the point that the balls start rolling */
-object GameState extends Enumeration {
+object GameStateType extends Enumeration {
   val Aiming, Rolling, Lost = Value
 }
