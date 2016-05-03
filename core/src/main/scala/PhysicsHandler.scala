@@ -402,14 +402,16 @@ object PhysicsHandler {
     }
   }
 
-  /** Updates the state of the balls
+  /** Updates the balls in the game state
     *
     *  Call once every step
     *
-    *  @param balls the balls to update
+    *  @param state the state to update
     *  @param t the duration of the time step
     */
-  def update(balls: Buffer[Ball], t: Float): Unit = {
+  def update(state: GameState, t: Float): Unit = {
+
+    val balls = state.balls
 
     updateVelocities(balls, t)
 
@@ -447,7 +449,7 @@ object PhysicsHandler {
 
           //Remove pocketed balls
           case CollisionType.Pocketed =>
-            balls.remove(balls.indexOf(ball1))
+            state.removeBall(ball1)
 
         }}
 

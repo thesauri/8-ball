@@ -89,7 +89,7 @@ class GameScreen extends Screen with InputProcessor {
       }
 
       case GameState.Rolling => {
-        PhysicsHandler.update(state.balls, delta)
+        PhysicsHandler.update(state, delta)
 
         shapeRenderer.begin(ShapeType.Filled)
         gameBoard.render(shapeRenderer, scale)
