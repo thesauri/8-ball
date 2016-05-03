@@ -3,7 +3,7 @@ package com.walter.eightball
 import scala.collection.mutable
 
 /** A mutable class to store and manipulate the current state of the game */
-class GameStateType {
+class GameState {
 
   val balls = mutable.Buffer[Ball]()
   var gameState = GameStateType.Aiming
@@ -138,6 +138,16 @@ class GameStateType {
     case Some(2) => ball.number <= 8 && !isPlayer1sTurn || ball.number >= 8 && isPlayer1sTurn || ball.number == 0
     case None => true
   }
+}
+
+/** Companion object for loading and saving game states */
+object GameState {
+
+  
+  def save(gameState: GameState): Boolean = {
+    ???
+  }
+
 }
 
 /** Describes the current state of the game

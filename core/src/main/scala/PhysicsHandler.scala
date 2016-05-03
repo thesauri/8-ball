@@ -409,7 +409,7 @@ object PhysicsHandler {
     *  @param state the state to update
     *  @param t the duration of the time step
     */
-  def update(state: GameStateType, t: Float): Unit = {
+  def update(state: GameState, t: Float): Unit = {
 
     val balls = state.balls
 

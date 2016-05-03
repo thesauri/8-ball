@@ -19,7 +19,7 @@ class GameScreen extends Screen with InputProcessor {
   lazy val shapeRenderer = new ShapeRenderer()
   val gameBoard = new Board()
   var lastTouchedPoint: Option[Vector3D] = None //The place on the board where the screen was touched the last frame
-  lazy val state = new GameStateType()
+  lazy val state = new GameState()
 
   override def show(): Unit = {
     Gdx.input.setInputProcessor(this)
