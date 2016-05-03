@@ -1,6 +1,6 @@
 package com.walter.eightball
 
-import java.io.ObjectOutputStream
+import java.io.{NotSerializableException, ObjectInputStream, ObjectOutputStream}
 import java.time.LocalDateTime
 
 import com.badlogic.gdx.Gdx
@@ -151,12 +151,31 @@ class GameState extends Serializable{
 /** Companion object for loading and saving game states */
 object GameState {
 
+  /** Unserializes a game state from a file */
+  def load(file: FileHandle): GameState = {
+    val in = file.read
+    val ois = new ObjectInputStream(in)
+    val state = ois.readObject
+    ois.close()
+
+    state match {
+      case state: GameState => state
+      case _ => {
+        //If we're unable to unserialize it, let's just create a default game state and avoid a crash..
+        val emptyState = new GameState
+        emptyState.placeBallsAtDefaultPositions()
+        emptyState
+      }
+    }
+
+  }
+
   /** Saves the given game state and the associated screenshot to the file system
     *
     * The serialized object is saved as saves/<datetime> and
     * the screenshot as saves/<datetime>.png */
   def save(gameState: GameState, screenshot: Pixmap): Boolean = {
-    val datetime = LocalDateTime.now.toString
+    val datetime = LocalDateTime.now.toString.replace(":", "-")
 
     val stateFile = Gdx.files.local(s"saves/$datetime")
     val imageFile= Gdx.files.local(s"saves/${datetime}.png")
@@ -174,6 +193,6 @@ object GameState {
   }
 
   /** Returns a sequence of files storing serialized game states */
-  def savedGames: Seq[FileHandle] = Gdx.files.local("saves/").list
+  def savedGames: Seq[FileHandle] = Gdx.files.local("saves/").list.filter( _.extension != "png" )
 
 }

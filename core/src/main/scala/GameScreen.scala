@@ -1,5 +1,6 @@
 package com.walter.eightball
 
+import com.badlogic.gdx.Input.Keys
 import com.badlogic.gdx.graphics.g2d.{BitmapFont, GlyphLayout, SpriteBatch}
 import com.badlogic.gdx.graphics.{GL20, OrthographicCamera, Pixmap}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
@@ -18,7 +19,7 @@ class GameScreen extends Screen with InputProcessor {
   lazy val shapeRenderer = new ShapeRenderer()
   val gameBoard = new Board()
   var lastTouchedPoint: Option[Vector3D] = None //The place on the board where the screen was touched the last frame
-  lazy val state = new GameState()
+  var state = new GameState()
 
   override def show(): Unit = {
     Gdx.input.setInputProcessor(this)
@@ -107,12 +108,25 @@ class GameScreen extends Screen with InputProcessor {
 
   override def keyTyped(character: Char): Boolean = false
 
-  override def keyDown(keycode: Int): Boolean = {
-    val pixels = ScreenUtils.getFrameBufferPixels(0, 0, Gdx.graphics.getBackBufferWidth, Gdx.graphics.getBackBufferHeight, true)
-    val pixmap = new Pixmap(Gdx.graphics.getBackBufferWidth, Gdx.graphics.getBackBufferHeight, Pixmap.Format.RGBA8888)
-    BufferUtils.copy(pixels, 0, pixmap.getPixels, pixels.length)
+  override def keyDown(keycode: Int): Boolean = keycode match {
 
-    GameState.save(state, pixmap)
+    case Keys.S => {
+      val pixels = ScreenUtils.getFrameBufferPixels(0, 0, Gdx.graphics.getBackBufferWidth, Gdx.graphics.getBackBufferHeight, true)
+      val pixmap = new Pixmap(Gdx.graphics.getBackBufferWidth, Gdx.graphics.getBackBufferHeight, Pixmap.Format.RGBA8888)
+      BufferUtils.copy(pixels, 0, pixmap.getPixels, pixels.length)
+
+      GameState.save(state, pixmap)
+
+      true
+    }
+
+    case Keys.L => {
+      val files = GameState.savedGames.sortBy( _.name )
+      state = GameState.load(files.last)
+      true
+    }
+
+    case _ => false
   }
 
   override def touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = state.gameState match {
