@@ -62,6 +62,25 @@ class GameScreen extends Screen with InputProcessor {
           state.nextRound()
         }
       }
+
+      case GameState.Lost => {
+        Gdx.graphics.getGL20.glEnable(GL20.GL_BLEND)
+        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA)
+
+        shapeRenderer.begin(ShapeType.Filled)
+
+        gameBoard.render(shapeRenderer, scale)
+        state.balls.foreach(ball => ball.render(shapeRenderer, scale, state.shouldBeShot(ball)))
+
+        //Draw a dark overlay over the screen when the game is over
+        shapeRenderer.setColor(Styles.GameOverOverlay)
+        shapeRenderer.rect(camera.position.x - camera.viewportWidth / 2f,
+          camera.position.y - camera.viewportHeight / 2f,
+          camera.viewportWidth,
+          camera.viewportHeight)
+
+        shapeRenderer.end()
+      }
     }
   }
 

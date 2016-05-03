@@ -11,6 +11,7 @@ object Styles {
   def BoardColor: Color = Color.valueOf("27AE60FF")
   def BoardBorderColor: Color = Color.valueOf("2C3E50FF")
   def CueColor: Color = Color.valueOf("2C3E50FF")
+  def GameOverOverlay: Color = Color.valueOf("00000080")
   def Gray: Color = Color.valueOf("95A5A6FF")
   def Green: Color = Color.valueOf("2ECC71FF")
   def Orange: Color = Color.valueOf("E67E22FF")

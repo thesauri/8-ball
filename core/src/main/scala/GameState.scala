@@ -35,7 +35,9 @@ class GameState {
     hasPocketedWrongBall = false
     hasPocketedEightBall = false
 
-    gameState = GameState.Aiming
+    if (gameState != GameState.Lost) {
+      gameState = GameState.Aiming
+    }
   }
 
   /** Adds balls to the game state at their default positions */
