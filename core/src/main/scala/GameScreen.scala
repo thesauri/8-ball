@@ -27,34 +27,7 @@ class GameScreen extends Screen with InputProcessor {
     resize(Gdx.graphics.getWidth, Gdx.graphics.getHeight)
     shapeRenderer.setProjectionMatrix(camera.combined)
 
-    //Cue ball
-    state.balls += new Ball(0.25f, 0.635f, 0f, 0)
-
-    state.balls += new Ball(1.69f, 0.635f, 0f, 1)
-
-    state.balls += new Ball(1.69f + 2.02f * state.balls(0).radius, 0.635f - 1.02f * state.balls(0).radius, 0f, 15)
-    state.balls += new Ball(1.69f + 2.02f * state.balls(0).radius, 0.635f + 1.02f * state.balls(0).radius, 0f, 2)
-
-    state.balls += new Ball(1.69f + 4.04f * state.balls(0).radius, 0.635f - 2.02f * state.balls(0).radius, 0f, 14)
-    state.balls += new Ball(1.69f + 4.04f * state.balls(0).radius, 0.635f, 0f, 8)
-    state.balls += new Ball(1.69f + 4.04f * state.balls(0).radius, 0.635f + 2.02f * state.balls(0).radius, 0f, 13)
-
-    state.balls += new Ball(1.69f + 6.06f * state.balls(0).radius, 0.635f - 3.03f * state.balls(0).radius, 0f, 4)
-    state.balls += new Ball(1.69f + 6.06f * state.balls(0).radius, 0.635f - 1.02f * state.balls(0).radius, 0f, 12)
-    state.balls += new Ball(1.69f + 6.06f * state.balls(0).radius, 0.635f + 1.02f * state.balls(0).radius, 0f, 5)
-    state.balls += new Ball(1.69f + 6.06f * state.balls(0).radius, 0.635f + 3.03f * state.balls(0).radius, 0f, 11)
-
-    state.balls += new Ball(1.69f + 8.08f * state.balls(0).radius, 0.635f - 4.04f * state.balls(0).radius, 0f, 6)
-    state.balls += new Ball(1.69f + 8.08f * state.balls(0).radius, 0.635f - 2.02f * state.balls(0).radius, 0f, 10)
-    state.balls += new Ball(1.69f + 8.08f * state.balls(0).radius, 0.635f, 0f, 7)
-    state.balls += new Ball(1.69f + 8.08f * state.balls(0).radius, 0.635f + 2.02f * state.balls(0).radius, 0f, 9)
-    state.balls += new Ball(1.69f + 8.08f * state.balls(0).radius, 0.635f + 4.04f * state.balls(0).radius, 0f, 3)
-
-    //Distribute gameState.balls a bit randomly
-    val random = new Random()
-    state.balls foreach { ball => {
-      //ball += Vector3D(0.000005f * random.nextInt(100), 0.00005f * random.nextInt(100), 0f)
-    }}
+    state.placeBallsAtDefaultPositions()
 
     for (i <- 0 until state.balls.size) {
       for (n <- i + 1 until state.balls.size) {

@@ -35,6 +35,31 @@ class GameState {
     gameState = GameState.Aiming
   }
 
+  /** Adds balls to the game state at their default positions */
+  def placeBallsAtDefaultPositions(): Unit = {
+    balls += new Ball(0.25f, 0.635f, 0f, 0)
+
+    balls += new Ball(1.69f, 0.635f, 0f, 1)
+
+    balls += new Ball(1.69f + 2.02f * balls(0).radius, 0.635f - 1.02f * balls(0).radius, 0f, 15)
+    balls += new Ball(1.69f + 2.02f * balls(0).radius, 0.635f + 1.02f * balls(0).radius, 0f, 2)
+
+    balls += new Ball(1.69f + 4.04f * balls(0).radius, 0.635f - 2.02f * balls(0).radius, 0f, 14)
+    balls += new Ball(1.69f + 4.04f * balls(0).radius, 0.635f, 0f, 8)
+    balls += new Ball(1.69f + 4.04f * balls(0).radius, 0.635f + 2.02f * balls(0).radius, 0f, 13)
+
+    balls += new Ball(1.69f + 6.06f * balls(0).radius, 0.635f - 3.03f * balls(0).radius, 0f, 4)
+    balls += new Ball(1.69f + 6.06f * balls(0).radius, 0.635f - 1.02f * balls(0).radius, 0f, 12)
+    balls += new Ball(1.69f + 6.06f * balls(0).radius, 0.635f + 1.02f * balls(0).radius, 0f, 5)
+    balls += new Ball(1.69f + 6.06f * balls(0).radius, 0.635f + 3.03f * balls(0).radius, 0f, 11)
+
+    balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f - 4.04f * balls(0).radius, 0f, 6)
+    balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f - 2.02f * balls(0).radius, 0f, 10)
+    balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f, 0f, 7)
+    balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f + 2.02f * balls(0).radius, 0f, 9)
+    balls += new Ball(1.69f + 8.08f * balls(0).radius, 0.635f + 4.04f * balls(0).radius, 0f, 3)
+  }
+
   /** Returns the number of balls that player 1 has remaining */
   def remainingBallsPlayer1: Int = hasSolids match {
       case Some(1) => balls.count( _.number <= 8 )
