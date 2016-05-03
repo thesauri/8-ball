@@ -4,6 +4,7 @@ import java.io.ObjectOutputStream
 import java.time.LocalDateTime
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.{Pixmap, PixmapIO}
 
 import scala.collection.mutable
@@ -172,7 +173,7 @@ object GameState {
     true
   }
 
-  /** Returns a sequence of file names to saved games */
-  def savedGames: Seq[String] = Gdx.files.local("saves/").list.map( _.name )
+  /** Returns a sequence of files storing serialized game states */
+  def savedGames: Seq[FileHandle] = Gdx.files.local("saves/").list
 
 }
