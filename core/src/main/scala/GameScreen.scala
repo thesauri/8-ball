@@ -90,7 +90,7 @@ class GameScreen extends Screen with InputProcessor {
         shapeRenderer.end()
 
         if (PhysicsHandler.areStill(state.balls)) {
-          state.gameState = GameState.Aiming
+          state.nextRound()
         }
       }
     }

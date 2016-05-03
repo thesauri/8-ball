@@ -9,12 +9,31 @@ class GameState {
   var gameState = GameState.Aiming
   var hasSolids: Option[Int] = None //The player that shoots solids (fully colored balls), None, 1 or 2
   val cueStick = new CueStick(Vector3D(0f, 0f, 0f), 0f, 0f)
-  var playerTurn = 1 //Whose turn it is, player 1 or 2
+  var isPlayer1sTurn = true //Whether it's player 1's turn or not
 
   private var hasPocketedCueBall = false
   private var hasPocketedRightBall = false
   private var hasPocketedWrongBall = false
   private var hasPocketedEightBall = false
+
+  /** Advances the game to the next round */
+  def nextRound(): Unit = {
+    if (hasPocketedEightBall) {
+      gameState = GameState.Lost
+    } else if (hasPocketedCueBall) {
+      balls += new Ball(0.25f, 0.635f, 0f, 0)
+      isPlayer1sTurn = !isPlayer1sTurn
+    } else if (!hasPocketedWrongBall || !hasPocketedRightBall) {
+      isPlayer1sTurn = !isPlayer1sTurn
+    }
+
+    hasPocketedCueBall = false
+    hasPocketedRightBall = false
+    hasPocketedWrongBall = false
+    hasPocketedEightBall = false
+
+    gameState = GameState.Aiming
+  }
 
   /** Returns the number of balls that player 1 has remaining */
   def remainingBallsPlayer1: Int = hasSolids match {
@@ -50,8 +69,8 @@ class GameState {
 
       //Solid ball pocketed
       hasSolids match {
-        case Some(1) => if (playerTurn == 1) hasPocketedRightBall = true else hasPocketedWrongBall = true
-        case Some(2) => if (playerTurn == 2) hasPocketedRightBall = true else hasPocketedWrongBall = true
+        case Some(1) => if (isPlayer1sTurn) hasPocketedRightBall = true else hasPocketedWrongBall = true
+        case Some(2) => if (!isPlayer1sTurn) hasPocketedRightBall = true else hasPocketedWrongBall = true
         case None => {
           hasSolids = Some(1)
           hasPocketedRightBall = true
@@ -61,8 +80,8 @@ class GameState {
 
       //Striped ball pocketed
       hasSolids match {
-        case Some(1) => if (playerTurn == 1) hasPocketedWrongBall = true else hasPocketedRightBall = true
-        case Some(2) => if (playerTurn == 2) hasPocketedWrongBall = true else hasPocketedRightBall = true
+        case Some(1) => if (isPlayer1sTurn) hasPocketedWrongBall = true else hasPocketedRightBall = true
+        case Some(2) => if (!isPlayer1sTurn) hasPocketedWrongBall = true else hasPocketedRightBall = true
         case None => {
           hasSolids = Some(2)
           hasPocketedRightBall = true
@@ -75,8 +94,8 @@ class GameState {
 
   /** Returns true if the ball should be shot by the current player */
   def shouldBeShot(ball: Ball): Boolean = hasSolids match {
-    case Some(1) => ball.number <= 8 && playerTurn == 1 || ball.number >= 8 && playerTurn == 2 || ball.number == 0
-    case Some(2) => ball.number <= 8 && playerTurn == 2 || ball.number >= 8 && playerTurn == 1 || ball.number == 0
+    case Some(1) => ball.number <= 8 && isPlayer1sTurn || ball.number >= 8 && !isPlayer1sTurn || ball.number == 0
+    case Some(2) => ball.number <= 8 && !isPlayer1sTurn || ball.number >= 8 && isPlayer1sTurn || ball.number == 0
     case None => true
   }
 }
@@ -86,5 +105,5 @@ class GameState {
   * Shooting is the time between the aim and
   * the point that the balls start rolling */
 object GameState extends Enumeration {
-  val Aiming, Shooting, Rolling = Value
+  val Aiming, Shooting, Rolling, Lost = Value
 }
