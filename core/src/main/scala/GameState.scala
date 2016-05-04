@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.files.FileHandle
-import com.badlogic.gdx.graphics.{Pixmap, PixmapIO}
+import com.badlogic.gdx.graphics.{Pixmap, PixmapIO, Texture}
 
 import scala.collection.mutable
 
@@ -194,5 +194,12 @@ object GameState {
 
   /** Returns a sequence of files storing serialized game states */
   def savedGames: Seq[FileHandle] = Gdx.files.local("saves/").list.filter( _.extension != "png" )
+
+  /** Returns a sequence of tuples containing a screenshot and a file path to its associated serialized game state */
+  def savedScreenshots: Seq[(Texture, FileHandle)] = {
+    val fileHandles = Gdx.files.local("saves/").list.filter( _.extension == "png" )
+    val textures = fileHandles.map( new Texture(_) )
+    textures zip fileHandles
+  }
 
 }
