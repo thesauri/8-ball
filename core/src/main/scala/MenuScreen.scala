@@ -2,10 +2,12 @@ package com.walter.eightball
 
 import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.{GL20, Texture}
+import com.badlogic.gdx.math.{Interpolation, Vector2}
 import com.badlogic.gdx.{Gdx, Screen}
 import com.badlogic.gdx.scenes.scene2d.{Actor, InputEvent, Stage}
-import com.badlogic.gdx.scenes.scene2d.actions.{AlphaAction, DelayAction, SequenceAction}
+import com.badlogic.gdx.scenes.scene2d.actions._
 import com.badlogic.gdx.scenes.scene2d.ui.{Image, ScrollPane, Table}
+import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 
 class MenuScreen extends Screen {
@@ -83,8 +85,43 @@ class MenuScreen extends Screen {
     * @param screenshots The other screenshots to fade out
     * @param file FileHandle to the game state
     */
-  def openGame(desiredScreenshot: Actor, screenshots: Seq[Actor], file: FileHandle): Unit = {
-    println(s"Called on $file")
+  def openGame(desiredScreenshot: Screenshot, screenshots: Seq[Actor], file: FileHandle): Unit = {
+
+    val location = desiredScreenshot.localToStageCoordinates(new Vector2(0f, 0f))
+
+    //Put a screenshot on top of the desired one, but which is not in the grid (to be able to move and scale it properly)
+    val screenshotToScale = new Image(desiredScreenshot.texture)
+    screenshotToScale.setSize(desiredScreenshot.getWidth, desiredScreenshot.getHeight)
+    screenshotToScale.setPosition(location.x, location.y)
+
+    //screenshotToScale.setOrigin(screenshotToScale.getWidth / 2f, screenshotToScale.getHeight / 2f)
+
+    stage.addActor(screenshotToScale)
+
+    desiredScreenshot.remove()
+
+    screenshots foreach { screenshot => {
+      val fadeOut = new AlphaAction
+      fadeOut.setAlpha(0f)
+      fadeOut.setDuration(0.5f)
+
+      screenshot.addAction(fadeOut)
+    }}
+
+    val delay = new DelayAction()
+    delay.setDuration(0.5f)
+
+    val move = new MoveToAction
+    move.setPosition(0f, 0f)
+    move.setInterpolation(Interpolation.linear)
+    move.setDuration(1f)
+
+    val scale = new ScaleToAction
+    scale.setScale(Gdx.graphics.getHeight / desiredScreenshot.getHeight)
+    move.setInterpolation(Interpolation.linear)
+    scale.setDuration(1f)
+
+    screenshotToScale.addAction(new SequenceAction(delay, new ParallelAction(move, scale)))
   }
 
   def render(delta: Float): Unit = {
