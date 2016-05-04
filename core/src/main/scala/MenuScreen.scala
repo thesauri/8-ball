@@ -3,6 +3,7 @@ package com.walter.eightball
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.{Gdx, Screen}
 import com.badlogic.gdx.scenes.scene2d.Stage
+import com.badlogic.gdx.scenes.scene2d.actions.{AlphaAction, DelayAction, SequenceAction}
 import com.badlogic.gdx.scenes.scene2d.ui.{Image, ScrollPane, Table}
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 
@@ -23,7 +24,24 @@ class MenuScreen extends Screen {
       val newWidth = stage.getWidth / 3f
       val newHeight = (image.getHeight / image.getWidth) * newWidth
       val padding = 0.05f * stage.getWidth
+
+      //Animate the entrance of the screenshots
+      image.getColor.a = 0f
+
+      val fadeIn = new AlphaAction()
+
+      fadeIn.setAlpha(1f)
+      fadeIn.setDuration(1f)
+
+      val delay = new DelayAction()
+      delay.setDuration(0.1f * i)
+
+      val seq = new SequenceAction(delay, fadeIn)
+
+      image.addAction(seq)
+
       screenshotTable.add(image).width(newWidth).height(newHeight).space(padding)
+
       if (i % 2 == 1) {
         screenshotTable.row()
       }
