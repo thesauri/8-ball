@@ -6,10 +6,21 @@ import com.badlogic.gdx.scenes.scene2d.{InputEvent, InputListener}
   * simply pass the function to be executed on the desired event  */
 object SInputListeners {
 
-  def touchDown(f: () => Boolean): InputListener = {
+  def touchDown(f: => Boolean): InputListener = {
 
     class tdListener extends InputListener {
-      override def touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean = f()
+      override def touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean = f
+    }
+
+    new tdListener
+
+  }
+
+  def touchDown(f: (InputEvent) => Boolean): InputListener = {
+
+    class tdListener extends InputListener {
+      override def touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean =
+        f(event)
     }
 
     new tdListener
