@@ -198,8 +198,9 @@ object GameState {
   /** Returns a sequence of tuples containing a screenshot and a file path to its associated serialized game state */
   def savedScreenshots: Seq[(Texture, FileHandle)] = {
     val fileHandles = Gdx.files.local("saves/").list.filter( _.extension == "png" )
+    val returnFiles = Gdx.files.local("saves/").list.filter( _.extension != "png" )
     val textures = fileHandles.map( new Texture(_) )
-    textures zip fileHandles
+    textures zip returnFiles
   }
 
 }

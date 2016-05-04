@@ -3,14 +3,14 @@ package com.walter.eightball
 import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.{GL20, Texture}
 import com.badlogic.gdx.math.{Interpolation, Vector2}
-import com.badlogic.gdx.{Gdx, Screen}
+import com.badlogic.gdx.{Game, Gdx, Screen}
 import com.badlogic.gdx.scenes.scene2d.{Actor, InputEvent, Stage}
 import com.badlogic.gdx.scenes.scene2d.actions._
 import com.badlogic.gdx.scenes.scene2d.ui.{Image, ScrollPane, Table}
 import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 
-class MenuScreen extends Screen {
+class MenuScreen(game: Game) extends Screen {
 
   lazy val stage = new Stage(new ScreenViewport)
   lazy val screenshotTable = new Table
@@ -47,7 +47,7 @@ class MenuScreen extends Screen {
       image.addAction(seq)
 
 
-      image.addListener(SInputListeners.touchDown((event: InputEvent) => {
+      image.addListener(SInputListeners.click((event: InputEvent) => {
         val curActor = event.getListenerActor
         val otherScreenshotActors = screenshotTable.getChildren.toArray.filter( _ != curActor )
 
@@ -123,7 +123,12 @@ class MenuScreen extends Screen {
     move.setInterpolation(Interpolation.linear)
     scale.setDuration(1f)
 
-    screenshotToScale.addAction(new SequenceAction(delay, new ParallelAction(move, scale)))
+    val changeScreen = SAction {
+      game.setScreen(new GameScreen(file))
+      true
+    }
+
+    screenshotToScale.addAction(new SequenceAction(delay, new ParallelAction(move, scale), changeScreen))
   }
 
   def render(delta: Float): Unit = {

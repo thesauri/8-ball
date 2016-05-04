@@ -12,8 +12,8 @@ import scala.util.Random
 
 class Eightball extends Game {
 
-  lazy val gameScreen = new GameScreen
-  lazy val menuScreen = new MenuScreen
+  //lazy val gameScreen = new GameScreen
+  lazy val menuScreen = new MenuScreen(this)
 
     override def create(): Unit = {
       this.setScreen(menuScreen)

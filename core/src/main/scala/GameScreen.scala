@@ -1,6 +1,7 @@
 package com.walter.eightball
 
 import com.badlogic.gdx.Input.Keys
+import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.g2d.{BitmapFont, GlyphLayout, SpriteBatch}
 import com.badlogic.gdx.graphics.{GL20, OrthographicCamera, Pixmap}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
@@ -12,14 +13,14 @@ import scala.collection.mutable.Buffer
 import scala.util.Random
 
 /** Takes care of the game */
-class GameScreen extends Screen with InputProcessor {
+class GameScreen(file: FileHandle) extends Screen with InputProcessor {
 
   var scale = 1f //Scale factor for rendering, updated whenever the window size changes in resize()
   lazy val camera = new OrthographicCamera()
   lazy val shapeRenderer = new ShapeRenderer()
   val gameBoard = new Board()
   var lastTouchedPoint: Option[Vector3D] = None //The place on the board where the screen was touched the last frame
-  var state = new GameState()
+  var state = GameState.load(file)
 
   override def show(): Unit = {
     Gdx.input.setInputProcessor(this)
@@ -27,7 +28,7 @@ class GameScreen extends Screen with InputProcessor {
     resize(Gdx.graphics.getWidth, Gdx.graphics.getHeight)
     shapeRenderer.setProjectionMatrix(camera.combined)
 
-    state.placeBallsAtDefaultPositions()
+    //state.placeBallsAtDefaultPositions()
 
     for (i <- 0 until state.balls.size) {
       for (n <- i + 1 until state.balls.size) {
