@@ -1,16 +1,57 @@
 package com.walter.eightball
 
-import com.badlogic.gdx.Screen
+import com.badlogic.gdx.graphics.GL20
+import com.badlogic.gdx.{Gdx, Screen}
+import com.badlogic.gdx.scenes.scene2d.Stage
+import com.badlogic.gdx.scenes.scene2d.ui.{Image, ScrollPane, Table}
+import com.badlogic.gdx.utils.viewport.ScreenViewport
 
 class MenuScreen extends Screen {
 
-  def show(): Unit = ()
+  lazy val stage = new Stage(new ScreenViewport)
+  lazy val screenshotTable = new Table
+  lazy val scrollPane = new ScrollPane(screenshotTable)
+  lazy val fillTable = new Table
 
-  def render(delta: Float): Unit = ()
+  def show(): Unit = {
+    Gdx.input.setInputProcessor(stage)
 
-  def resize(width: Int, height: Int): Unit = ()
+    val screenshots = GameState.savedScreenshots
 
-  def dispose(): Unit = ()
+    for (i <- 0 until screenshots.size) {
+      val image = new Image(screenshots(i)._1)
+      val newWidth = stage.getWidth / 3f
+      val newHeight = (image.getHeight / image.getWidth) * newWidth
+      val padding = 0.05f * stage.getWidth
+      screenshotTable.add(image).width(newWidth).height(newHeight).space(padding)
+      if (i % 2 == 1) {
+        screenshotTable.row()
+      }
+    }
+
+    fillTable.setFillParent(true)
+    fillTable.add(scrollPane)
+
+    scrollPane.setWidth(100f)
+    scrollPane.invalidate()
+
+    stage.addActor(fillTable)
+  }
+
+  def render(delta: Float): Unit = {
+    Gdx.gl.glClearColor(1, 1, 1, 1);
+    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    stage.act(delta)
+    stage.draw()
+  }
+
+  def resize(width: Int, height: Int): Unit = {
+    stage.getViewport.update(width, height, true)
+  }
+
+  def dispose(): Unit = {
+    stage.dispose()
+  }
 
   def hide(): Unit = ()
 
