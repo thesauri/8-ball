@@ -105,7 +105,9 @@ class MenuScreen extends Screen {
       fadeOut.setAlpha(0f)
       fadeOut.setDuration(0.5f)
 
-      screenshot.addAction(fadeOut)
+      val hide = new VisibleAction
+
+      screenshot.addAction(new SequenceAction(fadeOut, hide))
     }}
 
     val delay = new DelayAction()
