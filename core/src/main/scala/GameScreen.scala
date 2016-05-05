@@ -3,17 +3,22 @@ package com.walter.eightball
 import com.badlogic.gdx.Input.Keys
 import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.g2d.{BitmapFont, GlyphLayout, SpriteBatch}
-import com.badlogic.gdx.graphics.{GL20, OrthographicCamera, Pixmap}
+import com.badlogic.gdx.graphics.{GL20, OrthographicCamera, Pixmap, Texture}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
+import com.badlogic.gdx.math.Interpolation
+import com.badlogic.gdx.scenes.scene2d.Stage
+import com.badlogic.gdx.scenes.scene2d.actions.{AlphaAction, SequenceAction}
+import com.badlogic.gdx.scenes.scene2d.ui.{Image, Table}
+import com.badlogic.gdx.utils.viewport.ScreenViewport
 import com.badlogic.gdx.utils.{Align, BufferUtils, ScreenUtils}
-import com.badlogic.gdx.{Gdx, Input, InputProcessor, Screen}
+import com.badlogic.gdx._
 
 import scala.collection.mutable.Buffer
 import scala.util.Random
 
 /** Takes care of the game */
-class GameScreen(file: FileHandle) extends Screen with InputProcessor {
+class GameScreen(game: Game, file: FileHandle) extends Screen with InputProcessor {
 
   var scale = 1f //Scale factor for rendering, updated whenever the window size changes in resize()
   lazy val camera = new OrthographicCamera()
@@ -22,13 +27,61 @@ class GameScreen(file: FileHandle) extends Screen with InputProcessor {
   var lastTouchedPoint: Option[Vector3D] = None //The place on the board where the screen was touched the last frame
   var state = GameState.load(file)
 
+  //Stage for drawing the in-game UI (..the exit button)
+  val stage = new Stage(new ScreenViewport)
+  val table = new Table
+  val cross = new Image(new Texture(Gdx.files.internal("textures/cross.png")))
+  table.setBounds(0, 0, Gdx.graphics.getWidth, Gdx.graphics.getHeight)
+  table.add(cross).expand.top.left.pad(0.03f * Gdx.graphics.getHeight).size(100f * Gdx.graphics.getDensity)
+  stage.addActor(table)
+
+  //Give input priority to the UI, otherwise pass it to the game board
+  val input = new InputMultiplexer()
+  input.addProcessor(stage)
+  input.addProcessor(this)
+
+  Gdx.input.setInputProcessor(input)
+
+  cross.addListener(SInputListeners.click {
+    //Redraw the screen without the UI
+    renderWithoutUI()
+
+    //Take a screenshot
+    val pixels = ScreenUtils.getFrameBufferPixels(0, 0, Gdx.graphics.getBackBufferWidth, Gdx.graphics.getBackBufferHeight, true)
+    val pixmap = new Pixmap(Gdx.graphics.getBackBufferWidth, Gdx.graphics.getBackBufferHeight, Pixmap.Format.RGBA8888)
+    BufferUtils.copy(pixels, 0, pixmap.getPixels, pixels.length)
+
+    //Save the game state and the screenshot, but don't save finished games
+    if (state.gameState != GameStateType.Lost) {
+      GameState.save(state, pixmap)
+    }
+
+    //Create a white overlay to fade-out the game
+    val overlay = new Image(new Texture(Gdx.files.internal("textures/white.png")))
+    overlay.setBounds(0f, 0f, Gdx.graphics.getWidth, Gdx.graphics.getHeight)
+
+    overlay.getColor.a = 0f
+
+    val fadeIn = new AlphaAction
+    fadeIn.setAlpha(1f)
+    fadeIn.setDuration(1f)
+    fadeIn.setInterpolation(Interpolation.pow2In)
+
+    val changeScreen = SAction {
+      game.setScreen(new MenuScreen(game))
+      true
+    }
+
+    overlay.addAction(new SequenceAction(fadeIn, changeScreen))
+    stage.addActor(overlay)
+    ()
+  })
+
+
   override def show(): Unit = {
-    Gdx.input.setInputProcessor(this)
 
     resize(Gdx.graphics.getWidth, Gdx.graphics.getHeight)
     shapeRenderer.setProjectionMatrix(camera.combined)
-
-    //state.placeBallsAtDefaultPositions()
 
     for (i <- 0 until state.balls.size) {
       for (n <- i + 1 until state.balls.size) {
@@ -83,6 +136,21 @@ class GameScreen(file: FileHandle) extends Screen with InputProcessor {
         shapeRenderer.end()
       }
     }
+
+    //Render the UI
+    stage.act(Gdx.graphics.getDeltaTime)
+    stage.draw()
+  }
+
+  /** Redraws the screen without UI, done before taking a screenshot */
+  def renderWithoutUI(): Unit = {
+    Gdx.gl.glClearColor(1, 1, 1, 1);
+    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+
+    shapeRenderer.begin(ShapeType.Filled)
+    gameBoard.render(shapeRenderer, scale)
+    state.balls.foreach(ball => ball.render(shapeRenderer, scale, state.shouldBeShot(ball)))
+    shapeRenderer.end()
   }
 
   override def hide(): Unit = ()

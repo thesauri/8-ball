@@ -124,7 +124,7 @@ class MenuScreen(game: Game) extends Screen {
     scale.setDuration(1f)
 
     val changeScreen = SAction {
-      game.setScreen(new GameScreen(file))
+      game.setScreen(new GameScreen(game, file))
       true
     }
 
