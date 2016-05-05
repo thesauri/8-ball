@@ -6,6 +6,7 @@ import java.time.LocalDateTime
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.{Pixmap, PixmapIO, Texture}
+import com.badlogic.gdx.utils.TimeUtils
 
 import scala.collection.mutable
 
@@ -175,7 +176,7 @@ object GameState {
     * The serialized object is saved as saves/<datetime> and
     * the screenshot as saves/<datetime>.png */
   def save(gameState: GameState, screenshot: Pixmap): Boolean = {
-    val datetime = LocalDateTime.now.toString.replace(":", "-")
+    val datetime = TimeUtils.millis
 
     val stateFile = Gdx.files.local(s"saves/$datetime")
     val imageFile= Gdx.files.local(s"saves/${datetime}.png")
