@@ -18,7 +18,7 @@ class MenuScreen(game: Game) extends Screen {
   lazy val fillTable = new Table
 
   /** Screenshot associated with a file storing the game state of the screen shot */
-  class Screenshot(val texture: Texture, val file: FileHandle) extends Image(texture)
+  class Screenshot(val texture: Texture, val file: Option[FileHandle]) extends Image(texture)
 
   def show(): Unit = {
     Gdx.input.setInputProcessor(stage)
@@ -85,7 +85,7 @@ class MenuScreen(game: Game) extends Screen {
     * @param screenshots The other screenshots to fade out
     * @param file FileHandle to the game state
     */
-  def openGame(desiredScreenshot: Screenshot, screenshots: Seq[Actor], file: FileHandle): Unit = {
+  def openGame(desiredScreenshot: Screenshot, screenshots: Seq[Actor], file: Option[FileHandle]): Unit = {
 
     val location = desiredScreenshot.localToStageCoordinates(new Vector2(0f, 0f))
 

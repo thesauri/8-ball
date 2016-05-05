@@ -17,15 +17,25 @@ import com.badlogic.gdx._
 import scala.collection.mutable.Buffer
 import scala.util.Random
 
-/** Takes care of the game */
-class GameScreen(game: Game, file: FileHandle) extends Screen with InputProcessor {
+/** Takes care of the game
+  *
+  * Optionally load a game state from a file */
+class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with InputProcessor {
 
   var scale = 1f //Scale factor for rendering, updated whenever the window size changes in resize()
   lazy val camera = new OrthographicCamera()
   lazy val shapeRenderer = new ShapeRenderer()
   val gameBoard = new Board()
   var lastTouchedPoint: Option[Vector3D] = None //The place on the board where the screen was touched the last frame
-  var state = GameState.load(file)
+
+  var state = file match {
+    case Some(file) => GameState.load(file)
+    case None => {
+      val state = new GameState
+      state.placeBallsAtDefaultPositions()
+      state
+    }
+  }
 
   //Stage for drawing the in-game UI (..the exit button)
   val stage = new Stage(new ScreenViewport)
@@ -164,6 +174,10 @@ class GameScreen(game: Game, file: FileHandle) extends Screen with InputProcesso
 
         shapeRenderer.end()
       }
+
+      case _ => Gdx.app.error("buh", state.balls.toString)
+
+
     }
 
     //Render the UI

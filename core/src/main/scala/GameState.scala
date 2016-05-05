@@ -193,20 +193,21 @@ object GameState {
     true
   }
 
-  
+
   /** Returns a sequence of files storing serialized game states */
   def savedGames: Seq[FileHandle] = Gdx.files.local("saves/").list.filter( _.extension != "png" )
 
-  /** Returns a sequence of tuples containing a screenshot and a file path to its associated serialized game state */
-  def savedScreenshots: Seq[(Texture, FileHandle)] = {
+  /** Returns a sequence of tuples containing a screenshot and optionally a file path to the associated serialized game state */
+  def savedScreenshots: Seq[(Texture, Option[FileHandle])] = {
 
-    val defaultSave = Gdx.files.internal("defaultsave/default.png")
+    val defaultSave: (Texture, Option[FileHandle]) = (new Texture(Gdx.files.internal("defaultsave/default.png")), None)
+
     val userSaves = Gdx.files.local("saves/").list.filter( _.extension == "png" )
-    val fileHandles = (defaultSave +: userSaves).sortBy( _.name ).reverse
+    val userSaveFiles = userSaves.sortBy( _.name ).reverse
+    val woExtensions = userSaveFiles map (fh => Some(Gdx.files.local(fh.pathWithoutExtension + ".8ball")))
+    val savedScreenshots = userSaveFiles.map( new Texture(_) )
 
-    val woExtensions = fileHandles map (fh => Gdx.files.local(fh.pathWithoutExtension + ".8ball"))
-    val textures = fileHandles.map( new Texture(_) )
-    textures zip woExtensions
+    defaultSave +: (savedScreenshots zip woExtensions)
   }
 
 }
