@@ -59,4 +59,15 @@ object SInputListeners {
 
   }
 
+  def touchDragged(f: (InputEvent, Float, Float, Int) => Boolean): InputListener = {
+
+    class tdListener extends InputListener {
+      override def touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int): Boolean =
+        f(event, x, y, pointer)
+    }
+
+    new tdListener
+
+  }
+
 }
