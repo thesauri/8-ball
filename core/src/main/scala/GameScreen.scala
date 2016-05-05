@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.{BitmapFont, GlyphLayout, SpriteBatch}
 import com.badlogic.gdx.graphics.{GL20, OrthographicCamera, Pixmap, Texture}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
-import com.badlogic.gdx.math.Interpolation
-import com.badlogic.gdx.scenes.scene2d.Stage
+import com.badlogic.gdx.math.{Interpolation, Vector2}
+import com.badlogic.gdx.scenes.scene2d.{Group, Stage}
 import com.badlogic.gdx.scenes.scene2d.actions.{AlphaAction, SequenceAction}
 import com.badlogic.gdx.scenes.scene2d.ui.{Image, Table}
 import com.badlogic.gdx.utils.viewport.ScreenViewport
@@ -41,7 +41,7 @@ class GameScreen(game: Game, file: FileHandle) extends Screen with InputProcesso
   cross.addAction(fadeIn)
 
   table.setBounds(0, 0, Gdx.graphics.getWidth, Gdx.graphics.getHeight)
-  table.add(cross).expand.top.left.pad(0.03f * Gdx.graphics.getHeight).size(100f * Gdx.graphics.getDensity)
+  table.add(cross).expand.top.left.pad(Styles.GameScreenUIPadding).size(100f * Gdx.graphics.getDensity)
   stage.addActor(table)
 
   cross.addListener(SInputListeners.click {
@@ -79,6 +79,21 @@ class GameScreen(game: Game, file: FileHandle) extends Screen with InputProcesso
     ()
   })
 
+  //Add a ball to choose where on the ball to hit it
+  val balltargetGroup = new Group
+  val ball = new Image(new Texture(Gdx.files.internal("textures/ball.png")))
+  ball.setSize(150f * Gdx.graphics.getDensity, 150f * Gdx.graphics.getDensity)
+  val target = new Image(new Texture(Gdx.files.internal("textures/target.png")))
+  target.setSize(32f * Gdx.graphics.getDensity, 32f * Gdx.graphics.getDensity)
+
+  balltargetGroup.setSize(ball.getWidth, ball.getHeight)
+  balltargetGroup.addActor(ball)
+  balltargetGroup.addActor(target)
+
+  target.setPosition((ball.getWidth - target.getWidth) / 2f, (ball.getHeight - target.getHeight) / 2f)
+
+  table.add(balltargetGroup).expand.top.right.pad(Styles.GameScreenUIPadding)
+  
   //Give input priority to the UI, otherwise pass it to the game board
   val input = new InputMultiplexer()
   input.addProcessor(stage)

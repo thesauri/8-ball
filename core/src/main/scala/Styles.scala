@@ -1,5 +1,6 @@
 package com.walter.eightball
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 
 object Styles {
@@ -21,5 +22,6 @@ object Styles {
   def Yellow: Color = Color.valueOf("F1C40FFF")
   def White: Color = Color.valueOf("ECf0F1FF")
 
+  def GameScreenUIPadding: Float = 0.03f * Gdx.graphics.getHeight
 
 }
