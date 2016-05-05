@@ -31,16 +31,18 @@ class GameScreen(game: Game, file: FileHandle) extends Screen with InputProcesso
   val stage = new Stage(new ScreenViewport)
   val table = new Table
   val cross = new Image(new Texture(Gdx.files.internal("textures/cross.png")))
+
+  cross.getColor.a = 0f
+
+  val fadeIn = new AlphaAction
+  fadeIn.setAlpha(1f)
+  fadeIn.setDuration(1f)
+
+  cross.addAction(fadeIn)
+
   table.setBounds(0, 0, Gdx.graphics.getWidth, Gdx.graphics.getHeight)
   table.add(cross).expand.top.left.pad(0.03f * Gdx.graphics.getHeight).size(100f * Gdx.graphics.getDensity)
   stage.addActor(table)
-
-  //Give input priority to the UI, otherwise pass it to the game board
-  val input = new InputMultiplexer()
-  input.addProcessor(stage)
-  input.addProcessor(this)
-
-  Gdx.input.setInputProcessor(input)
 
   cross.addListener(SInputListeners.click {
     //Redraw the screen without the UI
@@ -76,6 +78,12 @@ class GameScreen(game: Game, file: FileHandle) extends Screen with InputProcesso
     stage.addActor(overlay)
     ()
   })
+
+  //Give input priority to the UI, otherwise pass it to the game board
+  val input = new InputMultiplexer()
+  input.addProcessor(stage)
+  input.addProcessor(this)
+  Gdx.input.setInputProcessor(input)
 
 
   override def show(): Unit = {
