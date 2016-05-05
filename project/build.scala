@@ -47,7 +47,7 @@ object Settings {
 
   lazy val desktop = core ++ Seq(
     libraryDependencies ++= Seq(
-      "net.sf.proguard" % "proguard-base" % "5.0" % "provided",
+      "net.sf.proguard" % "proguard-base" % "5.2.1" % "provided",
       "com.badlogicgames.gdx" % "gdx-backend-lwjgl" % libgdxVersion.value,
       "com.badlogicgames.gdx" % "gdx-platform" % libgdxVersion.value classifier "natives-desktop"
     ),
