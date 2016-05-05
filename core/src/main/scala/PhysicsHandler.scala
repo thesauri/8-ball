@@ -297,6 +297,29 @@ object PhysicsHandler {
       false
     }
   }
+
+  /** Shoots the cue ball in the given direction according to the cue velocity and where on the ball it was hit
+    *
+    * (0,0) in ball position parameter designates hitting straightly in the middle of the ball. A ball position
+    * outside of the ball will result in a miss (no velocity will be applied)
+    *
+    * Note that this part of the physics implementation is not realistic. Instead, the ball is assumed to be set
+    * in motion with the same velocity as the cue stick was moving in. The resulting angular velocity
+    * of the ball is determined by where the ball was hit:
+    *
+    * ωx = k||v||∆y sin(Θ)
+    * ωy = k||v||∆y cos(Θ)
+    * ωz = k||v||∆x */
+  def shoot(cueBall: Ball, cueVelocity: Vector3D, ballPosition: Vector3D): Unit = {
+    if (ballPosition.len < cueBall.radius) {
+      val angle = toRadians(cueVelocity.angle2d)
+      cueBall.velocity = cueVelocity
+      val len = cueBall.velocity.len
+      cueBall.angularVelocity = 1000f * Vector3D(len * ballPosition.y * sin(angle).toFloat,
+                                                 len * ballPosition.y * cos(angle).toFloat,
+                                                 len * ballPosition.x)
+    }
+  }
   
   /** Returns the time until the next collision between two balls
    *  

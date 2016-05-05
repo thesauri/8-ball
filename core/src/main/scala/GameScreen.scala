@@ -260,8 +260,20 @@ class GameScreen(game: Game, file: FileHandle) extends Screen with InputProcesso
 
         //If it was touched the last frame and the cue stick is very close to the ball, shoot
         if (lastTouchedPoint.isDefined && state.cueStick.distance < 1.5f * cueBall.radius) {
-          val newVelocityLength = (lastTouchedPoint.get - curPointOnBoard).len / Gdx.graphics.getDeltaTime
-          cueBall.velocity = Vector3D(newVelocityLength, state.cueStick.rotationDegrees)
+          val cuestickVelocityLength = (lastTouchedPoint.get - curPointOnBoard).len / Gdx.graphics.getDeltaTime
+          val cuestickVelocity = Vector3D(cuestickVelocityLength, state.cueStick.rotationDegrees)
+
+          /* Scaling factor to convert points from the target ball on the screen to points according
+             to the radius of the cue ball */
+          val c = cueBall.radius * 1f / (ball.getWidth / 2f)
+
+
+          //Get ∆x,y,z from the middle of the target ball
+          val ballPosition = c * Vector3D(target.getX - (ball.getWidth - target.getWidth) / 2f,
+                                          target.getY - (ball.getHeight - target.getWidth) / 2f)
+
+
+          PhysicsHandler.shoot(cueBall, cuestickVelocity, ballPosition)
           state.gameState = GameStateType.Rolling
         }
 
