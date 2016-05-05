@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.{GL20, OrthographicCamera, Pixmap, Texture}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.badlogic.gdx.math.{Interpolation, Vector2}
-import com.badlogic.gdx.scenes.scene2d.{Group, Stage}
+import com.badlogic.gdx.scenes.scene2d.{Group, InputEvent, Stage}
 import com.badlogic.gdx.scenes.scene2d.actions.{AlphaAction, SequenceAction}
 import com.badlogic.gdx.scenes.scene2d.ui.{Image, Table}
 import com.badlogic.gdx.utils.viewport.ScreenViewport
@@ -92,12 +92,18 @@ class GameScreen(game: Game, file: FileHandle) extends Screen with InputProcesso
 
   target.setPosition((ball.getWidth - target.getWidth) / 2f, (ball.getHeight - target.getHeight) / 2f)
 
+  //Move target when clicked
+  ball.addListener(SInputListeners.touchDown { (event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) => {
+    target.setPosition(x - target.getWidth / 2f, y - target.getHeight / 2f)
+    true
+  }})
+
   table.add(balltargetGroup).expand.top.right.pad(Styles.GameScreenUIPadding)
-  
+
   //Give input priority to the UI, otherwise pass it to the game board
   val input = new InputMultiplexer()
-  input.addProcessor(stage)
   input.addProcessor(this)
+  input.addProcessor(stage)
   Gdx.input.setInputProcessor(input)
 
 
