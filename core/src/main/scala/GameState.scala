@@ -178,7 +178,7 @@ object GameState {
   def save(gameState: GameState, screenshot: Pixmap): Boolean = {
     val datetime = TimeUtils.millis
 
-    val stateFile = Gdx.files.local(s"saves/$datetime")
+    val stateFile = Gdx.files.local(s"saves/$datetime.8ball")
     val imageFile= Gdx.files.local(s"saves/${datetime}.png")
 
     //Save the serialized game state
@@ -193,6 +193,7 @@ object GameState {
     true
   }
 
+  
   /** Returns a sequence of files storing serialized game states */
   def savedGames: Seq[FileHandle] = Gdx.files.local("saves/").list.filter( _.extension != "png" )
 
@@ -203,7 +204,7 @@ object GameState {
     val userSaves = Gdx.files.local("saves/").list.filter( _.extension == "png" )
     val fileHandles = (defaultSave +: userSaves).sortBy( _.name ).reverse
 
-    val woExtensions = fileHandles map (fh => Gdx.files.local(fh.pathWithoutExtension))
+    val woExtensions = fileHandles map (fh => Gdx.files.local(fh.pathWithoutExtension + ".8ball"))
     val textures = fileHandles.map( new Texture(_) )
     textures zip woExtensions
   }
