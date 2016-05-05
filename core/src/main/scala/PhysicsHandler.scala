@@ -1,5 +1,6 @@
 package com.walter.eightball
 
+import com.badlogic.gdx.math.Vector2
 import com.walter.eightball.PhysicsHandler.CollisionType.CollisionType
 
 import scala.math._
@@ -13,6 +14,7 @@ object PhysicsHandler {
   val cfc = 0.01f //Coefficient of friction between two colliding balls
   val cfs = 0.2f //Coefficient of friction while sliding
   val cfr = 0.01f //Coefficient of friction while rolling
+  val cfw = 0.01f //Coefficient of friction between the ball and the wall during a collision
   val td = 0.0002f //Duration of a collision between two balls
   val separationOffset = 0.001f //Minimum separation between objects when calling method separate
 
@@ -122,6 +124,47 @@ object PhysicsHandler {
       (vpr + vt2).normalized))*(td/(ball2.mass * pow(ball2.radius.toDouble, 2).toFloat))
 
     (new VelocityState(newDVelocity1, newDAngularVelocity1), new VelocityState(newDVelocity2, newDAngularVelocity2))
+  }
+
+  /** Returns the resulting delta velocities of a wall collision
+    *
+    * @param ball The ball that is colliding with the wall
+    * @param horziontal Whether the wall is horziontal or not (false => vertical)
+    * @return A tuple containing the balls delta velocities
+    */
+  def collideWall(ball: Ball, horziontal: Boolean): (VelocityState) = {
+
+    //The velocity tangential to the collision plane
+    val vt = if (horziontal) ball.velocity.y else ball.velocity.x
+
+    //The change in the length of the angular velocity
+    val dAngularVelocityLen = cfw * pow(vt, 2).toFloat / 2f
+
+    //The current length of the angular velocity
+    val AVVelocityLen = ball.angularVelocity.len
+
+    //The factor to dampen the angular velocity with (if the delta velocity is bigger than the velocity, stop the spin entirely)
+    val c = if (dAngularVelocityLen > AVVelocityLen) 0f else (AVVelocityLen - dAngularVelocityLen) / AVVelocityLen
+
+    //The delta angular velocity
+    val dAngularVelocity = c * ball.angularVelocity
+
+    //Deivation caused by the dampining of the spin around the z-axis during the spin
+    val d = sqrt(2.0/5.0).toFloat * ball.radius * dAngularVelocity.z
+
+    /*val tmp1 = Vector3D(2f * velocityLen, Vector3D(0, -2f * ball.velocity.y, 0f).angle2d)
+    val tmp2 = Vector3D(0, -2f * ball.velocity.y, 0f)*/
+
+    //Invert the velocity tangential to the collision plane and add the deviation
+    val dVelocity = if (horziontal) {
+      Vector3D(2f * abs(vt), Vector3D(d, -2f * ball.velocity.y, 0f).angle2d)
+    } else {
+      val tmp = Vector3D(2f * abs(vt), Vector3D(-2f * ball.velocity.x, d, 0f).angle2d)
+      println(tmp)
+      tmp
+    }
+
+    new VelocityState(dVelocity, dAngularVelocity)
   }
 
   /** Returns the time when the next collisions will occur
@@ -315,9 +358,10 @@ object PhysicsHandler {
       val angle = toRadians(cueVelocity.angle2d)
       cueBall.velocity = cueVelocity
       val len = cueBall.velocity.len
-      cueBall.angularVelocity = 1000f * Vector3D(len * ballPosition.y * sin(angle).toFloat,
+      cueBall.angularVelocity = 100f * Vector3D(len * ballPosition.y * sin(angle).toFloat,
                                                  len * ballPosition.y * cos(angle).toFloat,
                                                  len * ballPosition.x)
+      println(s"Shoot with an angular velocity of ${cueBall.angularVelocity}")
     }
   }
   
@@ -461,14 +505,17 @@ object PhysicsHandler {
             }}
           }
 
-          //Change direction of y velocity
-          case CollisionType.HorizontalWall =>
-            newVelocity += ball1 -> (newVelocity(ball1) :+ Vector3D(0f, -2f * ball1.velocity.y, 0f))
+          case CollisionType.HorizontalWall => {
+            val result = collideWall(ball1, true)
+            newVelocity += ball1 -> (newVelocity(ball1) :+ result.velocity)
+            newAngularVelocity += ball1 -> (newVelocity(ball1) :+ result.angularVelocity)
+          }
 
-
-          //Change direction of x velocity
-          case CollisionType.VerticalBall =>
-            newVelocity += ball1 -> (newVelocity(ball1) :+ Vector3D(-2f * ball1.velocity.x, 0f, 0f))
+          case CollisionType.VerticalBall => {
+            val result = collideWall(ball1, false)
+            newVelocity += ball1 -> (newVelocity(ball1) :+ result.velocity)
+            newAngularVelocity += ball1 -> (newVelocity(ball1) :+ result.angularVelocity)
+          }
 
           //Remove pocketed balls
           case CollisionType.Pocketed =>
