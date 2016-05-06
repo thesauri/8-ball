@@ -177,7 +177,7 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
         shapeRenderer.end()
       }
 
-      case _ => Gdx.app.error("buh", state.balls.toString)
+      case _ => ()
 
 
     }

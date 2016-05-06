@@ -160,7 +160,10 @@ object GameState {
     ois.close()
 
     state match {
-      case state: GameState => state
+      case state: GameState => {
+        state.gameState = GameStateType.Rolling
+        state
+      }
       case _ => {
         //If we're unable to unserialize it, let's just create a default game state and avoid a crash..
         val emptyState = new GameState
