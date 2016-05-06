@@ -129,13 +129,13 @@ object PhysicsHandler {
   /** Returns the resulting delta velocities of a wall collision
     *
     * @param ball The ball that is colliding with the wall
-    * @param horziontal Whether the wall is horziontal or not (false => vertical)
+    * @param horizontal Whether the wall is horziontal or not (false => vertical)
     * @return A tuple containing the balls delta velocities
     */
-  def collideWall(ball: Ball, horziontal: Boolean): (VelocityState) = {
+  def collideWall(ball: Ball, horizontal: Boolean): (VelocityState) = {
 
     //The velocity tangential to the collision plane
-    val vt = if (horziontal) ball.velocity.y else ball.velocity.x
+    val vt = if (horizontal) ball.velocity.y else ball.velocity.x
 
     //The change in the length of the angular velocity
     val dAngularVelocityLen = cfw * pow(vt, 2).toFloat / 2f
@@ -146,14 +146,18 @@ object PhysicsHandler {
     //The factor to dampen the angular velocity with (if the delta velocity is bigger than the velocity, stop the spin entirely)
     val c = if (dAngularVelocityLen > AVVelocityLen) 0f else dAngularVelocityLen / AVVelocityLen
 
-    //The delta angular velocity
-    val dAngularVelocity = -c * ball.angularVelocity
+    //The delta angular velocity (invert the rotational speed of
+    val dAngularVelocity = if (horizontal) {
+      -c * Vector3D(-2f * ball.angularVelocity.x, ball.angularVelocity.y, ball.angularVelocity.z)
+    } else {
+      -c * Vector3D(ball.angularVelocity.x, -2f * ball.angularVelocity.y, ball.angularVelocity.z)
+    }
 
     //Deivation caused by the dampining of the spin around the z-axis during the spin
     val d = sqrt(2.0/5.0).toFloat * ball.radius * dAngularVelocity.z
 
     //Invert the velocity tangential to the collision plane and add the deviation
-    val dVelocity = if (horziontal) {
+    val dVelocity = if (horizontal) {
       //Velocity required to stop the ball
       val stop = Vector3D(0f, -vt, 0f)
 
