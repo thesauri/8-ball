@@ -1,6 +1,5 @@
 package com.walter.eightball
 
-import com.badlogic.gdx.math.Vector2
 import com.walter.eightball.PhysicsHandler.CollisionType.CollisionType
 
 import scala.math._
@@ -18,6 +17,7 @@ object PhysicsHandler {
   val td = 0.0002f //Duration of a collision between two balls
   val separationOffset = 0.001f //Minimum separation between objects when calling method separate
 
+  /** Class to represent a pocket */
   private class Pocket(x: Float, y: Float, z: Float) extends Ball(x, y, z, 0) {
     override val mass = 1f
     override val radius = Board.PocketRadius
@@ -30,8 +30,10 @@ object PhysicsHandler {
                                      new Pocket(0f, Board.Height, 0f),
                                      new Pocket(Board.Width, Board.Height, 0f))
 
+  /** Case class to represent the velocity and angular velocity of a ball */
   case class VelocityState(velocity: Vector3D, angularVelocity: Vector3D)
 
+  /** Enumeration to represent the type of collision */
   object CollisionType extends Enumeration {
     type CollisionType = Value
     val BallBall, HorizontalWall, VerticalBall, Pocketed = Value
@@ -41,55 +43,13 @@ object PhysicsHandler {
   def areStill(balls: Seq[Ball]): Boolean =
     balls forall { _.velocity.len < 0.0001f }
 
-  /** Updates the velocities of the balls after a collision
-   *  
-   *  Both the velocity and the angular velocity of the balls
-   *  are updated. The collision is assumed to be perfectly
-   *  elastic, conserving both the total kinetic energy,
-   *  momentum, and angular momentum. */
-  def collide(ball1: Ball, ball2: Ball): Unit = {
-    val n = 1f/(ball2 - ball1).len * (ball2 - ball1)
-    val nNorm = n.normalized
-    
-    //Calculate the normal components of the velocity vectors
-    val vn1 = (ball1.velocity dot (-1f * n))*(-1f * n)
-    val vn2 = (ball2.velocity dot n)*n
-    
-    //Calculate the tangential components of the velocity vectors
-    val vt1 = ball1.velocity - vn1
-    val vt2 = ball2.velocity - vn2
-    
-    /* Add the tangential component of the velocity vector with the
-     * normal component of the other vector to get the resulting velocity */
-    ball1.velocity = vt1 + vn2
-    ball2.velocity = vt2 + vn1
-    
-    //Vectors to the touching points between the balls
-    val r1 = ball1.radius * nNorm
-    val r2 = -1f * ball2.radius * nNorm
-    
-    //Relative speed at the point of contact
-    val vpr = (r2 cross ball2.angularVelocity) - (r1 cross ball1.angularVelocity)
-    
-    //∆v of the normal velocities before and after the collisions
-    val dvn1 = signum((vn2 - vn1) dot (nNorm)) * (vn2 - vn1).len
-    val dvn2 = signum((vn1 - vn2) dot (nNorm)) * (vn1 - vn2).len
-    
-    //Calculate the new angular speeds
-    ball1.angularVelocity += (5f/2f) * (r1 cross (1/td * -cfc * (ball1.mass*dvn2) * (vpr + vt1).normalized)) *
-                             (td/(ball1.mass * pow(ball1.radius.toDouble, 2).toFloat))
-    ball2.angularVelocity += (5f/2f) * (r2 cross (1/td * -cfc * (ball2.mass*dvn1) *
-                             (vpr + vt2).normalized))*(td/(ball2.mass * pow(ball2.radius.toDouble, 2).toFloat))
-    ()
-  }
-
   /**  Returns the resulting delta velocities of a collision
     *
     *  Both the velocity and the angular velocity of the balls
     *  are updated. The collision is assumed to be perfectly
     *  elastic, conserving both the total kinetic energy,
     *  momentum, and angular momentum. */
-  def collideImmutable(ball1: Ball, ball2: Ball): (VelocityState, VelocityState) = {
+  def collide(ball1: Ball, ball2: Ball): (VelocityState, VelocityState) = {
     val n = 1f/(ball2 - ball1).len * (ball2 - ball1)
     val nNorm = n.normalized
 
@@ -198,6 +158,7 @@ object PhysicsHandler {
 
         val curTime = timeUntilCollision(balls(i), balls(n))
 
+        //Find the collisions that will occur the soonest
         if (curTime.exists( ct => foundTime.forall( ct < _ ) )) {
           foundTime = curTime
           collisions.clear()
@@ -217,6 +178,7 @@ object PhysicsHandler {
                          (CollisionType.VerticalBall, timeUntilVerticalWallCollision(ball, 0f)),
                          (CollisionType.VerticalBall, timeUntilVerticalWallCollision(ball, Board.Width)))
 
+      //Find the collisions that will occur the soonest
       if (curCollisions.size > 0) {
         for ((coT, curTime) <- curCollisions) {
           if ( curTime.exists( ct => foundTime.forall( ct < _ ) )) {
@@ -249,104 +211,19 @@ object PhysicsHandler {
   }
 
   /** Returns the relative velocity between the table and the touching point of the ball
-   *  
+   *
    *  This velocity is determined by: (ω x R) + v
-   *  where: ω is the angular velocity 
+   *  where: ω is the angular velocity
    *         R is a vector from the center of the ball to the touching point with the board (0, 0, -r) */
   def getRelativeVelocity(ball: Ball): Vector3D =
     (ball.angularVelocity cross Vector3D(0f, 0f, -ball.radius)) + ball.velocity
-  
+
   /** Moves the given balls according to their velocities
-   *  
+   *
    *  @param balls the balls to move
    *  @param t time since last execution (in seconds) */
   def moveBalls(balls: Seq[Ball], t: Float): Unit = {
     balls foreach (ball => ball += t * ball.velocity)
-  }
-
-  /** Separates a sequence of overlapping balls
-    *
-    * This is done by moving the fastest moving ball backwards (opposite to its
-    * velocity) so that the new distance between them is
-    * ball1.radius + ball2.radius + separationOffset.
-    *
-    * If none of the balls are moving, they will be moved
-    * along the vector formed to the touching point of the balls.
-    *
-    * If both of the balls are still and completely overlapping,
-    * ball2 will be moved to the left by ball1.radius + separationOffset
-    *
-    * If the velocity is zero,
-    *
-    * @return returns whether the balls were moved or not */
-  def separate(balls: Seq[Ball]): Boolean = {
-
-    @tailrec def separateRecursive(hasSeparated: Boolean): Boolean = {
-      var found = false
-      for (i <- 0 until balls.size) {
-        for (n <- i + 1 until balls.size) {
-          if (separate(balls(i), balls(n))) {
-            found = true
-            println(s"${balls(i)} and ${balls(n)} collide")
-          }
-        }
-      }
-
-      if (found)
-        separateRecursive(true)
-      else
-        hasSeparated
-    }
-
-    separateRecursive(false)
-  }
-
-  /** Separates two overlapping balls
-    *
-    * This is done by moving the fastest moving ball backwards (opposite to its
-    * velocity) so that the new distance between them is
-    * ball1.radius + ball2.radius + separationOffset.
-    *
-    * If none of the balls are moving, they will be moved
-    * along the vector formed to the touching point of the balls.
-    *
-    * If both of the balls are still and completely overlapping,
-    * ball2 will be moved to the left by ball1.radius + separationOffset
-    *
-    * If the velocity is zero,
-    *
-    * @return returns whether the balls were moved or not */
-  def separate(ball1: Ball, ball2: Ball): Boolean = {
-
-    val d = (ball2 - ball1).len
-
-    if (d <= ball1.radius + ball2.radius) {
-
-      val v1n = ball1.velocity.len
-      val v2n = ball2.velocity.len
-
-      val n = if (v2n > v1n) {
-        -1f * ball2.velocity.normalized
-      } else if (v1n > v2n) {
-        -1f * ball1.velocity.normalized
-      } else if (d > 0f) {
-        (ball2 - ball1).normalized
-      } else {
-        Vector3D(1f, 0f, 0f)
-      }
-
-      val newD = (ball1.radius + ball2.radius + separationOffset) * n
-
-      if (v1n > v2n) {
-        ball1 += newD - (ball1 - ball2)
-      } else {
-        ball2 += newD - (ball2 - ball1)
-      }
-
-      true
-    } else {
-      false
-    }
   }
 
   /** Shoots the cue ball in the given direction according to the cue velocity and where on the ball it was hit
@@ -372,33 +249,33 @@ object PhysicsHandler {
       println(s"Shoot with an angular velocity of ${cueBall.angularVelocity}")
     }
   }
-  
+
   /** Returns the time until the next collision between two balls
-   *  
+   *
    *  The collision time is determined by treating the balls as if they were having a linear
    *  trajectory. This allows us to use a quadratic equation to determine the distance d
    *  between the balls for a certain time t. The potential collision occurs when the
    *  distance between the balls is the sum of their radii.
-   *  
+   *
    *  The equation is as following:
-   *  
-   *  d(t) = t^2 (∆v.∆v) + 2t (∆r.∆v) + (∆r.∆r) - (R1+R1)^2 
+   *
+   *  d(t) = t^2 (∆v.∆v) + 2t (∆r.∆v) + (∆r.∆r) - (R1+R1)^2
    *  where: ∆r is the difference in position between the balls
    *  			 R  are the radii of the balls
-   *  
+   *
    *  This method is based on the following source:
    *  http://twobitcoder.blogspot.fi/2010/04/circle-collision-detection.html */
   def timeUntilCollision(ball1: Ball, ball2: Ball): Option[Float] = {
-    
+
     val v12 = ball1.velocity - ball2.velocity
     val r12 = ball1 - ball2
-    
+
     val a = v12 dot v12
     val b = 2 * (r12 dot v12)
     val c = (r12 dot r12) - pow(ball1.radius.toDouble + ball2.radius, 2).toFloat
-    
-    val disc = pow(b.toDouble, 2).toFloat - 4*a*c
 
+    //Calculate the discriminant of the equation
+    val disc = pow(b.toDouble, 2).toFloat - 4*a*c
 
     if ((ball2 - ball1).len < ball1.radius + ball2.radius) {
       None
@@ -417,17 +294,17 @@ object PhysicsHandler {
       //Two upcoming collisions, choose the next one (but not any past solutions)
       val t1 = ((-b - sqrt(disc.toDouble).toFloat)/(2*a))
       val t2 = ((-b + sqrt(disc.toDouble).toFloat)/(2*a))
-      val tmp = min(if (t1 < 0f) Float.MaxValue else t1,
+      val t = min(if (t1 < 0f) Float.MaxValue else t1,
                     if (t2 < 0f) Float.MaxValue else t2)
-      if (tmp == Float.MaxValue) None else Some(tmp)
+      if (t == Float.MaxValue) None else Some(t)
     }
   }
-  
+
   /** Returns the time when the ball will collide with a horizontal wall (-1 if no collision)
-   *  
+   *
    *  The wall is assumed to be infinitely wide (which is OK as the
    *  game board is enclosed anyways)
-   *  
+   *
    *  @param ball the ball
    *  @param wallY the y coordinate of the ball */
   def timeUntilHorizontalWallCollision(ball: Ball, wallY: Float): Option[Float] = {
@@ -456,12 +333,12 @@ object PhysicsHandler {
 
     foundTime
   }
-  
+
   /** Returns the time when the ball will collide with a vertical wall (-1 if no collision)
-   *  
+   *
    *  The wall is assumed to be infinitely tall (which is OK as the
    *  game board is enclosed anyways)
-   *  
+   *
    *  @param ball the ball
    *  @param wallX the x coordinate of the ball */
   def timeUntilVerticalWallCollision(ball: Ball, wallX: Float): Option[Float] = {
@@ -477,9 +354,9 @@ object PhysicsHandler {
     }
   }
 
-  /** Updates the balls in the game state
+  /** Updates the position, velocity, and angular velocity of the balls in the game state
     *
-    *  Call once every step
+    *  Call once every time step
     *
     *  @param state the state to update
     *  @param t the duration of the time step
@@ -488,14 +365,21 @@ object PhysicsHandler {
 
     val balls = state.balls
 
+    //Update the velocities of the balls
     updateVelocities(balls, t)
 
+    /** Find all collisions that will occur within the time step and update the position and velocities accordingly
+      *
+      * @param rt The amount of time, in seconds, that remains of this time step
+      * @param depth How many times we have recursed so far (will abort at 100)
+      */
     def applyCollisionsRecursive(rt: Float, depth: Int = 0): Unit = {
 
       val (timeUntilCollision, collisions) = getNextCollisions(balls)
 
       if (timeUntilCollision.exists( _ < rt )) {
 
+        //All the velocity updates that will be applied to a ball during this time step
         val newVelocity = Map[Ball, Vector[Vector3D]]().withDefaultValue(Vector[Vector3D]())
         val newAngularVelocity = Map[Ball, Vector[Vector3D]]().withDefaultValue(Vector[Vector3D]())
 
@@ -503,7 +387,7 @@ object PhysicsHandler {
 
           case CollisionType.BallBall => {
             oBall2 foreach { ball2 => {
-              val result = collideImmutable(ball1, ball2)
+              val result = collide(ball1, ball2)
 
               newVelocity += ball1 -> (newVelocity(ball1) :+ result._1.velocity)
               newVelocity += ball2 -> (newVelocity(ball2) :+ result._2.velocity)
@@ -531,26 +415,24 @@ object PhysicsHandler {
 
         }}
 
-        println(s"New velocity: $newVelocity")
-
         //Move the balls to collision positions before updating the velocities
         timeUntilCollision foreach { ct => {
-          //updateVelocities(balls, ct)
           moveBalls(balls, 0.99f * ct)
         }}
 
-        //Update the velocity
+        //Update the velocity by adding the average change in velocity
         newVelocity foreach { case (ball, dVelocities) => {
           val p = (1f / dVelocities.size)
           ball.velocity +=  p * dVelocities.foldLeft(Vector3D(0f, 0f, 0f))(_ + _)
         }}
 
-        //Update the angular velocity
+        //Update the velocity by adding the average change in angular velocity
         newAngularVelocity foreach { case (ball, dAVelocities) => {
           val p = 1f / dAVelocities.size
           ball.angularVelocity += p * dAVelocities.foldLeft(Vector3D(0f, 0f, 0f))(_ + _)
         }}
 
+        //Loop at most 100 times per time step
         if (depth < 100) {
           applyCollisionsRecursive(rt - timeUntilCollision.get, depth + 1)
         }
