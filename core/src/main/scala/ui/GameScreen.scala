@@ -15,8 +15,8 @@ import com.badlogic.gdx.utils.{BufferUtils, ScreenUtils}
 import com.walter.eightball.libgdx.{SAction, SInputListeners}
 import com.walter.eightball.math.Vector3D
 import com.walter.eightball.objects.Board
-import com.walter.eightball.physics.PhysicsHandler
 import com.walter.eightball.state.{GameState, GameStateType}
+import com.walter.eightball.state.PhysicsHandler
 
 /** Screen that renders and handles input to the game
   *
