@@ -246,7 +246,6 @@ object PhysicsHandler {
       cueBall.angularVelocity = 100f * Vector3D(len * ballPosition.y * sin(angle).toFloat,
                                                  len * ballPosition.y * cos(angle).toFloat,
                                                  3f * len * ballPosition.x)
-      println(s"Shoot with an angular velocity of ${cueBall.angularVelocity}")
     }
   }
 

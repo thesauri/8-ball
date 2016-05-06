@@ -223,7 +223,6 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
 
   /** Updates camera parameters and the scale factor after a window resize */
   override def resize(width: Int, height: Int): Unit = {
-    println(s"Resized to $width,$height")
     scale = width / 3f
     camera.viewportWidth = width
     camera.viewportHeight = height
