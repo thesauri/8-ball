@@ -2,6 +2,7 @@ package com.walter.eightball.physics
 
 import com.walter.eightball.math.Vector3D
 import com.walter.eightball.objects.{Ball, Board}
+import com.walter.eightball.physics.PhysicsHandler.CollisionType.CollisionType
 import com.walter.eightball.state.GameState
 
 import scala.collection.mutable.{Buffer, Map}
