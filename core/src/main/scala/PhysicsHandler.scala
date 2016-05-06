@@ -145,7 +145,7 @@ object PhysicsHandler {
 
     //The factor to dampen the angular velocity with (if the delta velocity is bigger than the velocity, stop the spin entirely)
     val c = if (dAngularVelocityLen > AVVelocityLen) 0f else dAngularVelocityLen / AVVelocityLen
-    
+
     //The delta angular velocity
     val dAngularVelocity = -c * ball.angularVelocity
 
@@ -430,7 +430,7 @@ object PhysicsHandler {
     if (ball.velocity.y == 0f) {
       None
     } else {
-      val t = (wallY - ball.radius - ball.y)/ball.velocity.y
+      val t = min((wallY - ball.radius - ball.y)/ball.velocity.y, (wallY + ball.radius - ball.y)/ball.velocity.y)
       if (t < 0f) {
         None
       } else {
@@ -464,7 +464,7 @@ object PhysicsHandler {
     if (ball.velocity.x == 0f) {
       None
     } else {
-      val t = (wallX - ball.radius - ball.x)/ball.velocity.x
+      val t = min(wallX - ball.radius - ball.x/ball.velocity.x, wallX + ball.radius - ball.x/ball.velocity.x)
       if (t < 0f) {
         None
       } else {
