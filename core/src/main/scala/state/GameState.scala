@@ -146,6 +146,7 @@ class GameState extends Serializable{
     case Some(1) => ball.number <= 8 && isPlayer1sTurn || ball.number >= 8 && !isPlayer1sTurn || ball.number == 0
     case Some(2) => ball.number <= 8 && !isPlayer1sTurn || ball.number >= 8 && isPlayer1sTurn || ball.number == 0
     case None => true
+    case _ => true
   }
 }
 
