@@ -14,7 +14,7 @@ object PhysicsHandler {
   val cfc = 0.01f //Coefficient of friction between two colliding balls
   val cfs = 0.2f //Coefficient of friction while sliding
   val cfr = 0.01f //Coefficient of friction while rolling
-  val cfw = 0.01f //Coefficient of friction between the ball and the wall during a collision
+  val cfw = 0.2f //Coefficient of friction between the ball and the wall during a collision
   val td = 0.0002f //Duration of a collision between two balls
   val separationOffset = 0.001f //Minimum separation between objects when calling method separate
 
@@ -144,24 +144,28 @@ object PhysicsHandler {
     val AVVelocityLen = ball.angularVelocity.len
 
     //The factor to dampen the angular velocity with (if the delta velocity is bigger than the velocity, stop the spin entirely)
-    val c = if (dAngularVelocityLen > AVVelocityLen) 0f else (AVVelocityLen - dAngularVelocityLen) / AVVelocityLen
-
+    val c = if (dAngularVelocityLen > AVVelocityLen) 0f else dAngularVelocityLen / AVVelocityLen
+    
     //The delta angular velocity
-    val dAngularVelocity = c * ball.angularVelocity
+    val dAngularVelocity = -c * ball.angularVelocity
 
     //Deivation caused by the dampining of the spin around the z-axis during the spin
     val d = sqrt(2.0/5.0).toFloat * ball.radius * dAngularVelocity.z
 
-    /*val tmp1 = Vector3D(2f * velocityLen, Vector3D(0, -2f * ball.velocity.y, 0f).angle2d)
-    val tmp2 = Vector3D(0, -2f * ball.velocity.y, 0f)*/
-
     //Invert the velocity tangential to the collision plane and add the deviation
     val dVelocity = if (horziontal) {
-      Vector3D(2f * abs(vt), Vector3D(d, -2f * ball.velocity.y, 0f).angle2d)
+      //Velocity required to stop the ball
+      val stop = Vector3D(0f, -vt, 0f)
+
+      //The velocity afterwards
+      val deviation = Vector3D(abs(vt), Vector3D(d, -ball.velocity.y, 0f).angle2d)
+
+      //Sum the two to get the delta velocity
+      stop + deviation
     } else {
-      val tmp = Vector3D(2f * abs(vt), Vector3D(-2f * ball.velocity.x, d, 0f).angle2d)
-      println(tmp)
-      tmp
+      val stop = Vector3D(-vt, 0f, 0f)
+      val deviation = Vector3D(abs(vt), Vector3D(-ball.velocity.x, d, 0f).angle2d)
+      stop + deviation
     }
 
     new VelocityState(dVelocity, dAngularVelocity)
@@ -360,7 +364,7 @@ object PhysicsHandler {
       val len = cueBall.velocity.len
       cueBall.angularVelocity = 100f * Vector3D(len * ballPosition.y * sin(angle).toFloat,
                                                  len * ballPosition.y * cos(angle).toFloat,
-                                                 len * ballPosition.x)
+                                                 3f * len * ballPosition.x)
       println(s"Shoot with an angular velocity of ${cueBall.angularVelocity}")
     }
   }

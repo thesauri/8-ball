@@ -87,7 +87,6 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
 
     overlay.addAction(new SequenceAction(fadeIn, changeScreen))
     stage.addActor(overlay)
-    ()
   })
 
   //Add a ball to choose where on the ball to hit it
