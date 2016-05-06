@@ -1,17 +1,22 @@
-package com.walter.eightball
+package com.walter.eightball.ui
 
 import com.badlogic.gdx.Input.Keys
+import com.badlogic.gdx._
 import com.badlogic.gdx.files.FileHandle
-import com.badlogic.gdx.graphics.{GL20, OrthographicCamera, Pixmap, Texture}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
-import com.badlogic.gdx.math.{Interpolation}
-import com.badlogic.gdx.scenes.scene2d.{Group, InputEvent, Stage}
+import com.badlogic.gdx.graphics.{GL20, OrthographicCamera, Pixmap, Texture}
+import com.badlogic.gdx.math.Interpolation
 import com.badlogic.gdx.scenes.scene2d.actions.{AlphaAction, SequenceAction}
 import com.badlogic.gdx.scenes.scene2d.ui.{Image, Table}
+import com.badlogic.gdx.scenes.scene2d.{Group, InputEvent, Stage}
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 import com.badlogic.gdx.utils.{BufferUtils, ScreenUtils}
-import com.badlogic.gdx._
+import com.walter.eightball.libgdx.{SAction, SInputListeners}
+import com.walter.eightball.math.Vector3D
+import com.walter.eightball.objects.Board
+import com.walter.eightball.physics.PhysicsHandler
+import com.walter.eightball.state.{GameState, GameStateType}
 
 /** Screen that renders and handles input to the game
   *

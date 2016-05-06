@@ -1,8 +1,10 @@
-package com.walter.eightball
+package com.walter.eightball.objects
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
+import com.walter.eightball.math.Vector3D
+import com.walter.eightball.ui.Styles
 
 /** Represents a ball on the pool table
  *  

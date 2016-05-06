@@ -1,7 +1,10 @@
 package com.walter.eightball
 
-import com.walter.eightball.PhysicsHandler.CollisionType
+import com.walter.eightball.physics.PhysicsHandler.CollisionType
+import com.walter.eightball.math.Vector3D
+import com.walter.eightball.objects.Ball
 import org.scalatest._
+import com.walter.eightball.physics.PhysicsHandler
 
 class PhysicsHandlerTest extends FlatSpec with Matchers {
   

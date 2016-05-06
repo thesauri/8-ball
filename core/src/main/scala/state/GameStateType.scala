@@ -1,4 +1,4 @@
-package com.walter.eightball
+package com.walter.eightball.state
 
 /** Describes the current state of the game
   *

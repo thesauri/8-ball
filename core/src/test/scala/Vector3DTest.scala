@@ -1,5 +1,6 @@
 package com.walter.eightball
 
+import com.walter.eightball.math.Vector3D
 import org.scalatest._
 
 class Vector3DTest extends FlatSpec with Matchers {

@@ -1,11 +1,11 @@
-package com.walter.eightball
+package com.walter.eightball.physics
 
-import com.walter.eightball.PhysicsHandler.CollisionType.CollisionType
+import com.walter.eightball.math.Vector3D
+import com.walter.eightball.objects.{Ball, Board}
+import com.walter.eightball.state.GameState
 
+import scala.collection.mutable.{Buffer, Map}
 import scala.math._
-import scala.collection.mutable.Buffer
-import scala.collection.mutable.Map
-import scala.annotation.tailrec
 
 object PhysicsHandler {
   

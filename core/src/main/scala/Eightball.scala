@@ -2,6 +2,7 @@ package com.walter.eightball
 
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.Gdx
+import com.walter.eightball.ui.MenuScreen
 
 /** The main class of the game, instantiated when the game is opened */
 class Eightball extends Game {

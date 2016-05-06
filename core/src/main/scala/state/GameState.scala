@@ -1,13 +1,13 @@
-package com.walter.eightball
+package com.walter.eightball.state
 
-import java.io.{NotSerializableException, ObjectInputStream, ObjectOutputStream}
-import java.time.LocalDateTime
+import java.io.{ObjectInputStream, ObjectOutputStream}
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.{Pixmap, PixmapIO, Texture}
 import com.badlogic.gdx.utils.TimeUtils
-
+import com.walter.eightball.math.Vector3D
+import com.walter.eightball.objects.{Ball, CueStick}
 import scala.collection.mutable
 
 /** A mutable class to store and manipulate the current state of the game */

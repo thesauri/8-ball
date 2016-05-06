@@ -1,13 +1,15 @@
-package com.walter.eightball
+package com.walter.eightball.ui
 
 import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.{GL20, Texture}
 import com.badlogic.gdx.math.{Interpolation, Vector2}
-import com.badlogic.gdx.{Game, Gdx, Screen}
-import com.badlogic.gdx.scenes.scene2d.{Actor, InputEvent, Stage}
 import com.badlogic.gdx.scenes.scene2d.actions._
 import com.badlogic.gdx.scenes.scene2d.ui.{Image, ScrollPane, Table}
+import com.badlogic.gdx.scenes.scene2d.{Actor, InputEvent, Stage}
 import com.badlogic.gdx.utils.viewport.ScreenViewport
+import com.badlogic.gdx.{Game, Gdx, Screen}
+import com.walter.eightball.libgdx.{SAction, SInputListeners}
+import com.walter.eightball.state.GameState
 
 /** Main menu screen to start a new game or load an old one
   *

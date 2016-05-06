@@ -1,7 +1,8 @@
-package com.walter.eightball
+package com.walter.eightball.objects
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
+import com.walter.eightball.ui.Styles
 
 /** Represents the in-game board */
 object Board {

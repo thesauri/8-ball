@@ -1,4 +1,4 @@
-package com.walter.eightball
+package com.walter.eightball.math
 
 import com.badlogic.gdx.math.Vector3
 

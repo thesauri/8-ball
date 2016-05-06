@@ -1,6 +1,8 @@
-package com.walter.eightball
+package com.walter.eightball.objects
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.walter.eightball.math.Vector3D
+import com.walter.eightball.ui.Styles
 
 /** Represents the cue stick in the game */
 @SerialVersionUID(1L)
