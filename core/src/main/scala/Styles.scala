@@ -3,6 +3,7 @@ package com.walter.eightball
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 
+/** Defines colors the billiard balls and sizes of the in-game UI */
 object Styles {
 
   def BallColor: Color = Color.valueOf("ECF0F1FF")

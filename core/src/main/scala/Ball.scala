@@ -6,8 +6,10 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 
 /** Represents a ball on the pool table
  *  
- *  Balls implement 2D vectors that define their position, Shapes to give them
- *  a width and height, and Renderable to handle the rendering when called.
+ *  Balls implement 3D vectors that define their position. They also have a render method
+  * to render themselves.
+  *
+  *
  *  The numbering of the balls is as follows:
 
       0.  The cue balls
