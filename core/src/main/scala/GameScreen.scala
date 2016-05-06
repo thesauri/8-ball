@@ -121,7 +121,6 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
   override def show(): Unit = {
 
     resize(Gdx.graphics.getWidth, Gdx.graphics.getHeight)
-    shapeRenderer.setProjectionMatrix(camera.combined)
 
     for (i <- 0 until state.balls.size) {
       for (n <- i + 1 until state.balls.size) {
@@ -201,11 +200,13 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
 
   /** Updates camera parameters and the scale factor after a window resize */
   override def resize(width: Int, height: Int): Unit = {
+    println(s"Resized to $width,$height")
     scale = width / 3f
     camera.viewportWidth = width
     camera.viewportHeight = height
     camera.position.set(scale * Board.Width / 2f, scale * Board.Height / 2f, 0f)
     camera.update()
+    shapeRenderer.setProjectionMatrix(camera.combined)
   }
 
   override def dispose(): Unit = ()
