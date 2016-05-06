@@ -1,27 +1,21 @@
 package com.walter.eightball
 
 import com.badlogic.gdx.Game
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
-import com.badlogic.gdx.graphics.GL20
 
-import scala.collection.mutable.Buffer
-import scala.util.Random
-
+/** The main class of the game, instantiated when the game is opened */
 class Eightball extends Game {
 
-  //lazy val gameScreen = new GameScreen
-  lazy val menuScreen = new MenuScreen(this)
+  /** Run when the game is opened */
+  override def create(): Unit = {
+    this.setScreen(new MenuScreen(this))
+  }
 
-    override def create(): Unit = {
-      this.setScreen(menuScreen)
-    }
+  /** Called every frame to render the game */
+  override def render(): Unit = {
+    //Render the current screen
+    this.getScreen.render(Gdx.graphics.getDeltaTime)
+  }
 
-    override def render(): Unit = {
-      this.getScreen.render(Gdx.graphics.getDeltaTime)
-    }
-    
-    override def dispose(): Unit = ()
+  override def dispose(): Unit = ()
 }

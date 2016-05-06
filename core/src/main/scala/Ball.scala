@@ -33,11 +33,13 @@ class Ball(var x: Float, var y: Float, var z: Float, val number: Int) extends Ve
   val radius = Ball.Radius
   var velocity = Vector3D(0f, 0f, 0f)
   var angularVelocity = Vector3D(0f, 0f, 0f)
-  var state = BallState.Sliding
 
   /** Renders the ball
     *
-    * If active is set to false, the ball will be rendered with a gray color */
+    * @param renderer The shape renderer to use
+    * @param scale Screen pixels per in-game meter
+    * @param active Whether the ball should be rendered with its color or not
+    */
   def render(renderer: ShapeRenderer, scale: Float, active: Boolean): Unit = {
     renderer.set(ShapeType.Filled)
 
@@ -57,6 +59,8 @@ class Ball(var x: Float, var y: Float, var z: Float, val number: Int) extends Ve
 
 }
 
+/** Companion object for the Ball class which specifies mass, radius, and the
+  * colors associated with each number */
 object Ball {
 
   val Mass = 0.16f //In kg according to the WPA spec

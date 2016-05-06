@@ -589,7 +589,6 @@ object PhysicsHandler {
           if (ball.velocity.len < 0.01f && ball.angularVelocity.len < 0.01f ) {
             ball.velocity = Vector3D(0f, 0f, 0f)
             ball.angularVelocity = Vector3D(0f, 0f, 0f)
-            ball.state = BallState.Still
           } else {
 
             //Otherwise update the velocities

@@ -2,33 +2,32 @@ package com.walter.eightball
 
 import com.badlogic.gdx.Input.Keys
 import com.badlogic.gdx.files.FileHandle
-import com.badlogic.gdx.graphics.g2d.{BitmapFont, GlyphLayout, SpriteBatch}
 import com.badlogic.gdx.graphics.{GL20, OrthographicCamera, Pixmap, Texture}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
-import com.badlogic.gdx.math.{Interpolation, Vector2}
+import com.badlogic.gdx.math.{Interpolation}
 import com.badlogic.gdx.scenes.scene2d.{Group, InputEvent, Stage}
 import com.badlogic.gdx.scenes.scene2d.actions.{AlphaAction, SequenceAction}
 import com.badlogic.gdx.scenes.scene2d.ui.{Image, Table}
 import com.badlogic.gdx.utils.viewport.ScreenViewport
-import com.badlogic.gdx.utils.{Align, BufferUtils, ScreenUtils}
+import com.badlogic.gdx.utils.{BufferUtils, ScreenUtils}
 import com.badlogic.gdx._
 
-import scala.collection.mutable.Buffer
-import scala.util.Random
-
-/** Takes care of the game
+/** Screen that renders and handles input to the game
   *
-  * Optionally load a game state from a file */
+  * @param game The game instance
+  * @param file Optional FileHandle to a saved game state
+  */
 class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with InputProcessor {
 
   var scale = 1f //Scale factor for rendering, updated whenever the window size changes in resize()
   lazy val camera = new OrthographicCamera()
   lazy val shapeRenderer = new ShapeRenderer()
-  val gameBoard = new Board()
+  val gameBoard = Board
   var touchedDownPoint: Option[Vector3D] = None //The place on the board where the cue stick was when a second finger was touched
   var lastDistanceFromBall: Option[Float] = None //How far from the ball the cue stick was the last frame
 
+  //Optionally load a saved game state
   var state = file match {
     case Some(file) => GameState.load(file)
     case None => {
@@ -52,9 +51,14 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
   cross.addAction(fadeIn)
 
   table.setBounds(0, 0, Gdx.graphics.getWidth, Gdx.graphics.getHeight)
+
+  //Add the exit button (cross) to the top left corner
   table.add(cross).expand.top.left.pad(Styles.GameScreenUIPadding).size(Styles.GameScreenButtonSize)
+
+  //Add the table containing the exit button to the stage
   stage.addActor(table)
 
+  //Save and return to the MainScreen when the exit button is pressed
   cross.addListener(SInputListeners.click {
     //Redraw the screen without the UI
     renderWithoutUI()
@@ -80,6 +84,7 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
     fadeIn.setDuration(1f)
     fadeIn.setInterpolation(Interpolation.pow2In)
 
+    //Change the screen once the overlay has faded in
     val changeScreen = SAction {
       game.setScreen(new MenuScreen(game))
       true
@@ -96,6 +101,7 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
   val target = new Image(new Texture(Gdx.files.internal("textures/target.png")))
   target.setSize(Styles.GameScreenTargetSize, Styles.GameScreenTargetSize)
 
+  //Group these together to put the target on the ball
   balltargetGroup.setSize(ball.getWidth, ball.getHeight)
   balltargetGroup.addActor(ball)
   balltargetGroup.addActor(target)
@@ -108,7 +114,23 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
     true
   }})
 
-  balltargetGroup.addAction(fadeIn)
+  //Hide the ball and targets initially and fade them in
+  ball.getColor.a = 0f
+  target.getColor.a = 0f
+
+  val fadeInBall = new AlphaAction
+  fadeInBall.setAlpha(1f)
+  fadeInBall.setDuration(1f)
+
+  //For some reason the same action can't be reused for multiple actors..
+  val fadeInTarget = new AlphaAction
+  fadeInTarget.setAlpha(1f)
+  fadeInTarget.setDuration(1f)
+
+  ball.addAction(fadeInBall)
+  target.addAction(fadeInTarget)
+
+  //Put the ball and target in the top right corner
   table.add(balltargetGroup).expand.top.right.pad(Styles.GameScreenUIPadding)
 
   //Give input priority to the UI, otherwise pass it to the game board
@@ -117,18 +139,18 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
   input.addProcessor(stage)
   Gdx.input.setInputProcessor(input)
 
-
+  /** Called when the screen is opened */
   override def show(): Unit = {
 
+    //Update the camera parameters according to the current window size
     resize(Gdx.graphics.getWidth, Gdx.graphics.getHeight)
 
-    for (i <- 0 until state.balls.size) {
-      for (n <- i + 1 until state.balls.size) {
-        if ((state.balls(i) - state.balls(n)).len < state.balls(0).radius + state.balls(1).radius) println("Overlapping in the beginning")
-      }
-    }
   }
 
+  /** Updates the game state and renders the board
+    *
+    * @param delta Time since the last render (in seconds)
+    */
   override def render(delta: Float): Unit = {
     Gdx.gl.glClearColor(1, 1, 1, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -174,10 +196,6 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
 
         shapeRenderer.end()
       }
-
-      case _ => ()
-
-
     }
 
     //Render the UI
@@ -224,6 +242,7 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
 
   override def keyDown(keycode: Int): Boolean = keycode match {
 
+    //Saves where the mouse pointer was when the shift key was pressed (used for locking the rotation)
     case Keys.SHIFT_LEFT => {
       touchedDownPoint = Some(screenCoordToGame(Vector3D(Gdx.input.getX, Gdx.input.getY, 0f)))
       true
@@ -236,7 +255,7 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
 
     case GameStateType.Aiming => {
 
-      //Save where the cue stick was when a second finger was touched (to lock the rotation)
+      //Saves where the cue stick was when a second finger is touched (to lock the rotation)
       if (pointer == 1) {
         touchedDownPoint = Some(screenCoordToGame(Vector3D(Gdx.input.getX, Gdx.input.getY, 0f)))
         true
@@ -256,6 +275,7 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
 
   override def keyUp(keycode: Int): Boolean = keycode match {
 
+    //Stop locking the rotation
     case Keys.SHIFT_LEFT => {
       touchedDownPoint = None
       true
@@ -269,6 +289,7 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
 
   override def touchUp(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = pointer match {
 
+    //Stop locking the rotation if the second finger is removed
     case 1 => {
       touchedDownPoint = None
       true
@@ -283,8 +304,6 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
     case GameStateType.Aiming if (pointer == 0) => {
       state.cueBall foreach { cueBall => {
 
-        Gdx.app.error("ssx", s"Finger is touched ${Gdx.input.isTouched(0)} and ${Gdx.input.isTouched(1)}")
-
         //Determine where on the board the screen was touched
         val curPointOnBoard = screenCoordToGame(Vector3D(screenX, screenY, 0f))
 
@@ -296,6 +315,7 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
           state.cueStick.rotationDegrees = (cueBall - curPointOnBoard).angle2d
         }
 
+        //Update the distance from the cue ball to the tip of the cue stick
         state.cueStick.distance = if (touchedDownPoint.isDefined) {
           (cueBall - touchedDownPoint.get).len - (curPointOnBoard - touchedDownPoint.get).len
         } else {
