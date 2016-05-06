@@ -26,7 +26,8 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
   lazy val camera = new OrthographicCamera()
   lazy val shapeRenderer = new ShapeRenderer()
   val gameBoard = new Board()
-  var lastTouchedPoint: Option[Vector3D] = None //The place on the board where the screen was touched the last frame
+  var touchedDownPoint: Option[Vector3D] = None //The place on the board where the cue stick was when a second finger was touched
+  var lastDistanceFromBall: Option[Float] = None //How far from the ball the cue stick was the last frame
 
   var state = file match {
     case Some(file) => GameState.load(file)
@@ -222,19 +223,8 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
 
   override def keyDown(keycode: Int): Boolean = keycode match {
 
-    case Keys.S => {
-      val pixels = ScreenUtils.getFrameBufferPixels(0, 0, Gdx.graphics.getBackBufferWidth, Gdx.graphics.getBackBufferHeight, true)
-      val pixmap = new Pixmap(Gdx.graphics.getBackBufferWidth, Gdx.graphics.getBackBufferHeight, Pixmap.Format.RGBA8888)
-      BufferUtils.copy(pixels, 0, pixmap.getPixels, pixels.length)
-
-      GameState.save(state, pixmap)
-
-      true
-    }
-
-    case Keys.L => {
-      val files = GameState.savedGames.sortBy( _.name )
-      state = GameState.load(files.last)
+    case Keys.SHIFT_LEFT => {
+      touchedDownPoint = Some(screenCoordToGame(Vector3D(Gdx.input.getX, Gdx.input.getY, 0f)))
       true
     }
 
@@ -242,6 +232,17 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
   }
 
   override def touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = state.gameState match {
+
+    case GameStateType.Aiming => {
+
+      //Save where the cue stick was when a second finger was touched (to lock the rotation)
+      if (pointer == 1) {
+        touchedDownPoint = Some(screenCoordToGame(Vector3D(Gdx.input.getX, Gdx.input.getY, 0f)))
+        true
+      } else {
+        false
+      }
+    }
 
     case GameStateType.Lost => {
       state.placeBallsAtDefaultPositions()
@@ -252,49 +253,73 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
 
   }
 
-  override def keyUp(keycode: Int): Boolean = false
+  override def keyUp(keycode: Int): Boolean = keycode match {
+
+    case Keys.SHIFT_LEFT => {
+      touchedDownPoint = None
+      true
+    }
+
+    case _ => false
+
+  }
 
   override def scrolled(amount: Int): Boolean = false
 
-  override def touchUp(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = false
+  override def touchUp(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean = pointer match {
+
+    case 1 => {
+      touchedDownPoint = None
+      true
+    }
+
+    case _ => false
+
+  }
 
   override def touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean = state.gameState match {
 
     case GameStateType.Aiming if (pointer == 0) => {
       state.cueBall foreach { cueBall => {
+
+        Gdx.app.error("ssx", s"Finger is touched ${Gdx.input.isTouched(0)} and ${Gdx.input.isTouched(1)}")
+
+        //Determine where on the board the screen was touched
         val curPointOnBoard = screenCoordToGame(Vector3D(screenX, screenY, 0f))
+
+        //Point the cue stick at the ball
         state.cueStick.pointAt = cueBall
 
         //Don't rotate if the shift key is pressed, or a second touch is applied on the screen
-        if (!Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) && !Gdx.input.isTouched(1)) {
+        if (touchedDownPoint.isEmpty) {
           state.cueStick.rotationDegrees = (cueBall - curPointOnBoard).angle2d
         }
 
-        state.cueStick.distance = (cueBall - curPointOnBoard).len
+        state.cueStick.distance = if (touchedDownPoint.isDefined) {
+          (cueBall - touchedDownPoint.get).len - (curPointOnBoard - touchedDownPoint.get).len
+        } else {
+          (cueBall - curPointOnBoard).len
+        }
 
-        //If it was touched the last frame and the cue stick is very close to the ball, shoot
-        if (lastTouchedPoint.isDefined && state.cueStick.distance < 1.5f * cueBall.radius) {
-          val cuestickVelocityLength = (lastTouchedPoint.get - curPointOnBoard).len / Gdx.graphics.getDeltaTime
+        //If we've passed the with the cue stick, then shoot!
+        if (lastDistanceFromBall.isDefined && state.cueStick.distance <= 0.05f) {
+          val cuestickVelocityLength = (lastDistanceFromBall.get - state.cueStick.distance) / Gdx.graphics.getDeltaTime
           val cuestickVelocity = Vector3D(cuestickVelocityLength, state.cueStick.rotationDegrees)
 
           /* Scaling factor to convert points from the target ball on the screen to points according
              to the radius of the cue ball */
           val c = cueBall.radius * 1f / (ball.getWidth / 2f)
 
-
           //Get ∆x,y,z from the middle of the target ball
           val ballPosition = c * Vector3D(target.getX - (ball.getWidth - target.getWidth) / 2f,
-                                          target.getY - (ball.getHeight - target.getWidth) / 2f)
-
+            target.getY - (ball.getHeight - target.getWidth) / 2f)
 
           PhysicsHandler.shoot(cueBall, cuestickVelocity, ballPosition)
           state.gameState = GameStateType.Rolling
         }
 
-        lastTouchedPoint = Some(curPointOnBoard)
+        lastDistanceFromBall = Some(state.cueStick.distance)
       }}
-
-
 
       true
     }
