@@ -464,7 +464,7 @@ object PhysicsHandler {
     if (ball.velocity.x == 0f) {
       None
     } else {
-      val t = min(wallX - ball.radius - ball.x/ball.velocity.x, wallX + ball.radius - ball.x/ball.velocity.x)
+      val t = min((wallX - ball.radius - ball.x)/ball.velocity.x, (wallX + ball.radius - ball.x)/ball.velocity.x)
       if (t < 0f) {
         None
       } else {
