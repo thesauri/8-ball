@@ -52,7 +52,7 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
   cross.addAction(fadeIn)
 
   table.setBounds(0, 0, Gdx.graphics.getWidth, Gdx.graphics.getHeight)
-  table.add(cross).expand.top.left.pad(Styles.GameScreenUIPadding).size(100f * Gdx.graphics.getDensity)
+  table.add(cross).expand.top.left.pad(Styles.GameScreenUIPadding).size(Styles.GameScreenButtonSize)
   stage.addActor(table)
 
   cross.addListener(SInputListeners.click {
@@ -93,9 +93,9 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
   //Add a ball to choose where on the ball to hit it
   val balltargetGroup = new Group
   val ball = new Image(new Texture(Gdx.files.internal("textures/ball.png")))
-  ball.setSize(150f * Gdx.graphics.getDensity, 150f * Gdx.graphics.getDensity)
+  ball.setSize(Styles.GameScreenButtonSize, Styles.GameScreenButtonSize)
   val target = new Image(new Texture(Gdx.files.internal("textures/target.png")))
-  target.setSize(32f * Gdx.graphics.getDensity, 32f * Gdx.graphics.getDensity)
+  target.setSize(Styles.GameScreenTargetSize, Styles.GameScreenTargetSize)
 
   balltargetGroup.setSize(ball.getWidth, ball.getHeight)
   balltargetGroup.addActor(ball)
@@ -109,6 +109,7 @@ class GameScreen(game: Game, file: Option[FileHandle]) extends Screen with Input
     true
   }})
 
+  balltargetGroup.addAction(fadeIn)
   table.add(balltargetGroup).expand.top.right.pad(Styles.GameScreenUIPadding)
 
   //Give input priority to the UI, otherwise pass it to the game board

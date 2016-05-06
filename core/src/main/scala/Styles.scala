@@ -23,5 +23,7 @@ object Styles {
   def White: Color = Color.valueOf("ECf0F1FF")
 
   def GameScreenUIPadding: Float = 0.03f * Gdx.graphics.getHeight
+  def GameScreenButtonSize: Float = 0.1f * Gdx.graphics.getHeight
+  def GameScreenTargetSize: Float = 0.02f * Gdx.graphics.getHeight
 
 }
