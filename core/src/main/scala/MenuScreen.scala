@@ -7,12 +7,15 @@ import com.badlogic.gdx.{Game, Gdx, Screen}
 import com.badlogic.gdx.scenes.scene2d.{Actor, InputEvent, Stage}
 import com.badlogic.gdx.scenes.scene2d.actions._
 import com.badlogic.gdx.scenes.scene2d.ui.{Image, ScrollPane, Table}
-import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 
+/** Main menu screen to start a new game or load an old one
+  *
+  * @param game The game instance
+  */
 class MenuScreen(game: Game) extends Screen {
 
-  lazy val stage = new Stage(new ScreenViewport)
+  lazy val stage = new Stage(new ScreenViewport) //Stage that contains the UI elements
   lazy val screenshotTable = new Table
   lazy val scrollPane = new ScrollPane(screenshotTable)
   lazy val fillTable = new Table
@@ -20,11 +23,14 @@ class MenuScreen(game: Game) extends Screen {
   /** Screenshot associated with a file storing the game state of the screen shot */
   class Screenshot(val texture: Texture, val file: Option[FileHandle]) extends Image(texture)
 
+  /** Sets up the UI when the class is instantiated */
   def show(): Unit = {
     Gdx.input.setInputProcessor(stage)
 
+    //Get the default game save and the user saves
     val screenshots = GameState.savedScreenshots
 
+    //Add the screenshots to the grid (table)
     for (i <- 0 until screenshots.size) {
       val image = new Screenshot(screenshots(i)._1, screenshots(i)._2)
       val newWidth = stage.getWidth / 3f
@@ -46,7 +52,7 @@ class MenuScreen(game: Game) extends Screen {
 
       image.addAction(seq)
 
-
+      //When a screenshot is clicked, start a new game
       image.addListener(SInputListeners.click((event: InputEvent) => {
         val curActor = event.getListenerActor
         val otherScreenshotActors = screenshotTable.getChildren.toArray.filter( _ != curActor )
@@ -64,6 +70,7 @@ class MenuScreen(game: Game) extends Screen {
 
       screenshotTable.add(image).width(newWidth).height(newHeight).space(padding)
 
+      //Add a new row every second screenshot (=> two screenshots per row)
       if (i % 2 == 1) {
         screenshotTable.row()
       }
@@ -73,7 +80,6 @@ class MenuScreen(game: Game) extends Screen {
     fillTable.add(scrollPane)
 
     scrollPane.setWidth(100f)
-    scrollPane.invalidate()
 
     stage.addActor(fillTable)
   }
@@ -100,6 +106,7 @@ class MenuScreen(game: Game) extends Screen {
 
     desiredScreenshot.remove()
 
+    //Fade out all the other screenshots
     screenshots foreach { screenshot => {
       val fadeOut = new AlphaAction
       fadeOut.setAlpha(0f)
@@ -131,6 +138,7 @@ class MenuScreen(game: Game) extends Screen {
     screenshotToScale.addAction(new SequenceAction(delay, new ParallelAction(move, scale), changeScreen))
   }
 
+  /** Renders the UI */
   def render(delta: Float): Unit = {
     Gdx.gl.glClearColor(1, 1, 1, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
