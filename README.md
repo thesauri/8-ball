@@ -1,6 +1,8 @@
 8-ball
 ======
 
+![alt text](https://i.imgur.com/YGAhTNq.gif)
+
 The goal of this project was to create a billiard game and implement the physics for it on my own.
 
 To make a realistic simulation of a game of billiard, the angular velocity of the balls has to be taken into account. For instance, hitting the top of the cue ball will give it a forward spin causing it to continue forward after hitting other balls (instead of stopping). To allow for this kind of shots, the physics engine takes both the velocity and angular velocity into consideration as the balls roll over the board and collide with each other.
